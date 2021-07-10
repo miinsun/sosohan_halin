@@ -1,10 +1,10 @@
 import React from "react";
 
-const Logo = () => (
+const CTLogo = () => (
   <div className="Logo">
     <h5>소소한 할인</h5>
   </div>
 
 );
 
-export default Logo;
+export default CTLogo;

@@ -1,11 +1,11 @@
 import React from "react";
 
-import Logo from "../../Logo";
+import { CTLogo } from "../../components";
 import SignupForm from "./components/SignupForm";
 
 const Signup = () => (
   <div className="Signup">
-    <Logo />
+    <CTLogo />
     <SignupForm />
   </div>
 );

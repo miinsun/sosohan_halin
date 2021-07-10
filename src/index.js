@@ -1,18 +1,18 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
+import { BrowserRouter } from "react-router-dom";
+import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-// import App from "./App";
-// import StoreList from "./pages/storeList/StoreList";
-// import StoreDetail from "./pages/storeDetail/StoreDetail";
-import StoreRegistration from "./pages/storeRegistration/StoreRegistration";
-// import MyStorePrint from "./pages/storeDeleteModifications/StoreDeleteModifications";
-// eslint-disable-next-line import/no-unresolved
 import "bootstrap/dist/css/bootstrap.min.css";
+import store from "./store";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <StoreRegistration />
-  </React.StrictMode>,
+  <Provider store={store}>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </Provider>,
   document.getElementById("root"),
 );
 
