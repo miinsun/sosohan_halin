@@ -3,13 +3,15 @@ import ReactDOM from "react-dom";
 import reportWebVitals from "./reportWebVitals";
 // import App from "./App";
 // import StoreList from "./pages/storeList/StoreList";
-import StoreDetail from "./pages/storeDetail/StoreDetail";
+// import StoreDetail from "./pages/storeDetail/StoreDetail";
 // eslint-disable-next-line import/no-unresolved
 import "bootstrap/dist/css/bootstrap.min.css";
+// eslint-disable-next-line import/named
+import CouponRecog from "./pages/CouponRecog/CouponRecog";
 
 ReactDOM.render(
   <React.StrictMode>
-    <StoreDetail />
+    <CouponRecog />
   </React.StrictMode>,
   document.getElementById("root"),
 );

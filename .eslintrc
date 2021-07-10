@@ -17,6 +17,7 @@
     "node": true
     },
     "rules": {
+    "import/no-named-as-default": 0,
     "quotes": [
     "error",
     "double",

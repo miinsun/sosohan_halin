@@ -1,6 +1,7 @@
 import React from "react";
 import StoreInformation from "./components/StoreInformation";
-import OneButton from "./components/OneButton";
+// eslint-disable-next-line import/no-named-as-default
+import OneButton from "../../OneButton";
 
 const StoreDetail = () => (
   <div>
