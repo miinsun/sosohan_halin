@@ -20,13 +20,13 @@ const TheHeader = () => {
         <Collapse isOpen={!collapsed} navbar className="me-auto mb-2 mb-md-0">
           <Nav navbar>
             <NavItem>
-              <NavLink href="#">상점리스트</NavLink>
+              <NavLink href="/storelist">상점리스트</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="#">쿠폰관리</NavLink>
+              <NavLink href="/couponmanage">쿠폰관리</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="#">연계 할인 관리</NavLink>
+              <NavLink href="/linkreceptionhistory">연계 할인 관리</NavLink>
             </NavItem>
           </Nav>
         </Collapse>

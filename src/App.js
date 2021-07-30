@@ -5,6 +5,10 @@ import {
   Redirect,
 } from "react-router-dom";
 import TheLayout from "./container";
+import FindingId from "./pages/FindingId";
+import FindingIdResult from "./pages/FindingIdResult";
+import FindingPw from "./pages/FindingPw";
+import FindingPwResult from "./pages/FindingPwResult";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 
@@ -13,6 +17,10 @@ const App = () => (
   <Switch>
     <Route exact path="/login" component={Login} />
     <Route exact path="/signup" component={Signup} />
+    <Route exact path="/findingid/result" component={FindingIdResult} />
+    <Route exact path="/findingid" component={FindingId} />
+    <Route exact path="/findingpw/result" component={FindingPwResult} />
+    <Route exact path="/findingpw" component={FindingPw} />
     <Route path="/" component={TheLayout} />
 
     <Redirect to="/login" />

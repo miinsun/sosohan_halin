@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const FindingIdForm = () => (
   <form className="FindingIdForm">
@@ -36,10 +37,10 @@ const FindingIdForm = () => (
     </div>
     <div className="row">
       <div className="col-md-2 col-sm-2 col-xs-2 col-lg-2">
-        <button type="button" className="btn btn-default">취소</button>
+        <Link to="/login" className="btn btn-secondary">취소</Link>
       </div>
       <div className="col-md-2 col-sm-2 col-xs-2 col-lg-2">
-        <button type="submit" className="btn btn-default">아이디 찾기</button>
+        <Link to="/findingid/result" className="btn btn-secondary">아이디 찾기</Link>
       </div>
     </div>
   </form>

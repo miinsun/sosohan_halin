@@ -1,11 +1,11 @@
 import React from "react";
 
-import Logo from "../../Logo";
+import CTLogo from "../../components/CTLogo";
 import FindingIdForm from "./components/FindingIdForm";
 
 const FindingId = () => (
   <div className="FindingId">
-    <Logo />
+    <CTLogo />
     <h5>아이디 찾기</h5>
     <FindingIdForm />
   </div>
