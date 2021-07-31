@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import {
   Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink, NavbarText,
 } from "reactstrap";
@@ -20,7 +21,7 @@ const TheHeader = () => {
         <Collapse isOpen={!collapsed} navbar className="me-auto mb-2 mb-md-0">
           <Nav navbar>
             <NavItem>
-              <NavLink href="#">상점리스트</NavLink>
+            <Link to="/storelist">상점리스트</Link>
             </NavItem>
             <NavItem>
               <NavLink href="#">쿠폰관리</NavLink>

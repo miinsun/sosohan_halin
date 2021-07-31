@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 export class MyStorePrint extends Component {
   render() {
@@ -8,7 +9,10 @@ export class MyStorePrint extends Component {
           <tr>
             <td>번호</td>
             <td>상점명</td>
-            <td>수정/삭제</td>
+            <td>
+              <Link className="btn btn-primary" to="/storeRegistration">수정</Link>
+              삭제
+            </td>
           </tr>
           <tr>
             <td>반복문</td>
