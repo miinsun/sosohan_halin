@@ -27,7 +27,7 @@ const TheHeader = () => {
               <NavLink href="#">쿠폰관리</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="#">연계 할인 관리</NavLink>
+              <NavLink href="/linksuggest">연계 할인 관리</NavLink>
             </NavItem>
           </Nav>
         </Collapse>
