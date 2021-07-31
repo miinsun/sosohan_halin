@@ -2,6 +2,7 @@
 /* eslint-disable no-undef */
 /* eslint-disable react/destructuring-assignment */
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import "../../LinkReceptionHistory/components/LinkHistory.css";
 import OneButton2 from "../../../OneButton";
 
@@ -29,7 +30,7 @@ class MyCouponList extends Component {
             <td>Mark</td>
             <td>Otto</td>
             <td>@mdo</td>
-            <td><OneButton2 title="수정" /> <OneButton2 title="삭제" /></td>
+            <td><Link><OneButton2 title="수정" /></Link> <OneButton2 title="삭제" /></td>
           </tr>
           <tr>
             <th scope="row">2</th>

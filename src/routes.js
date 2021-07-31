@@ -4,6 +4,8 @@ import StoreDeleteModifications from "./pages/StoreDeleteModifications";
 import StoreDetail from "./pages/StoreDetail";
 import StoreRegistration from "./pages/StoreRegistration";
 import StoreList from "./pages/storeList";
+import CouponManage from "./pages/CouponManage";
+import CouponUsage from "./pages/CouponUsage";
 
 const routes = [
   {
@@ -36,6 +38,17 @@ const routes = [
     exact: true,
     component: StoreRegistration,
   },
+  {
+    path: "/couponManage",
+    exact: true,
+    component: CouponManage,
+  },
+  {
+    path: "/couponUsage",
+    exact: true,
+    component: CouponUsage,
+  },
+
 ];
 
 export default routes;
