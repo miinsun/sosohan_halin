@@ -2,6 +2,7 @@
 /* eslint-disable no-undef */
 /* eslint-disable react/destructuring-assignment */
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import "../../LinkReceptionHistory/components/LinkHistory.css";
 import DoBtn from "../../LinkSuggestion/components/DoBtn";
 
@@ -26,6 +27,7 @@ class MyCouponList extends Component {
         </div>
 
         <DoBtn do="등록" />
+        {/* 궁금한 점: <Link>는 페이지 이동에서만 사용하는건가? 이건 서버에서 처리가 필요한건데... */}
       </form>
 
     );
