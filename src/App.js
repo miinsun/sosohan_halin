@@ -1,14 +1,23 @@
 import React from "react";
-import TheHeader from "./TheHeader";
-import TheMain from "./TheMain";
-import TheFooter from "./TheFooter";
+import {
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
+import TheLayout from "./container";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 
 const App = () => (
-  <div className="d-flex flex-column h-100">
-    <TheHeader />
-    <TheMain />
-    <TheFooter />
-  </div>
+  // <div className="container">
+  <Switch>
+    <Route exact path="/login" component={Login} />
+    <Route exact path="/signup" component={Signup} />
+    <Route path="/" component={TheLayout} />
+
+    <Redirect to="/login" />
+  </Switch>
+  // </div>
 );
 
 export default App;
