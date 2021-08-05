@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const FindingIdForm = () => (
   <form className="FindingIdForm">
@@ -12,7 +13,8 @@ const FindingIdForm = () => (
       <option>hanmail.net</option>
       <option>nate.com</option>
     </select><br />
-    <button type="button">취소</button><button type="submit">임시 비밀번호 발급</button>
+    <Link to="/login" className="btn btn-secondary">취소</Link>
+    <Link to="/findingpw/result" className="btn btn-secondary">임시 비밀번호 발급</Link>
   </form>
 );
 

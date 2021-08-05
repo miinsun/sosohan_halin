@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const LoginForm = () => (
   <form>
@@ -16,7 +17,7 @@ const LoginForm = () => (
       </div>
     </div>
     <div className="d-flex justify-content-center mt-3 login_container">
-      <button type="button" name="button" className="btn login_btn">Login</button>
+      <Link className="btn btn-secondary" to="/">Login</Link>
     </div>
   </form>
 

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const SignupForm = () => (
   <form className="register-form">
@@ -63,10 +64,10 @@ const SignupForm = () => (
 
     <div className="row">
       <div className="col-md-2 col-sm-2 col-xs-2 col-lg-2">
-        <button type="button" className="btn btn-default">취소</button>
+        <Link className="btn btn-secondary" to="/login">취소</Link>
       </div>
       <div className="col-md-2 col-sm-2 col-xs-2 col-lg-2">
-        <button type="submit" className="btn btn-default">가입</button>
+        <Link className="btn btn-secondary" to="/login">가입</Link>
       </div>
     </div>
 

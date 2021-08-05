@@ -1,14 +1,15 @@
 import React from "react";
-import Logo from "../../Logo";
+import { Link } from "react-router-dom";
+import CTLogo from "../../components/CTLogo";
 
 import PwResult from "./components/PwResult";
 
 const FindingPwResult = () => (
   <div className="FindingPwResult">
-    <Logo />
+    <CTLogo />
     <h5>비밀번호 찾기</h5>
     <PwResult />
-    <button type="button">로그인</button>
+    <Link to="/login" class="btn btn-secondary">로그인</Link>
   </div>
 );
 

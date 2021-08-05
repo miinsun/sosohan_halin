@@ -1,5 +1,7 @@
 import Banner from "./Banner";
+import EditAccount from "./pages/EditAccount";
 import LinkSuggest from "./pages/LinkSuggestion";
+import Withdrawal from "./pages/Withdrawal";
 import StoreDeleteModifications from "./pages/StoreDeleteModifications";
 import StoreDetail from "./pages/StoreDetail";
 import StoreRegistration from "./pages/StoreRegistration";
@@ -22,6 +24,16 @@ const routes = [
     path: "/linksuggest",
     exact: true,
     component: LinkSuggest,
+  },
+  {
+    path: "/editaccount",
+    exact: true,
+    component: EditAccount,
+  },
+  {
+    path: "/withdrawal",
+    exact: true,
+    component: Withdrawal,
   },
   {
     path: "/storeDeleteModifications",

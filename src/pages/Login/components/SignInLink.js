@@ -10,7 +10,7 @@ const SignInLink = () => (
   // };
 
   <span className="SignInLink">
-    <Link className="btn btn-primary" to="/signup">회원가입</Link>
+    <Link className="btn btn-secondary" to="/signup">회원가입</Link>
   </span>
 );
 export default SignInLink;

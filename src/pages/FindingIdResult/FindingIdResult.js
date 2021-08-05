@@ -1,15 +1,16 @@
 import React from "react";
-import Logo from "../../Logo";
+import { Link } from "react-router-dom";
+import CTLogo from "../../components/CTLogo";
 
 import IdResult from "./components/IdResult";
 
 const FindingIdResult = () => (
   <div className="FindingIdResult">
-    <Logo />
+    <CTLogo />
     <h5>아이디 찾기</h5>
     <IdResult />
-    <button type="button">로그인</button>
-    <button type="button">비밀번호 찾기</button>
+    <Link to="/login" class="btn btn-secondary">로그인</Link>
+    <Link to="/findingpw" class="btn btn-secondary">비밀번호 찾기</Link>
   </div>
 );
 

@@ -1,8 +1,9 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const FindingPwLink = () => (
   <span className="FindingPwLink">
-    <button type="button">비밀번호 찾기</button>
+    <Link className="btn btn-secondary" to="/findingpw">비밀번호 찾기</Link>
   </span>
 );
 
