@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const StoreSearchList = () => (
   <div className="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
     <div className="col-auto d-none d-lg-block">
-      <Link to="/storeDetail"><img src="https://lab.hanium.or.kr/uploads/-/system/appearance/header_logo/1/content_logo.png" /></Link>
+      <img src="https://lab.hanium.or.kr/uploads/-/system/appearance/header_logo/1/content_logo.png" />
     </div>
 
     <div className="col p-4 d-flex flex-column position-static">
