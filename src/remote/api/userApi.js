@@ -2,7 +2,7 @@ import client from "../client";
 import urls from "../urls";
 
 export const get = (businessUserId) => client.get(`${urls.user}/${businessUserId}`);
-export const put = (businessUserId, form) => client.put(`${urls.user}/${businessUserId}`, form);
+export const put = (form) => client.put(`${urls.user}`, form);
 export const remove = (businessUserId) => client.delete(`${urls.user}/${businessUserId}`);
 export const login = (form) => client.post("/api/v1/login", form);
 export const logout = () => client.get("/api/v1/logout");

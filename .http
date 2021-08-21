@@ -1,0 +1,18 @@
+@BASE_URL=http://192.168.2.190:8089/api/v1
+
+
+GET {{BASE_URL}}/businessUser/test
+
+
+PUT {{BASE_URL}}/businessUser
+Content-Type: application/json
+
+{
+  "businessUserId" : "test",
+  "password": "1234",
+  "name" : "minsun1",
+  "email" : "minsun@naver.com",
+  "businessNum" : 1134567890,
+  "stores": [],
+  "state": 1
+}

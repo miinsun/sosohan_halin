@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^12.8.3",
     "axios": "^0.21.1",
     "bootstrap": "^5.0.1",
+    "immutable": "^4.0.0-rc.14",
     "micromatch": "^4.0.4",
     "node-sass": "4.14.1",
     "react": "^17.0.2",
@@ -17,6 +18,7 @@
     "react-scripts": "4.0.3",
     "reactstrap": "^8.9.0",
     "redux": "^4.1.0",
+    "redux-actions": "^2.6.5",
     "redux-devtools-extension": "^2.13.9",
     "redux-pender": "^2.0.12",
     "sass-loader": "^12.1.0",
@@ -137,5 +139,6 @@
     "eslint-plugin-json": "2.1.2",
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-react": "^7.23.2"
-  }
+  },
+  "proxy" : "http://192.168.2.190:8089"
 }
