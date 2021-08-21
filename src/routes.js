@@ -1,13 +1,13 @@
 import Banner from "./Banner";
+import CouponManage from "./pages/CouponManage";
+import CouponUsage from "./pages/CouponUsage";
 import EditAccount from "./pages/EditAccount";
 import LinkSuggest from "./pages/LinkSuggestion";
 import Withdrawal from "./pages/Withdrawal";
-import StoreDeleteModifications from "./pages/StoreDeleteModifications";
-import StoreDetail from "./pages/StoreDetail";
-import StoreRegistration from "./pages/StoreRegistration";
+import StoreDeleteModifications from "./pages/storeDeleteModifications";
+import StoreDetail from "./pages/storeDetail";
 import StoreList from "./pages/storeList";
-import CouponManage from "./pages/CouponManage";
-import CouponUsage from "./pages/CouponUsage";
+import StoreRegistration from "./pages/storeRegistration";
 
 const routes = [
   {

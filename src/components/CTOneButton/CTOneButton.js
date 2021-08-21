@@ -14,10 +14,10 @@ import React from "react";
 //   }
 // }
 
-const OneButton = ({ type, title }) => (
+const CTOneButton = ({ type, title }) => (
   <div>
     <button className="w-100 btn btn-lg btn-primary" type={type}>{title}</button>
   </div>
 );
 
-export default OneButton;
+export default CTOneButton;

@@ -1,8 +1,9 @@
 import CTLogo from "./CTLogo";
+import CTOneButton from "./CTOneButton";
 import Coupon from "./Coupon";
 
 export {
-  // eslint-disable-next-line import/prefer-default-export
   CTLogo,
   Coupon,
+  CTOneButton,
 };

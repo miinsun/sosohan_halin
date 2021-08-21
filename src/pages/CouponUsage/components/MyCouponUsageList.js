@@ -3,7 +3,6 @@
 /* eslint-disable react/destructuring-assignment */
 import React, { Component } from "react";
 import "../../LinkReceptionHistory/components/LinkHistory.css";
-import OneButton2 from "../../../OneButton";
 
 class MyCouponUsageList extends Component {
   render() {
