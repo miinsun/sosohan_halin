@@ -11,6 +11,7 @@ const TheMain = () => (
           routes.map((r) => (
             <Route
               {...r}
+              key={r.path}
             />
           ))
         }

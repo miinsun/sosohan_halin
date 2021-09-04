@@ -1,28 +1,58 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import Qs from "query-string";
+import React, { useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { CTLoading, useLoading, useStore } from "../../../components";
+import MyStorePrintView from "./MyStorePrintView";
 
-export class MyStorePrint extends Component {
-  render() {
-    return (
-      <div>
-        <table>
-          <tr>
-            <td>번호</td>
-            <td>상점명</td>
-            <td>
-              <Link className="btn btn-primary" to="/storeRegistration">수정</Link>
-              삭제
-            </td>
-          </tr>
-          <tr>
-            <td>반복문</td>
-            <td>안에서</td>
-            <td>돌려야 되는데..!</td>
-          </tr>
-        </table>
-      </div>
-    );
-  }
-}
+const MyStorePrint = () => {
+  const { myStores, storeGetMy, storeRemove } = useStore();
+  const { loading, setLoading } = useLoading(true);
+  const location = useLocation();
+
+  const query = Qs.parse(location.search);
+
+  console.log(query);
+  console.log(Qs.stringify(query));
+
+  const fetch = async () => {
+    try {
+      await storeGetMy("test");
+    } catch (e) {
+      console.log(e);
+    } finally {
+      await setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetch();
+  }, []);
+
+  const removeMyStore = async (storeInfo) => {
+    try {
+      const store = storeInfo;
+
+      await setLoading(true);
+      await storeRemove(store);
+      fetch();
+    } catch (e) {
+      console.log(e);
+      await setLoading(false);
+    }
+  };
+
+  return (
+
+    loading ? (
+      <CTLoading />
+    ) : (
+      <MyStorePrintView
+        total={myStores.total}
+        results={myStores.results}
+        remove={removeMyStore}
+      />
+    )
+  );
+};
 
 export default MyStorePrint;

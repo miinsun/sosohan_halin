@@ -15,6 +15,7 @@ import { createAction, handleActions } from "redux-actions";
 import { pender } from "redux-pender";
 import { UserApi } from "../../remote";
 
+const USER_LIST = "user/LIST";
 const USER_GET = "user/GET";
 const USER_PUT = "user/PUT";
 const USER_REMOVE = "user/REMOVER";
@@ -23,6 +24,11 @@ const USER_LOGOUT = "user/LOGOUT";
 const USER_SIGNUP = "user/SIGNUP";
 const USER_FINDINGID = "user/FINDINGID";
 const USER_FINDINGPW = "user/FINDINGPW";
+
+export const userList = createAction(
+  USER_LIST,
+  UserApi.list,
+);
 
 export const userGet = createAction(
   USER_GET,
@@ -47,9 +53,19 @@ const initialState = Map({
     state: 0,
   }),
 
+  list: Map({
+    total: 0,
+    results: List([]),
+  }),
+
 });
 
 export default handleActions({
+
+  ...pender({
+    type: USER_GET,
+    onSuccess: (state, action) => state.set("list", fromJS(action.payload.data)),
+  }),
 
   ...pender({
     type: USER_GET,

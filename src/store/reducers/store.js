@@ -15,6 +15,7 @@ import { createAction, handleActions } from "redux-actions";
 import { pender } from "redux-pender";
 import { StoreApi } from "../../remote";
 
+const STORE_GETMY = "store/GETMY";
 const STORE_GET = "store/GET";
 const STORE_PUT = "store/PUT";
 const STORE_REMOVE = "store/REMOVER";
@@ -24,21 +25,27 @@ export const storeGet = createAction(
   StoreApi.get,
 );
 
+export const storeGetMy = createAction(
+  STORE_GETMY,
+  StoreApi.getMy,
+);
+
 export const storePut = createAction(
   STORE_PUT,
   StoreApi.put,
 );
 
-export const storeRemove = createAction(
-  STORE_REMOVE,
-  StoreApi.remove,
-);
+// export const storeRemove = createAction(
+//   STORE_REMOVE,
+//   StoreApi.remove,
+// );
 
 // export const userPut = UserApi.put;
+export const storeRemove = StoreApi.remove;
 
 const initialState = Map({
 
-  user: Map({
+  store: Map({
     businessUserId: "",
     name: "",
     address1: "",
@@ -52,6 +59,11 @@ const initialState = Map({
     short_introduce: "",
   }),
 
+  getMy: Map({
+    total: 0,
+    results: List([]),
+  }),
+
 });
 
 export default handleActions({
@@ -59,6 +71,11 @@ export default handleActions({
   ...pender({
     type: STORE_GET,
     onSuccess: (state, action) => state.set("store", fromJS(action.payload.data)),
+  }),
+
+  ...pender({
+    type: STORE_GETMY,
+    onSuccess: (state, action) => state.set("getMy", fromJS(action.payload.data)),
   }),
 
   ...pender({

@@ -6,4 +6,6 @@ export const getMy = (businessUserId) => client.get(`${urls.store}/${businessUse
 export const get = (storeId) => client.get(`${urls.store}/${storeId}`);
 export const getStoresByParams = (params) => client.get(`${urls.store}?${params}`);
 export const put = (storeId, form) => client.put(`${urls.store}/${storeId}`, form);
-export const remove = (storeId) => client.delete(`${urls.store}/${storeId}`);
+export const remove = (form) => client.delete(`${urls.store}`, {
+  data: form,
+});
