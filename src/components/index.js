@@ -3,6 +3,7 @@ import CTOneButton from "./CTOneButton";
 import Coupon from "./Coupon";
 import {
   useUser,
+  useCoupon,
 } from "./Use";
 
 export {
@@ -11,4 +12,5 @@ export {
   CTOneButton,
 
   useUser,
+  useCoupon,
 };

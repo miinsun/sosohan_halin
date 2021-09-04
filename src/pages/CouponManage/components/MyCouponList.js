@@ -1,14 +1,16 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-undef */
 /* eslint-disable react/destructuring-assignment */
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../../LinkReceptionHistory/components/LinkHistory.css";
-import { CTOneButton } from "../../../components";
+import { CTOneButton, useCoupon } from "../../../components";
 
-class MyCouponList extends Component {
-  render() {
-    return (
+const MyCouponList = () => {
+  const { couponList, couponDelete } = useCoupon();
+
+  return (
+    couponList ? (
       <table className="table table-hover">
         <thead>
           <tr>
@@ -27,9 +29,9 @@ class MyCouponList extends Component {
         <tbody>
           <tr>
             <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
+            <td>{couponList.result.name}</td>
+            <td>{couponList.result.descripttion}</td>
+            <td>{couponList.result.startDate} - {couponList.result.startDate}</td>
             <td><CTOneButton title="수정" /> <CTOneButton title="삭제" /></td>
           </tr>
           <tr>
@@ -47,8 +49,10 @@ class MyCouponList extends Component {
           </tr>
         </tbody>
       </table>
-    );
-  }
-}
+    ) : (
+      <div>쿠폰 정보가 없습니다.</div>
+    )
+  );
+};
 
 export default MyCouponList;
