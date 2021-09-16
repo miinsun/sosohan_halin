@@ -1,6 +1,8 @@
 @BASE_URL=http://192.168.2.190:8089/api/v1
 
 
+GET {{BASE_URL}}/businessUser
+
 GET {{BASE_URL}}/businessUser/test
 
 
@@ -16,3 +18,6 @@ Content-Type: application/json
   "stores": [],
   "state": 1
 }
+
+
+GET  {{BASE_URL}}/store/test

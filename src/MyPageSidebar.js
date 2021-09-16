@@ -33,7 +33,13 @@ const MyPageSidebar = () => (
                 <Link to="/storeregistration" className="link-dark rounded">상점 등록</Link>
               </li>
               {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-              <li><Link to="/storedeletemodifications" className="link-dark rounded">상점 수정/삭제</Link></li>
+              <li>
+                <Link
+                  to="/storedeletemodifications?offset=0&limit=10"
+                  className="link-dark rounded"
+                >상점 수정/삭제
+                </Link>
+              </li>
             </ul>
           </div>
         </li>

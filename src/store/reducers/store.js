@@ -13,47 +13,53 @@
 import { fromJS, List, Map } from "immutable";
 import { createAction, handleActions } from "redux-actions";
 import { pender } from "redux-pender";
-import { UserApi } from "../../remote";
+import { StoreApi } from "../../remote";
 
-const USER_LIST = "user/LIST";
-const USER_GET = "user/GET";
-const USER_PUT = "user/PUT";
-const USER_REMOVE = "user/REMOVER";
-const USER_LOGIN = "user/LOGIN";
-const USER_LOGOUT = "user/LOGOUT";
-const USER_SIGNUP = "user/SIGNUP";
-const USER_FINDINGID = "user/FINDINGID";
-const USER_FINDINGPW = "user/FINDINGPW";
+const STORE_GETMY = "store/GETMY";
+const STORE_GET = "store/GET";
+const STORE_PUT = "store/PUT";
+const STORE_REMOVE = "store/REMOVER";
 
-export const userList = createAction(
-  USER_LIST,
-  UserApi.list,
+export const storeGet = createAction(
+  STORE_GET,
+  StoreApi.get,
 );
 
-export const userGet = createAction(
-  USER_GET,
-  UserApi.get,
+export const storeGetMy = createAction(
+  STORE_GETMY,
+  StoreApi.getMy,
 );
 
-export const userPut = createAction(
-  USER_PUT,
-  UserApi.put,
+export const storePut = createAction(
+  STORE_PUT,
+  StoreApi.put,
 );
+
+// export const storeRemove = createAction(
+//   STORE_REMOVE,
+//   StoreApi.remove,
+// );
 
 // export const userPut = UserApi.put;
+export const storeRemove = StoreApi.remove;
 
 const initialState = Map({
 
-  user: Map({
+  store: Map({
     businessUserId: "",
     name: "",
-    email: "",
-    businessNum: 0,
-    stores: List([]),
-    state: 0,
+    address1: "",
+    address2: "",
+    telephone: "",
+    store_image1: "",
+    store_image2: "",
+    store_image3: "",
+    logoe_image: "",
+    introduce: "",
+    short_introduce: "",
   }),
 
-  list: Map({
+  getMy: Map({
     total: 0,
     results: List([]),
   }),
@@ -63,18 +69,18 @@ const initialState = Map({
 export default handleActions({
 
   ...pender({
-    type: USER_GET,
-    onSuccess: (state, action) => state.set("list", fromJS(action.payload.data)),
+    type: STORE_GET,
+    onSuccess: (state, action) => state.set("store", fromJS(action.payload.data)),
   }),
 
   ...pender({
-    type: USER_GET,
-    onSuccess: (state, action) => state.set("user", fromJS(action.payload.data)),
+    type: STORE_GETMY,
+    onSuccess: (state, action) => state.set("getMy", fromJS(action.payload.data)),
   }),
 
   ...pender({
-    type: USER_PUT,
-    onSuccess: (state, action) => state.set("user", fromJS(action.payload.data)),
+    type: STORE_PUT,
+    onSuccess: (state, action) => state.set("store", fromJS(action.payload.data)),
   }),
 
 }, initialState);
