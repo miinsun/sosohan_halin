@@ -16,7 +16,12 @@ const useUser = () => {
     userList: actions.userList,
     userGet: actions.userGet,
     userPut: actions.userPut,
-
+    userRemove: actions.userRemove,
+    userSignup: actions.userSignup,
+    userLogin: actions.userLogin,
+    userLogout: actions.userLogout,
+    userFindingId: actions.userFindingId,
+    userFindingPw: actions.userFindingPw,
     // userPut: reducer.userPut,
   };
 };
