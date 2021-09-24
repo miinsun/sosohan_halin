@@ -2,6 +2,9 @@ import Banner from "./Banner";
 import CouponManage from "./pages/CouponManage";
 import CouponUsage from "./pages/CouponUsage";
 import EditAccount from "./pages/EditAccount";
+import LinkAlarm from "./pages/LinkAlarm";
+import LinkReceptionHistory from "./pages/LinkReceptionHistory";
+import LinkSentHistory from "./pages/LinkSentHistory";
 import LinkSuggest from "./pages/LinkSuggestion";
 import Withdrawal from "./pages/Withdrawal";
 import StoreDeleteModifications from "./pages/storeDeleteModifications";
@@ -19,6 +22,16 @@ const routes = [
     path: "/storelist",
     exact: true,
     component: StoreList,
+  },
+  {
+    path: "/linkinhistory",
+    exact: true,
+    component: LinkReceptionHistory,
+  },
+  {
+    path: "/linkouthistory",
+    exact: true,
+    component: LinkSentHistory,
   },
   {
     path: "/linksuggest",
