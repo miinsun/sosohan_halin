@@ -1,8 +1,10 @@
 import React from "react";
+import { Spinner } from "reactstrap";
 
 const CTLoading = () => (
   <div>
-    ...loading
+    {}
+    <Spinner color="primary" />
   </div>
 );
 

@@ -2,7 +2,6 @@
 /* eslint-disable no-undef */
 /* eslint-disable react/destructuring-assignment */
 import React, { Component } from "react";
-import "../../LinkReceptionHistory/components/LinkHistory.css";
 
 class MyCouponUsageList extends Component {
   render() {

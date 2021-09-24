@@ -4,11 +4,11 @@ import React from "react";
 import LinkHistory from "./components/LinkHistory";
 import Sidebar from "./components/Sidebar";
 
-const LinkReceptionHistory = () => (
-  <div className="LinkReceptionHistory">
+const LinkSentHistory = () => (
+  <div className="LinkSentHistory">
     <Sidebar />
     <LinkHistory />
   </div>
 );
 
-export default LinkReceptionHistory;
+export default LinkSentHistory;

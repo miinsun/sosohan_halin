@@ -10,6 +10,7 @@ import {
   useUser,
   useCoupon,
   useStore,
+  useLink,
 } from "./Use";
 
 export {
@@ -25,4 +26,5 @@ export {
   useUser,
   useCoupon,
   useStore,
+  useLink,
 };
