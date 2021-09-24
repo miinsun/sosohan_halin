@@ -3,7 +3,6 @@
 /* eslint-disable react/destructuring-assignment */
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import "../../LinkReceptionHistory/components/LinkHistory.css";
 import DoBtn from "../../LinkSuggestion/components/DoBtn";
 
 class MyCouponList extends Component {

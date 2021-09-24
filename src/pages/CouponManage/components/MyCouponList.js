@@ -3,7 +3,6 @@
 /* eslint-disable react/destructuring-assignment */
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import "../../LinkReceptionHistory/components/LinkHistory.css";
 import { CTOneButton, useCoupon } from "../../../components";
 
 const MyCouponList = () => {
