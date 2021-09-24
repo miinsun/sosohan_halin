@@ -49,6 +49,9 @@ const EditAccountForm = () => {
     } catch (err) {
       console.log(err);
     }
+
+    alert("수정이 완료되었습니다.");
+    document.location.href = "/";
   };
 
   return (
@@ -107,7 +110,7 @@ const EditAccountForm = () => {
             {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
             <label htmlFor="email">이메일</label>
           </div>
-          <div className="col-md-2 col-sm-4 col-lg-2">
+          <div className="col-md-4 col-sm-4 col-lg-4">
             <input
               name="email"
               className="form-control"
@@ -115,20 +118,6 @@ const EditAccountForm = () => {
               defaultValue={user.email}
               onChange={handleChange}
             />
-          </div>
-          @
-          <div className="col-md-2 col-sm-4 col-lg-2">
-            <input name="email123" className="form-control" type="text" />
-          </div>
-          <div className="col-md-2 col-sm-4 col-lg-2">
-            <select>
-              <option>직접 입력</option>
-              <option>naver.com</option>
-              <option>gmail.com</option>
-              <option>daum.net</option>
-              <option>hanmail.net</option>
-              <option>nate.com</option>
-            </select>
           </div>
         </div>
         <div className="row">

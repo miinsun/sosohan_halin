@@ -17,7 +17,7 @@ const App = () => (
   <Switch>
     <Route exact path="/login" component={Login} />
     <Route exact path="/signup" component={Signup} />
-    <Route exact path="/findingid/result" component={FindingIdResult} />
+    <Route exact path="/findingid/result/:result" component={FindingIdResult} />
     <Route exact path="/findingid" component={FindingId} />
     <Route exact path="/findingpw/result" component={FindingPwResult} />
     <Route exact path="/findingpw" component={FindingPw} />
