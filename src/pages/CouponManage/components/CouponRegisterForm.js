@@ -1,37 +1,94 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable no-undef */
-/* eslint-disable react/destructuring-assignment */
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import "../../LinkReceptionHistory/components/LinkHistory.css";
-import DoBtn from "../../LinkSuggestion/components/DoBtn";
+// import Qs from "query-string";
+// import React, { useEffect, useState } from "react";
+// import { Link, useLocation } from "react-router-dom";
+// import { CTLoading, useLoading, useCoupon } from "../../../components";
+// import CouponRegisterFormView from "./CouponRegisterFormView";
 
-class MyCouponList extends Component {
-  render() {
-    return (
-      <form>
-        <div className="mb-3">
-          <label htmlFor="name" className="form-label">쿠폰명</label>
-          <input type="text" className="form-control" id="name" aria-describedby="nameHelp" />
-          {/* <div id="nameHelp" className="form-text">We&apos;ll never share your email with anyone else.</div> */}
-        </div>
+// const CouponRegisterForm = () => {
+//   const {
+//     coupon, couponPost, couponPut,
+//   } = useCoupon();
+//   const { loading, setLoading } = useLoading(true);
 
-        <div className="mb-3">
-          <label htmlFor="description" className="form-label">쿠폰 설명</label>
-          <input type="text" className="form-control" id="description" />
-        </div>
+//   const [data, setData] = useState({
+//     email: user.email,
+//     newPassword: "",
+//     newPasswordConfirm: "",
+//   });
 
-        <div className="mb-3">
-          <input type="checkbox" className="form-check-input" id="exampleCheck1" />
-          <label className="form-check-label" htmlFor="exampleCheck1">Check me out</label>
-        </div>
+//   const handleChange = (e) => {
+//     setData({
+//       ...data,
+//       [e.target.name]: e.target.value,
+//     });
+//   };
 
-        <DoBtn do="등록" />
-        {/* 궁금한 점: <Link>는 페이지 이동에서만 사용하는건가? 이건 서버에서 처리가 필요한건데... */}
-      </form>
+//   const updateCoupon = async () => {
+//     try {
+//       console.log(data);
 
-    );
-  }
-}
+//       // if (data.email.length <= 0 || data.newPassword.length <= 0) {
+//       //   alert("정확한 정보를 입력해 주세요.");
+//       //   return;
+//       // }
 
-export default MyCouponList;
+//       await couponPut({
+//         name: data.name,
+//         description: data.description,
+//         validity: data.validity,
+//         startDate: data.startDate,
+//         finishDate: data.finishDate,
+//       });
+
+//       // await userGet(user.businessUserId);
+//     } catch (err) {
+//       console.log(err);
+//     }
+//   };
+
+//   const fetch = async () => {
+//     try {
+//       await coupon();
+//     } catch (e) {
+//       console.log(e);
+//     } finally {
+//       await setLoading(false);
+//     }
+//   };
+
+//   useEffect(() => {
+//     fetch();
+//   }, []);
+
+//   const insertCoupon = async (form) => {
+//     try {
+//       const newCoupon = form;
+
+//       await setLoading(true);
+//       await couponPost(newCoupon);
+//     } catch (e) {
+//       console.log(e);
+//       await setLoading(false);
+//     }
+//   };
+
+//   return (
+//     coupon ? (
+//       <CouponRegisterFormView
+//         coupon={coupon}
+//         insert={insertCoupon}
+//         update={updateCoupon}
+//         btnName="수정"
+//       />
+//     ) : (
+//       <CouponRegisterFormView
+//         coupon={coupon}
+//         insert={insertCoupon}
+//         update={updateCoupon}
+//         btnName="등록"
+//       />
+//     )
+//   );
+// };
+
+// export default CouponRegisterForm;
