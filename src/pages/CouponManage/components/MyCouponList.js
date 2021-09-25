@@ -1,62 +1,55 @@
-import Qs from "query-string";
-import React, { useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
-import { CTLoading, useLoading, useCoupon } from "../../../components";
-import MyCouponListView from "./MyCouponListView";
+/* eslint-disable react/prop-types */
+/* eslint-disable no-undef */
+/* eslint-disable react/destructuring-assignment */
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { CTOneButton, useCoupon } from "../../../components";
 
 const MyCouponList = () => {
-  const { couponList, couponGetAll, couponRemove } = useCoupon();
-  const { loading, setLoading } = useLoading(true);
-  const location = useLocation();
-
-  // const query = Qs.parse(location.search);
-
-  // console.log(query);
-  // console.log(Qs.stringify(query));
-
-  const fetch = async () => {
-    try {
-      await couponGetAll(0, "");
-
-      // await setLoading(false);
-    } catch (e) {
-      console.log("abc");
-
-      console.log(e);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    fetch();
-  }, []);
-
-  const removeCoupon = async (couponInfo) => {
-    try {
-      const coupon = couponInfo;
-
-      await setLoading(true);
-      await couponRemove(coupon);
-      fetch();
-    } catch (e) {
-      console.log(e);
-      await setLoading(false);
-    }
-  };
-
-  console.log(couponList.total);
+  const { couponList, couponDelete } = useCoupon();
 
   return (
-
-    loading ? (
-      <CTLoading />
+    couponList ? (
+      <table className="table table-hover">
+        <thead>
+          <tr>
+            {/* <th scope="col">{this.props.no}</th>
+            <th scope="col">{this.props.name}</th>
+            <th scope="col">{this.props.description}</th>
+            <th scope="col">{this.props.validity}</th>
+            <th scope="col">{this.props.updateOrDelBtn}</th> */}
+            <th scope="col">No</th>
+            <th scope="col">쿠폰명</th>
+            <th scope="col">쿠폰 설명</th>
+            <th scope="col">유효기한</th>
+            <th scope="col">수정/삭제</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>{couponList.result.name}</td>
+            <td>{couponList.result.descripttion}</td>
+            <td>{couponList.result.startDate} - {couponList.result.startDate}</td>
+            <td><CTOneButton title="수정" /> <CTOneButton title="삭제" /></td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+            <td><CTOneButton title="수정" /> <CTOneButton title="삭제" /></td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td colSpan={2}>Larry the Bird</td>
+            <td>@twitter</td>
+            <td><CTOneButton title="수정" /> <CTOneButton title="삭제" /></td>
+          </tr>
+        </tbody>
+      </table>
     ) : (
-      <MyCouponListView
-        total={couponList.total}
-        results={couponList.results}
-        remove={removeCoupon}
-      />
+      <div>쿠폰 정보가 없습니다.</div>
     )
   );
 };

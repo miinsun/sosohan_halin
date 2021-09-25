@@ -7,7 +7,7 @@ const COUPON_POST = "coupon/POST";
 const COUPON_GETALL = "coupon/GETALL";
 const COUPON_GET = "coupon/GET";
 const COUPON_PUT = "coupon/PUT";
-// const COUPON_REMOVE = "coupon/REMOVE";
+const COUPON_REMOVE = "coupon/REMOVE";
 
 export const couponPost = createAction(
   COUPON_POST,
@@ -29,12 +29,12 @@ export const couponPut = createAction(
   CouponApi.put,
 );
 
-// export const couponRemove = createAction(
-//   COUPON_REMOVE,
-//   CouponApi.remove,
-// );
+export const couponRemove = createAction(
+  COUPON_REMOVE,
+  CouponApi.remove,
+);
 
-export const couponRemove = CouponApi.remove;
+// export const couponPut = UserApi.put;
 
 const initialState = Map({
 
@@ -79,6 +79,11 @@ export default handleActions({
 
   ...pender({
     type: COUPON_PUT,
+    onSuccess: (state, action) => state.set("coupon", fromJS(action.payload.data)),
+  }),
+
+  ...pender({
+    type: COUPON_REMOVE,
     onSuccess: (state, action) => state.set("coupon", fromJS(action.payload.data)),
   }),
 
