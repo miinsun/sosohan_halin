@@ -16,10 +16,11 @@ const useStore = () => {
     storeGet: actions.storeGet,
     storePut: actions.storePut,
     storeGetMy: actions.storeGetMy,
+    storeGetStoresByParams: actions.storeGetStoresByParams,
+    storePost: actions.storePost,
 
     storeRemove: reducer.storeRemove,
 
-    // userPut: reducer.userPut,
   };
 };
 
