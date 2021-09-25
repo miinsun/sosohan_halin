@@ -1,21 +1,20 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/destructuring-assignment */
-import React, { Component } from "react";
-import Coupon from "../../Coupon";
-import OneButton2 from "../../OneButton";
+import Qs from "query-string";
+import React, { useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { CTLogo, Coupon } from "../../components";
 import Precautions from "./components/Precautions";
 
-class CouponRecog extends Component {
-  render() {
-    return (
-      <div className="CouponRecog container-sm themed-container">
-        {/* <img></img> //로고 컴포넌트 */}
-        <Coupon />
-        <Precautions />
-        <OneButton2 title="사용하기" />
-      </div>
-    );
-  }
-}
+const CouponRecog = ({ put }) => {
+  <div className="CouponRecog container-sm themed-container">
+    <CTLogo />
+    <Coupon />
+    <Precautions />
+    <a className="btn btn-primary" onClick={() => put(data)}>
+      사용하기
+    </a>
+  </div>;
+};
 
 export default CouponRecog;
