@@ -19,6 +19,8 @@ const STORE_GETMY = "store/GETMY";
 const STORE_GET = "store/GET";
 const STORE_PUT = "store/PUT";
 const STORE_REMOVE = "store/REMOVER";
+const STORE_POST = "store/POST";
+const STORE_GETSTORESBYPARAMS = "store/GETSTORESBYPARAMS";
 
 export const storeGet = createAction(
   STORE_GET,
@@ -35,12 +37,16 @@ export const storePut = createAction(
   StoreApi.put,
 );
 
-// export const storeRemove = createAction(
-//   STORE_REMOVE,
-//   StoreApi.remove,
-// );
+export const storeGetStoresByParams = createAction(
+  STORE_GETSTORESBYPARAMS,
+  StoreApi.getStoresByParams,
+);
 
-// export const userPut = UserApi.put;
+export const storePost = createAction(
+  STORE_POST,
+  StoreApi.post,
+);
+
 export const storeRemove = StoreApi.remove;
 
 const initialState = Map({
@@ -80,6 +86,16 @@ export default handleActions({
 
   ...pender({
     type: STORE_PUT,
+    onSuccess: (state, action) => state.set("store", fromJS(action.payload.data)),
+  }),
+
+  ...pender({
+    type: STORE_POST,
+    onSuccess: (state, action) => state.set("store", fromJS(action.payload.data)),
+  }),
+
+  ...pender({
+    type: STORE_GETSTORESBYPARAMS,
     onSuccess: (state, action) => state.set("store", fromJS(action.payload.data)),
   }),
 

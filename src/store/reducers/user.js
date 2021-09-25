@@ -18,7 +18,7 @@ import { UserApi } from "../../remote";
 const USER_LIST = "user/LIST";
 const USER_GET = "user/GET";
 const USER_PUT = "user/PUT";
-const USER_REMOVE = "user/REMOVER";
+const USER_REMOVE = "user/REMOVE";
 const USER_LOGIN = "user/LOGIN";
 const USER_LOGOUT = "user/LOGOUT";
 const USER_SIGNUP = "user/SIGNUP";
@@ -42,6 +42,35 @@ export const userPut = createAction(
 
 // export const userPut = UserApi.put;
 
+export const userRemove = createAction(
+  USER_REMOVE,
+  UserApi.remove,
+);
+export const userSignup = createAction(
+  USER_SIGNUP,
+  UserApi.signup,
+);
+
+export const userLogin = createAction(
+  USER_LOGIN,
+  UserApi.login,
+);
+
+export const userLogout = createAction(
+  USER_LOGOUT,
+  UserApi.logout,
+);
+
+export const userFindingId = createAction(
+  USER_FINDINGID,
+  UserApi.findingId,
+);
+
+export const userFindingPw = createAction(
+  USER_FINDINGPW,
+  UserApi.findingPw,
+);
+
 const initialState = Map({
 
   user: Map({
@@ -57,7 +86,6 @@ const initialState = Map({
     total: 0,
     results: List([]),
   }),
-
 });
 
 export default handleActions({
@@ -77,4 +105,13 @@ export default handleActions({
     onSuccess: (state, action) => state.set("user", fromJS(action.payload.data)),
   }),
 
+  ...pender({
+    type: USER_SIGNUP,
+    onSuccess: (state, action) => state.set("user", fromJS(action.payload.data)),
+  }),
+
+  ...pender({
+    type: USER_REMOVE,
+    onSuccess: (state, action) => state.set("user", fromJS(action.payload.data)),
+  }),
 }, initialState);

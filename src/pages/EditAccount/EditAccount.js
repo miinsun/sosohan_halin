@@ -4,13 +4,15 @@ import { useUser } from "../../components";
 
 import EditAccountForm from "./components/EditAccountForm";
 
+const sessionId = sessionStorage.getItem("sessionId");
+
 const EditAccount = () => {
   const { userGet } = useUser();
 
   useEffect(() => {
     const fetch = async () => {
       try {
-        await userGet("test");
+        await userGet(sessionId);
       } catch (err) {
         console.log(err);
       }
