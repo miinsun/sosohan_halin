@@ -13,7 +13,7 @@ const UserArea = () => {
     try {
       await userLogout();
       sessionStorage.removeItem("sessionId");
-      sessionStorage.removeItem("currentStoreIndex");
+      sessionStorage.removeItem("currentStoreId");
     } catch (err) {
       alert(err);
       console.log(err);
