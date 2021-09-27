@@ -143,5 +143,5 @@
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-react": "^7.23.2"
   },
-  "proxy": "http://192.168.137.1:8089"
+  "proxy": "http://localhost:8089"
 }
