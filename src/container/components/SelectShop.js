@@ -12,8 +12,6 @@ const SelectShop = () => {
       console.log(e);
     } finally {
       await setLoading(false);
-      sessionStorage.setItem("currentStoreIndex", 0);
-      console.log(`current store id: ${sessionStorage.getItem("currentStoreIndex")}`);
     }
   };
 
@@ -23,13 +21,15 @@ const SelectShop = () => {
 
   const handleChange = (e) => {
     const storeIndex = e.target.value;
-    sessionStorage.setItem("currentStoreIndex", storeIndex);
-    console.log(`current store id: ${storeIndex}, 
-    current store name: ${myStores.results[sessionStorage.getItem("currentStoreIndex")].name}`);
+    const { storeId } = myStores.results[storeIndex];
+    sessionStorage.setItem("currentStoreId", storeId);
+    console.log(`current store id: ${storeId}, 
+    current store name: ${myStores.results[storeIndex].name}`);
   };
 
   return (
     <select onChange={handleChange}>
+      <option value="-1">=내 상점 선택=</option>
       {myStores.total > 0 && myStores.results.map((data, index) => (
         <option value={index}>{data.name}</option>))}
     </select>
