@@ -17,11 +17,7 @@ const MyCouponList = () => {
   const fetch = async () => {
     try {
       await couponGetAll(0, "");
-
-      // await setLoading(false);
     } catch (e) {
-      console.log("abc");
-
       console.log(e);
     } finally {
       setLoading(false);
@@ -44,8 +40,6 @@ const MyCouponList = () => {
       await setLoading(false);
     }
   };
-
-  console.log(couponList.total);
 
   return (
 
