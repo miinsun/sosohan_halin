@@ -13,7 +13,7 @@ import MyCouponList from "./components/MyCouponList";
 //         {/* <Sidebar /> */}
 //         <h1>쿠폰 관리</h1>
 //         <CTOneButton title="+ 등록하기" />
-//         <MyCouponList />
+//         <MyCouponList />y
 //       </div>
 //     );
 //   }
