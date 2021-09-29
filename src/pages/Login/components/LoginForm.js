@@ -43,17 +43,35 @@ const LoginForm = () => {
 
   return (
     <form>
-      <div className="input-group mb-3">
+      {/* <div className="input-group mb-3">
         ID &nbsp; <input
           type="text"
           name="businessUserId"
           className="form-control input_user"
           onChange={handleChange}
         />
+      </div> */}
+      <div className="form-floating">
+        <input
+          type="text"
+          name="businessUserId"
+          className="form-control input_user"
+          onChange={handleChange}
+        />
+        {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+        <label htmlFor="businessUserId">ID</label>
       </div>
-      <div className="input-group mb-2">
+
+      {/* <div className="input-group mb-2">
         PW &nbsp; <input type="password" name="password" className="form-control input_pass" onChange={handleChange} />
+      </div> */}
+
+      <div className="form-floating">
+        <input type="password" name="password" className="form-control" onChange={handleChange} />
+        {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+        <label htmlFor="floatingPassword">Password</label>
       </div>
+
       <div className="form-group">
         <div className="custom-control custom-checkbox">
           <input type="checkbox" className="custom-control-input" id="customControlInline" />
@@ -71,3 +89,27 @@ const LoginForm = () => {
 };
 
 export default LoginForm;
+
+// <main class="form-signin">
+//   <form>
+//     <img class="mb-4" src="/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
+//     <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+
+//     <div class="form-floating">
+//       <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+//       <label for="floatingInput">Email address</label>
+//     </div>
+//     <div class="form-floating">
+//       <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+//       <label for="floatingPassword">Password</label>
+//     </div>
+
+//     <div class="checkbox mb-3">
+//       <label>
+//         <input type="checkbox" value="remember-me"> Remember me
+//       </label>
+//     </div>
+//     <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+//     <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
+//   </form>
+// </main>

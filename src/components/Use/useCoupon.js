@@ -1,9 +1,9 @@
 import * as reducer from "../../store/reducers/coupon";
-import { useActions, useShallowEqualSelector, useShallowEqualSelectorToJS } from "./components";
+import { useActions, useShallowEqualSelectorToJS } from "./components";
 
 const useCoupon = () => {
   const coupon = useShallowEqualSelectorToJS((state) => (state.coupon.get("coupon")));
-  const couponList = useShallowEqualSelectorToJS((state) => (state.couponList.get("couponList")));
+  const couponList = useShallowEqualSelectorToJS((state) => (state.coupon.get("couponList")));
 
   const actions = useActions(reducer);
 
@@ -15,7 +15,7 @@ const useCoupon = () => {
     couponPut: actions.couponPut,
     couponPost: actions.couponPost,
     couponGetAll: actions.couponGetAll,
-    couponDelete: actions.couponDelete,
+    couponRemove: reducer.couponRemove,
 
     // userPut: reducer.userPut,
   };
