@@ -1,4 +1,4 @@
-@BASE_URL=http://172.30.1.44:8089/api/v1
+@BASE_URL=http://localhost:8089/api/v1
 
 
 GET {{BASE_URL}}/businessUser
@@ -24,4 +24,4 @@ Content-Type: application/json
 
 GET {{BASE_URL}}/link/detail/0/0
 
-GET  {{BASE_URL}}/store/test
+GET  {{BASE_URL}}/store/0
