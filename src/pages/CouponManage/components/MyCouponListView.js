@@ -4,7 +4,7 @@
 import PropTypes from "prop-types";
 import React from "react";
 import { Link } from "react-router-dom";
-import "../../LinkReceptionHistory/components/LinkHistory.css";
+// import "../../LinkReceptionHistory/components/LinkHistory.css";
 import { CTTable, CTOneButton, useCoupon } from "../../../components";
 
 const MyCouponListView = ({ total, results, remove }) => (

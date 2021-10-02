@@ -3,7 +3,7 @@ import urls from "../urls";
 
 export const list = (param) => client.get(`${urls.user}?${param}`);
 export const get = (businessUserId) => client.get(`${urls.user}/${businessUserId}`);
-export const put = (form) => client.put(`${urls.user}`, form);
+export const put = (curPassword, form) => client.put(`${urls.user}/${curPassword}`, form);
 export const remove = (businessUserId, password) => client.delete(`${urls.user}/${businessUserId}/${password}`);
 export const login = (businessUserId, password) => client.post(`/api/v1/businessLogin/${businessUserId}/${password}`);
 export const logout = () => client.get("/api/v1/businessLogout");
