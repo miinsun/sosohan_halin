@@ -20,6 +20,7 @@ const MyStorePrintView = ({ total, results, remove }) => (
           <td>{data.name}</td>
           <td>
             <Link className="btn btn-primary" to="/storeRegistration">수정</Link>
+
             {/* eslint-disable-next-line  */}
             <a className="btn btn-primary" onClick={() => remove(data)}>삭제
             </a>
