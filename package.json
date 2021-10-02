@@ -112,7 +112,7 @@
       "react/jsx-props-no-spreading": "warn",
       "react/destructuring-assignment": "warn",
       "react/prop-types": "warn",
-      "import/no-unresolved": "error",
+      "import/no-unresolved": "off",
       "import/named": "error",
       "import/namespace": "error",
       "import/default": "error",
