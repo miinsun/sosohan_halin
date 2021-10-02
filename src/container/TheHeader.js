@@ -44,9 +44,9 @@ const TheHeader = () => {
   // </header>
 
     <header>
-      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+      <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
         <Container>
-          <Navbar.Brand href="/">소소한 할인</Navbar.Brand>
+          <Navbar.Brand className="text-primary" href="/">소소한 할인</Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
@@ -54,12 +54,13 @@ const TheHeader = () => {
               <Nav.Link href="/couponManage">쿠폰관리</Nav.Link>
               <Nav.Link href="/linkinhistory">연계할인관리</Nav.Link>
             </Nav>
-            <Nav>
+            {/* <Nav>
               <Nav.Link href="#deets">More deets</Nav.Link>
               <Nav.Link eventKey={2} href="#memes">
                 Dank memes
               </Nav.Link>
-            </Nav>
+            </Nav> */}
+            <UserArea />
           </Navbar.Collapse>
         </Container>
       </Navbar>
