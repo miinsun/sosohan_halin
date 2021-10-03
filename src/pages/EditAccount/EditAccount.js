@@ -24,8 +24,10 @@ const EditAccount = () => {
   return (
     <div className="EditAccount">
       <MyPageSideBar />
-      <h3>회원 정보 수정</h3>
-      <EditAccountForm />
+      <div className="mx-auto col-6">
+        <h3>회원 정보 수정</h3>
+        <EditAccountForm />
+      </div>
     </div>
   );
 };

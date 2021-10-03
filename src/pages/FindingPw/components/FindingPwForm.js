@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, forwardRef, useImperativeHandle } from "react";
 import { Link } from "react-router-dom";
 import { useUser } from "../../../components";
 
-const FindingPwForm = () => {
+const FindingPwForm = forwardRef((props, ref) => {
   const { userFindingPw } = useUser();
 
   const [data, setData] = useState({
@@ -28,21 +28,37 @@ const FindingPwForm = () => {
 
       await userFindingPw(data.businessUserId, data.email);
       document.location.href = "/findingpw/result";
+      // eslint-disable-next-line react/no-this-in-sfc
+      this.forceUpdate();
     } catch (err) {
       alert("일치하는 회원이 없습니다.");
       console.log(err);
     }
   };
 
+  useImperativeHandle(ref, () => ({
+    submit() {
+      findPw();
+    },
+  }));
+
   return (
     <form className="FindingPwForm">
-      ID <input type="text" name="businessUserId" onChange={handleChange} /><br />
-      등록된 이메일 <input type="text" name="email" onChange={handleChange} />
-      <Link to="/login" className="btn btn-secondary">취소</Link>
-      {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-      <Link onClick={findPw} className="btn btn-secondary">임시 비밀번호 발급</Link>
+      <p>가입 정보를 입력하세요.</p>
+      <div className="md-form">
+        {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+        <label htmlFor="businessUserId">ID</label>
+        <input name="businessUserId" className="form-control" type="text" onChange={handleChange} />
+        <p />
+      </div>
+      <div className="md-form">
+        {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+        <label htmlFor="email">등록된 이메일</label>
+        <input name="email" className="form-control" type="password" onChange={handleChange} />
+        <p />
+      </div>
     </form>
   );
-};
+});
 
 export default FindingPwForm;

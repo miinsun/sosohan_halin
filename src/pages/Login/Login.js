@@ -1,21 +1,37 @@
 import React from "react";
+import {
+  Modal,
+} from "react-bootstrap";
 import FindingIdLink from "./components/FindingIdLink";
 import FindingPwLink from "./components/FindingPwLink";
 import LoginForm from "./components/LoginForm";
-import SignInLink from "./components/SignInLink";
+import SignupLink from "./components/SignupLink";
 import "../../styles/form-sign.css";
 
 const Login = () => (
   // <div className="Login">
-  <div className="form-body">
-    <main className="form-signin">
-
-      <LoginForm />
-      <SignInLink /> | <FindingIdLink /> | <FindingPwLink />
-    </main>
-  </div>
+  // <div className="form-body">
+  //   <main className="form-signin">
+  //     <LoginForm />
+  //     <SignInLink /> | <FindingIdLink /> | <FindingPwLink />
+  //   </main>
+  // </div>
   // </div>
 
+  <>
+    <Modal.Header closeButton>
+      <Modal.Title>Login</Modal.Title>
+    </Modal.Header>
+
+    <Modal.Body>
+      <LoginForm />
+    </Modal.Body>
+
+    <Modal.Footer>
+      <SignupLink />
+      <FindingIdLink /> <FindingPwLink />
+    </Modal.Footer>
+  </>
 );
 
 export default Login;

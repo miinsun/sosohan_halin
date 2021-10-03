@@ -8,7 +8,7 @@ import "./LinkAlarm.scss";
 class LinkAlarm extends Component {
   render() {
     return (
-      <p className="LSalarm">
+      <div className="LSalarm">
         <input type="checkbox" id="navtoggle" />
         <input type="checkbox" id="deletetoggle" />
         <div className="toggleNotifications">
@@ -73,7 +73,7 @@ class LinkAlarm extends Component {
             </div>
           </div>
         </div>
-      </p>
+      </div>
     );
   }
 }
