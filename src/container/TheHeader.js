@@ -17,32 +17,6 @@ const TheHeader = () => {
   const toggleNavbar = () => setCollapsed(!collapsed);
 
   return (
-  // <header>
-  //   <Navbar color="light" light expand="md">
-  //     <NavbarBrand href="/" className="mr-auto">
-  //       <CTLogo />
-  //     </NavbarBrand>
-  //     <NavbarToggler onClick={toggleNavbar} />
-  //     <Collapse isOpen={!collapsed} navbar className="me-auto mb-2 mb-md-0">
-  //       <Nav navbar>
-  //         <NavItem>
-  //           <Nav.Link to="/storelist">상점리스트</Nav.Link>
-  //         </NavItem>
-  //         <NavItem>
-  //           {/* <NavLink href="#">쿠폰관리</NavLink> */}
-  //           <Link to="/couponManage">쿠폰관리</Link>
-  //         </NavItem>
-  //         <NavItem>
-  //           <Link to="/linkinhistory">연계 할인 관리</Link>
-  //         </NavItem>
-  //       </Nav>
-  //     </Collapse>
-  //     <NavbarText className="d-none d-md-block">
-  //       <UserArea />
-  //     </NavbarText>
-  //   </Navbar>
-  // </header>
-
     <header>
       <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
         <Container>
@@ -52,7 +26,7 @@ const TheHeader = () => {
             <Nav className="me-auto">
               <Nav.Link href="/storelist">상점리스트</Nav.Link>
               <Nav.Link href="/couponManage">쿠폰관리</Nav.Link>
-              <Nav.Link href="/linkinhistory">연계할인관리</Nav.Link>
+              <Nav.Link href="/link">연계할인관리</Nav.Link>
             </Nav>
             {/* <Nav>
               <Nav.Link href="#deets">More deets</Nav.Link>

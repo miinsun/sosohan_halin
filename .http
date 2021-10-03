@@ -1,27 +1,36 @@
-@BASE_URL=http://172.30.1.44:8089/api/v1
+@BASE_URL=http://localhost:8089/api/v1
 
 
 GET {{BASE_URL}}/businessUser
 
 GET {{BASE_URL}}/businessUser/test
 
+GET {{BASE_URL}}/link
 
-GET {{BASE_URL}}/link/incoming/0
+GET {{BASE_URL}}/link/incoming/2
 
-GET {{BASE_URL}}/link/outcoming/0
+GET {{BASE_URL}}/link/outcoming/2
 
+GET {{BASE_URL}}/link/alarm?storeid=2
+PUT {{BASE_URL}}/link/alarm/watched?storeid=2
+PUT {{BASE_URL}}/link/alarm/return?storeid=2
+
+POST {{BASE_URL}}/link
 Content-Type: application/json
 
-{
-  "businessUserId" : "0",
-  "password": "0",
-  "name" : "0",
-  "email" : "0",
-  "businessNum" : 0,
-  "stores": [],
-  "state": 0
-}
+
+  "linkId": "",
+  "proposerId": "2",
+  "receiverId": "3",
+  "content": "제발!!",
+  "isWatched": "",
+  "state": "",
+  "management": "",
+  "proposalDate": "",
+
 
 GET {{BASE_URL}}/link/detail/0/0
 
-GET  {{BASE_URL}}/store/test
+GET  {{BASE_URL}}/store/test\
+
+PUT {{BASE_URL}}/link?linkid=1&state=-1&management=-1

@@ -9,7 +9,7 @@ class Sidebar extends Component {
     const handleSelect = (eventKey) => window.location.href = (`${eventKey}`);
 
     return (
-      <Nav variant="tabs" defaultActiveKey="/link/in" onSelect={handleSelect}>
+      <Nav variant="tabs" defaultActiveKey="/link" onSelect={handleSelect}>
         <Nav.Item>
           <Nav.Link href="/link">진행 제안</Nav.Link>
         </Nav.Item>

@@ -1,10 +1,9 @@
 import React from "react";
-import { Spinner } from "reactstrap";
+import { Spinner } from "react-bootstrap";
 
 const CTLoading = () => (
   <div>
-    {}
-    <Spinner color="primary" />
+    <Spinner animation="grow" variant="dark" />
   </div>
 );
 
