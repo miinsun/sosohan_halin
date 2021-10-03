@@ -4,7 +4,6 @@ import { useActions, useShallowEqualSelector, useShallowEqualSelectorToJS } from
 const useLink = () => {
   const link = useShallowEqualSelectorToJS((state) => (state.link.get("link")));
   const links = useShallowEqualSelectorToJS((state) => (state.link.get("links")));
-  // const storeName = useShallowEqualSelector((state) => (state.store.getIn(["store", "name"])));
 
   const actions = useActions(reducer);
 
@@ -12,10 +11,14 @@ const useLink = () => {
     link,
     links,
 
+    linkPost: actions.linkPost,
     linkGet: actions.linkGet,
     linkGetIn: actions.linkGetIn,
     linkGetOut: actions.linkGetOut,
+    linkGetAlarm: actions.linkGetAlarm,
     linkPut: actions.linkPut,
+    linkPutAlarm: actions.linkPutAlarm,
+    linkPutAlarmReturn: actions.linkPutAlarmReturn,
 
     linkRemove: reducer.linkRemove,
 

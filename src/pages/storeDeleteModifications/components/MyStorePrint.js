@@ -16,7 +16,7 @@ const MyStorePrint = () => {
 
   const fetch = async () => {
     try {
-      await storeGetMy("test");
+      await storeGetMy("123");
     } catch (e) {
       console.log(e);
     } finally {

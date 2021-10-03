@@ -1,15 +1,16 @@
 import Qs from "query-string";
 import React, { useEffect } from "react";
 import { CTLoading, useLoading, useLink } from "../../../components";
-import LinkHistoryView from "./LinkHistoryView";
+import LinkHistoryOutView from "./LinkHistoryOutView";
 
-const LinkHistory = () => {
-  const { links, linkGetIn, linkPut } = useLink();
+const LinkHistoryOut = () => {
+  const { links, linkGetOut, linkPut } = useLink();
   const { loading, setLoading } = useLoading(true);
+  const userId = sessionStorage.getItem("sessionId");
 
   const fetch = async () => {
     try {
-      await linkGetIn("0");
+      await linkGetOut(2);
     } catch (e) {
       console.log(e);
     } finally {
@@ -21,12 +22,10 @@ const LinkHistory = () => {
     fetch();
   }, []);
 
-  const changeState = async (linkInfo) => {
+  const changeState = async (linkid, state, management) => {
     try {
-      const link = linkInfo;
-
       await setLoading(true);
-      await linkPut(link);
+      await linkPut(linkid, state, management);
       fetch();
     } catch (e) {
       await setLoading(false);
@@ -37,7 +36,7 @@ const LinkHistory = () => {
     loading ? (
       <CTLoading />
     ) : (
-      <LinkHistoryView
+      <LinkHistoryOutView
         total={links.total}
         results={links.results}
         changeState={changeState}
@@ -46,4 +45,4 @@ const LinkHistory = () => {
   );
 };
 
-export default LinkHistory;
+export default LinkHistoryOut;

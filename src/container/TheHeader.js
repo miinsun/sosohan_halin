@@ -28,7 +28,7 @@ const TheHeader = () => {
               <Link to="/couponManage">쿠폰관리</Link>
             </NavItem>
             <NavItem>
-              <Link to="/linkinhistory">연계 할인 관리</Link>
+              <Link to="/link">연계 할인 관리</Link>
             </NavItem>
           </Nav>
         </Collapse>
