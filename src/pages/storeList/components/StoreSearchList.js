@@ -1,20 +1,58 @@
-/* eslint-disable jsx-a11y/alt-text */
-import React from "react";
-import { Link } from "react-router-dom";
+import Qs from "query-string";
+import React, { useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { CTLoading, useLoading, useStore } from "../../../components";
+import StoreSearchListView from "./StoreSearchListView";
 
-const StoreSearchList = () => (
-  <div className="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-    <div className="col-auto d-none d-lg-block">
-      <img src="https://lab.hanium.or.kr/uploads/-/system/appearance/header_logo/1/content_logo.png" />
-    </div>
+const StoreSearchList = () => {
+  const { myStores, storeGetMy, storeRemove } = useStore();
+  const { loading, setLoading } = useLoading(true);
+  const location = useLocation();
 
-    <div className="col p-4 d-flex flex-column position-static">
-      <strong className="d-inline-block mb-2 text-success">카테고리</strong>
-      <Link to="/storeDetail"><h3 className="mb-0">가게명</h3></Link>
-      <div className="mb-1 text-muted">한줄소개</div>
-      <div className="mb-1 text-muted">위치</div>
-    </div>
-  </div>
-);
+  const query = Qs.parse(location.search);
+
+  console.log(query);
+  console.log(Qs.stringify(query));
+
+  const fetch = async () => {
+    try {
+      await storeGetMy("test");
+    } catch (e) {
+      console.log(e);
+    } finally {
+      await setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetch();
+  }, []);
+
+  const removeMyStore = async (storeInfo) => {
+    try {
+      const store = storeInfo;
+
+      await setLoading(true);
+      await storeRemove(store);
+      fetch();
+    } catch (e) {
+      console.log(e);
+      await setLoading(false);
+    }
+  };
+
+  return (
+
+    loading ? (
+      <CTLoading />
+    ) : (
+      <StoreSearchList
+        total={myStores.total}
+        results={myStores.results}
+        remove={removeMyStore}
+      />
+    )
+  );
+};
 
 export default StoreSearchList;
