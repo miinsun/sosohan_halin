@@ -1,26 +1,30 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable no-undef */
+/* eslint-disable react/destructuring-assignment */
 import PropTypes from "prop-types";
-import React from "react";
+import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { CTTable } from "../../../components";
+import { CTTable, CTOneButton, useCoupon } from "../../../components";
 
-const MyStorePrintView = ({ total, results, remove }) => (
+const MyCouponUsageListView = ({ total, results }) => {
   <div>
     <CTTable
       columns={[
-        "번호",
-        "상점명",
-        "액션",
+        "날짜",
+        "쿠폰명",
+        "사용 개수",
       ]}
       total={total}
-      emptyDataMessage="등록된 상점이 없습니다."
+      emptyDataMessage="사용된 쿠폰이 없습니다."
     >
       {total > 0 && results.map((data, index) => (
-        <tr key={data.storeId}>
+        <tr key={data.couponId}>
           <td>{index + 1}</td>
           <td>{data.name}</td>
+          <td>{data.descripttion}</td>
+          <td>{data.startDate} - {data.finishDate}</td>
           <td>
             <Link className="btn btn-primary" to="/storeRegistration">수정</Link>
-
             {/* eslint-disable-next-line  */}
             <a className="btn btn-primary" onClick={() => remove(data)}>삭제
             </a>
@@ -28,20 +32,18 @@ const MyStorePrintView = ({ total, results, remove }) => (
         </tr>
       ))}
     </CTTable>
-  </div>
-);
+  </div>;
+};
 
-MyStorePrintView.propTypes = {
+MyCouponUsageListView.propTypes = {
   total: PropTypes.number,
   // eslint-disable-next-line react/forbid-prop-types
   results: PropTypes.array,
-  remove: PropTypes.func,
 };
 
-MyStorePrintView.defaultProps = {
+MyCouponUsageListView.defaultProps = {
   total: 0,
   results: [],
-  remove: () => { },
 };
 
-export default MyStorePrintView;
+export default MyCouponUsageListView;

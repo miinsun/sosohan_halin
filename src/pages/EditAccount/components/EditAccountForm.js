@@ -7,6 +7,7 @@ const EditAccountForm = () => {
 
   const [data, setData] = useState({
     email: user.email,
+    curPassword: "",
     newPassword: "",
     newPasswordConfirm: "",
   });
@@ -32,7 +33,7 @@ const EditAccountForm = () => {
         return;
       }
 
-      await userPut({
+      await userPut(data.curPassword, {
         // businessUserId: user.businessUserId,
         // password: data.newPassword,
         // name: user.name,
@@ -45,103 +46,71 @@ const EditAccountForm = () => {
         email: data.email,
       });
 
+      alert("수정이 완료되었습니다.");
+      document.location.href = "/";
+
       // await userGet(user.businessUserId);
     } catch (err) {
       console.log(err);
+      alert("현재 패스워드가 일치하지 않습니다.");
     }
-
-    alert("수정이 완료되었습니다.");
-    document.location.href = "/";
   };
 
   return (
     user ? (
-      <form className="register-form">
-        <div className="row">
-          <div className="col-md-1 col-sm-1 col-lg-1">
-            {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-            <label htmlFor="id">Id</label>
-          </div>
-          <div className="col-md-4 col-sm-4 col-lg-4">
-            <input name="id" className="form-control" type="text" disabled value={user.businessUserId} />
-          </div>
+      <form className="EditAccountForm mt-4">
+        <div className="md-form">
+          {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+          <label htmlFor="businessUserId">ID</label>
+          <input name="businessUserId" className="form-control" type="text" disabled value={user.businessUserId} />
+          <p />
         </div>
-        <div className="row">
-          <div className="col-md-1 col-sm-1 col-lg-1">
-            {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-            <label htmlFor="curPassword">현재 PW</label>
-          </div>
-          <div className="col-md-4 col-sm-4 col-lg-4">
-            <input name="curPassword" className="form-control" type="password" />
-          </div>
+        <div className="md-form">
+          {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+          <label htmlFor="curPassword">현재 패스워드</label>
+          <input name="curPassword" className="form-control" type="password" onChange={handleChange} />
+          <p />
         </div>
-        <div className="row">
-          <div className="col-md-1 col-sm-1 col-lg-1">
-            {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-            <label htmlFor="password">새 PW</label>
-          </div>
-          <div className="col-md-4 col-sm-4 col-lg-4">
-            <input name="newPassword" className="form-control" type="password" onChange={handleChange} />
-          </div>
+        <div className="md-form">
+          {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+          <label htmlFor="password">새 패스워드</label>
+          <input name="newPassword" className="form-control" type="password" onChange={handleChange} />
+          <p />
         </div>
-        <div className="row">
-          <div className="col-md-1 col-sm-1 col-lg-1">
-            {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-            <label htmlFor="newPasswordConfirm">새 PW 확인</label>
-          </div>
-          <div className="col-md-4 col-sm-4 col-lg-4">
-            <input name="newPasswordConfirm" className="form-control" type="password" onChange={handleChange} />
-          </div>
+        <div className="md-form">
+          {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+          <label htmlFor="passwordConfirm">새 패스워드 확인</label>
+          <input name="newPasswordConfirm" className="form-control" type="password" onChange={handleChange} />
+          <p />
         </div>
-        <div className="row">
-          <div className="col-md-1 col-sm-1 col-lg-1">
-            {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-            <label htmlFor="name">이름</label>
-          </div>
-          <div className="col-md-4 col-sm-4 col-lg-4">
-            <input name="name" className="form-control" type="text" disabled value={user.name} />
-          </div>
-          <div className="col-md-4 col-sm-4 col-lg-4">
-            *개명 시 관리자에게 문의<br />
-          </div>
+        <div className="md-form">
+          {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+          <label htmlFor="name">이름</label>
+          <input name="name" className="form-control" type="text" disabled value={user.name} />
+          <p />
         </div>
-        <div className="row">
-          <div className="col-md-1 col-sm-1 col-lg-1">
-            {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-            <label htmlFor="email">이메일</label>
-          </div>
-          <div className="col-md-4 col-sm-4 col-lg-4">
-            <input
-              name="email"
-              className="form-control"
-              type="text"
-              defaultValue={user.email}
-              onChange={handleChange}
-            />
-          </div>
+        <div className="md-form">
+          {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+          <label htmlFor="email">이메일</label>
+          <input
+            name="email"
+            className="form-control"
+            type="text"
+            defaultValue={user.email}
+            onChange={handleChange}
+          />          <p />
         </div>
-        <div className="row">
-          <div className="col-md-1 col-sm-1 col-lg-1">
-            {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-            <label htmlFor="businessNum">사업자 등록번호</label>
-          </div>
-          <div className="col-md-4 col-sm-4 col-lg-4">
-            <input name="businessNum" className="form-control" type="text" disabled value={user.businessNum} />
-          </div>
+        <div className="md-form">
+          {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+          <label htmlFor="businessNum">사업자 등록번호</label>
+          <input name="businessNum" className="form-control" type="text" disabled value={user.businessNum} />
+          <p />
         </div>
 
-        <div className="row">
-          <div className="col-md-2 col-sm-2 col-xs-2 col-lg-2">
-            <Link className="btn btn-secondary" to="/">취소</Link>
-          </div>
-          <div className="col-md-2 col-sm-2 col-xs-2 col-lg-2">
-            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-            <Link
-              className="btn btn-secondary"
-              onClick={updateUser}
-            >수정
-            </Link>
-          </div>
+        <div className="text-center">
+          <Link className="btn btn-secondary" to="/">취소</Link>{" "}
+          {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+          <Link className="btn btn-primary" onClick={updateUser}>수정</Link>
         </div>
       </form>
     ) : (
