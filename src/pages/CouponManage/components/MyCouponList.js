@@ -16,7 +16,7 @@ const MyCouponList = () => {
 
   const fetch = async () => {
     try {
-      await couponGetAll(0, "");
+      await couponGetAll(2, "");
     } catch (e) {
       console.log(e);
     } finally {
