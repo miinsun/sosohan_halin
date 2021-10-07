@@ -1,48 +1,163 @@
-// /* eslint-disable react/prop-types */
-// /* eslint-disable no-undef */
-// /* eslint-disable react/destructuring-assignment */
-// import React, { Component } from "react";
-// import { Link } from "react-router-dom";
-// import "../../LinkReceptionHistory/components/LinkHistory.css";
-// import DoBtn from "../../LinkSuggestion/components/DoBtn";
-// import PropTypes from "prop-types";
+/* eslint-disable react/prop-types */
+/* eslint-disable no-undef */
+/* eslint-disable react/destructuring-assignment */
 
-// const CouponRegisterFormView = ({
-//   coupon, insert, update, btnName,
-// }) => {
-//   <div>
-//     {/* Modal */}
-//     {/* eslint-disable-next-line max-len */}
-//     <div className="modal fade" id="exampleModal" tabIndex={-1} aria-labelledby="exampleModalLabel" aria-hidden="true">
-//       <div className="modal-dialog">
-//         <div className="modal-content">
-//           <div className="modal-header">
-//             <h5 className="modal-title" id="exampleModalLabel">쿠폰 등록</h5>
-//             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" />
-//           </div>
-//           <div className="modal-body">
-//             <form>
-//               <div className="mb-3">
-//                 {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-//                 <label htmlFor="name" className="form-label">쿠폰명</label>
-//                 <input type="text" className="form-control" id="name" name="name" aria-describedby="nameHelp" />
-//               </div>
+import $ from "jquery";
+import PropTypes from "prop-types";
+import React, { Component, useState } from "react";
+import {
+  Modal, Button, Form, Row, Col,
+} from "react-bootstrap";
+import { Link } from "react-router-dom";
+import DoBtn from "../../LinkSuggestion/components/DoBtn";
 
-//               <div className="mb-3">
-//                 {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-//                 <label htmlFor="description" className="form-label">쿠폰 설명</label>
-//                 <input type="text" className="form-control" id="description" name="description" />
-//               </div>
-//             </form>
-//           </div>
-//           <div className="modal-footer">
-//             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-//             <button type="button" className="btn btn-primary">{btnName}</button>
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   </div>;
-// };
+const validityToReadonly = () => {
+  if ($("#formBasicCheckbox").is(":checked")) {
+    $("#validity").attr("disabled", true);
+  } else {
+    $("#validity").attr("disabled", false);
+  }
+};
 
-// export default CouponRegisterFormView;
+const CouponRegisterFormView = ({
+  btnName, confirmBtn, coupon, insert, update, data, setData,
+}) => {
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  const handleChange = (e) => {
+    setData({
+      ...data,
+
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  return (
+    <>
+      <Button variant="primary" onClick={handleShow}>
+        {btnName}
+      </Button>
+
+      <Modal
+        show={show}
+        onHide={handleClose}
+        backdrop="static"
+        keyboard={false}
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+      >
+        <Modal.Header closeButton>
+          <Modal.Title><b>쿠폰 {confirmBtn}</b></Modal.Title>
+        </Modal.Header>
+
+        <Modal.Body>
+          <Form>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label>쿠폰명</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="쿠폰명을 입력해주세요."
+                onChange={handleChange}
+                defaultValue={coupon ? coupon.name : ""}
+                name="name"
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+              <Form.Label>쿠폰 설명</Form.Label>
+              <Form.Control
+                as="textarea"
+                rows={4}
+                onChange={handleChange}
+                defaultValue={coupon ? coupon.description : ""}
+                name="description"
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
+              <Form.Label>유효기한</Form.Label>
+              <Row style={{ verticalAlign: "middle" }}>
+                <Col column="true" lg={11}>
+                  <Form.Control
+                    type="text"
+                    placeholder="유효기한을 입력해주세요."
+                    aria-describedby="validityHelpBlock"
+                    sm="11"
+                    id="validity"
+                    onChange={handleChange}
+                    defaultValue={coupon && coupon.validity ? coupon.validity : ""}
+                    name="validity"
+                  />
+                </Col>
+                <Col><span className="align-baseline">일</span></Col>
+              </Row>
+              <Form.Text className="text-muted" id="validityHelpBlock" muted>
+                ※ 다운로드 후 며칠간 사용 가능한지 설정합니다.
+              </Form.Text>
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="formBasicCheckbox">
+              <Form.Check type="checkbox" label="유효기한을 다운로드 마감일까지" onClick={validityToReadonly} />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput3">
+              <Form.Label>다운로드 시작 가능일</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder=""
+                onChange={handleChange}
+                defaultValue={coupon ? coupon.startDate : ""}
+                name="startDate"
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput4">
+              <Form.Label>다운로드 종료일</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder=""
+                onChange={handleChange}
+                defaultValue={coupon ? coupon.finishDate : ""}
+                name="finishDate"
+              />
+            </Form.Group>
+
+          </Form>
+        </Modal.Body>
+
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            취소
+          </Button>
+          <Button
+            variant="primary"
+            onClick={() => {
+              if (confirmBtn === "등록") {
+                insert(data);
+              } else {
+                update(data);
+              }
+              handleClose();
+            }}
+          >{confirmBtn}
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>
+  );
+};
+
+CouponRegisterFormView.propTypes = {
+  btnName: PropTypes.string,
+  confirmBtn: PropTypes.string,
+};
+
+CouponRegisterFormView.defaultProps = {
+  btnName: "",
+  confirmBtn: "",
+};
+
+export default CouponRegisterFormView;

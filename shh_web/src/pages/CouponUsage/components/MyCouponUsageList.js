@@ -5,7 +5,7 @@ import { CTLoading, useLoading, useCoupon } from "../../../components";
 import MyCouponUsageListView from "./MyCouponUsageListView";
 
 const MyCouponUsageList = () => {
-  const { couponList, couponGetAll, couponRemove } = useCoupon();
+  const { couponList, couponGetAll } = useCoupon();
   const { loading, setLoading } = useLoading(true);
   const location = useLocation();
 

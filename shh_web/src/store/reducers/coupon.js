@@ -41,7 +41,7 @@ const initialState = Map({
   coupon: Map({
 
     couponId: 0,
-    storeId: 0,
+    store: [],
     name: "",
     description: "",
     validity: 0,

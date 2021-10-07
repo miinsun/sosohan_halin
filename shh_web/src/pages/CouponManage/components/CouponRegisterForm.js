@@ -1,94 +1,111 @@
-// import Qs from "query-string";
-// import React, { useEffect, useState } from "react";
-// import { Link, useLocation } from "react-router-dom";
-// import { CTLoading, useLoading, useCoupon } from "../../../components";
-// import CouponRegisterFormView from "./CouponRegisterFormView";
+import PropTypes from "prop-types";
+import Qs from "query-string";
+import React, { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { CTLoading, useLoading, useCoupon } from "../../../components";
+import CouponRegisterFormView from "./CouponRegisterFormView";
 
-// const CouponRegisterForm = () => {
-//   const {
-//     coupon, couponPost, couponPut,
-//   } = useCoupon();
-//   const { loading, setLoading } = useLoading(true);
+const CouponRegisterForm = ({ couponInfo }) => {
+  console.log(`몇번 나오는지 테스트 , ${couponInfo}`);
+  const {
+    coupon, couponPost, couponPut,
+  } = useCoupon();
+  const { loading, setLoading } = useLoading(true);
 
-//   const [data, setData] = useState({
-//     email: user.email,
-//     newPassword: "",
-//     newPasswordConfirm: "",
-//   });
+  const [data, setData] = couponInfo ? useState({
+    couponId: coupon.couponId,
+    name: coupon.name,
+    storeId: 2,
+    available: coupon.available,
+    description: coupon.description,
+    validity: coupon.validity,
+    startDate: coupon.startDate,
+    finishDate: coupon.finishDate,
+  }) : useState({
+    couponId: null,
+    name: "",
+    storeId: 2,
+    available: true,
+    description: "",
+    validity: null,
+    startDate: "",
+    finishDate: "",
+  });
 
-//   const handleChange = (e) => {
-//     setData({
-//       ...data,
-//       [e.target.name]: e.target.value,
-//     });
-//   };
+  console.log(data.name);
 
-//   const updateCoupon = async () => {
-//     try {
-//       console.log(data);
+  const updateCoupon = async () => {
+    try {
+      // if (data.email.length <= 0 || data.newPassword.length <= 0) {
+      //   alert("정확한 정보를 입력해 주세요.");
+      //   return;
+      // }
 
-//       // if (data.email.length <= 0 || data.newPassword.length <= 0) {
-//       //   alert("정확한 정보를 입력해 주세요.");
-//       //   return;
-//       // }
+      await couponPut(data.couponId, {
+        couponId: data.couponId,
+        name: data.name,
+        storeId: data.storeId,
+        available: data.available,
+        description: data.description,
+        validity: data.validity,
+        startDate: data.startDate,
+        finishDate: data.finishDate,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
-//       await couponPut({
-//         name: data.name,
-//         description: data.description,
-//         validity: data.validity,
-//         startDate: data.startDate,
-//         finishDate: data.finishDate,
-//       });
+  const insertCoupon = async () => {
+    try {
+      await couponPost({
+        couponId: null,
+        name: data.name,
+        storeId: 2,
+        available: true,
+        description: data.description,
+        validity: data.validity,
+        startDate: data.startDate,
+        finishDate: data.finishDate,
+      });
+    } catch (e) {
+      console.log(e);
+      await setLoading(false);
+    }
+  };
 
-//       // await userGet(user.businessUserId);
-//     } catch (err) {
-//       console.log(err);
-//     }
-//   };
+  return (
+    couponInfo ? (
+      <CouponRegisterFormView
+        btnName="수정"
+        confirmBtn="수정"
+        coupon={couponInfo}
+        insert={insertCoupon}
+        update={updateCoupon}
+        data={data}
+        setData={setData}
+      />
+    ) : (
+      <CouponRegisterFormView
+        btnName="+ 등록하기"
+        confirmBtn="등록"
+        coupon={null}
+        insert={insertCoupon}
+        update={updateCoupon}
+        data={data}
+        setData={setData}
+      />
+    )
+  );
+};
 
-//   const fetch = async () => {
-//     try {
-//       await coupon();
-//     } catch (e) {
-//       console.log(e);
-//     } finally {
-//       await setLoading(false);
-//     }
-//   };
+CouponRegisterForm.propTypes = {
+  // eslint-disable-next-line react/forbid-prop-types
+  couponInfo: PropTypes.object,
+};
 
-//   useEffect(() => {
-//     fetch();
-//   }, []);
+CouponRegisterForm.defaultProps = {
+  couponInfo: {},
+};
 
-//   const insertCoupon = async (form) => {
-//     try {
-//       const newCoupon = form;
-
-//       await setLoading(true);
-//       await couponPost(newCoupon);
-//     } catch (e) {
-//       console.log(e);
-//       await setLoading(false);
-//     }
-//   };
-
-//   return (
-//     coupon ? (
-//       <CouponRegisterFormView
-//         coupon={coupon}
-//         insert={insertCoupon}
-//         update={updateCoupon}
-//         btnName="수정"
-//       />
-//     ) : (
-//       <CouponRegisterFormView
-//         coupon={coupon}
-//         insert={insertCoupon}
-//         update={updateCoupon}
-//         btnName="등록"
-//       />
-//     )
-//   );
-// };
-
-// export default CouponRegisterForm;
+export default CouponRegisterForm;

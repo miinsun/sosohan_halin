@@ -3,10 +3,12 @@
 /* eslint-disable react/destructuring-assignment */
 import PropTypes from "prop-types";
 import React from "react";
-import { Link } from "react-router-dom";
 import { CTTable, CTOneButton, useCoupon } from "../../../components";
+import CouponRegisterForm from "./CouponRegisterForm";
 
-const MyCouponListView = ({ total, results, remove }) => (
+const MyCouponListView = ({
+  total, results, remove,
+}) => (
   <div>
     <CTTable
       columns={[
@@ -26,14 +28,21 @@ const MyCouponListView = ({ total, results, remove }) => (
           <td>{data.description}</td>
           <td>{data.startDate} - {data.finishDate}</td>
           <td>
-            <Link className="btn btn-primary" to="/storeRegistration">수정</Link>
-            {console.log(data)}
-            {/* eslint-disable-next-line  */}
-            <a className="btn btn-primary" onClick={() => remove(data)}>삭제
+
+            {/* <a className="btn btn-primary" onClick={() => { updateCoupon(data)}}>수정</a> */}
+            {/* eslint-disable */}
+            <CouponRegisterForm couponInfo={data} />
+
+            {/* eslint-disable */}
+            <a
+              className="btn btn-primary"
+              onClick={() => { if (confirm("쿠폰을 삭제하시겠습니까?")) remove(data); }}
+            >삭제
             </a>
           </td>
         </tr>
       ))}
+
     </CTTable>
   </div>
 );
