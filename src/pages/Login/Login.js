@@ -8,7 +8,7 @@ import LoginForm from "./components/LoginForm";
 import SignupLink from "./components/SignupLink";
 import "../../styles/form-sign.css";
 
-const Login = () => (
+const Login = ({ close }) => (
   // <div className="Login">
   // <div className="form-body">
   //   <main className="form-signin">
@@ -28,8 +28,8 @@ const Login = () => (
     </Modal.Body>
 
     <Modal.Footer>
-      <SignupLink />
-      <FindingIdLink /> <FindingPwLink />
+      <SignupLink close={close} />
+      <FindingIdLink close={close} /> <FindingPwLink close={close} />
     </Modal.Footer>
   </>
 );

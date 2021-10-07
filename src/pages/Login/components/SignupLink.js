@@ -1,25 +1,25 @@
 import React, { useState } from "react";
-// import { useHistory } from "react-router-dom";
 import {
   Modal, Button,
 } from "react-bootstrap";
 import Signup from "../../Signup";
 
-const SignupLink = () => {
-  const [showSignup, setShowSignup] = useState(false);
+const SignupLink = ({ close }) => {
+  const [show, setShow] = useState(false);
 
-  const handleClose = () => setShowSignup(false);
-  const handleShow = () => setShowSignup(true);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   // const history = useHistory();
 
   // const gotoSignup = () => {
   //   history.push("/signup");
   // };
+
   return (
     <span className="SignupLink">
       {/* <Link className="btn btn-secondary" to="/signup">회원가입</Link> */}
-      <Button className="btn btn-secondary" onClick={handleShow}>회원가입</Button>
-      <Modal show={showSignup} onHide={handleClose}>
+      <Button className="btn btn-secondary" onClick={() => { handleShow(); }}>회원가입</Button>
+      <Modal id="signupModal" show={show} onHide={handleClose}>
         <Signup />
       </Modal>
     </span>

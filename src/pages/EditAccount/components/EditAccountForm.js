@@ -6,7 +6,7 @@ const EditAccountForm = () => {
   const { user, userPut } = useUser();
 
   const [data, setData] = useState({
-    email: user.email,
+    email: `${user.email}`,
     curPassword: "",
     newPassword: "",
     newPasswordConfirm: "",
@@ -23,7 +23,12 @@ const EditAccountForm = () => {
     try {
       console.log(data);
 
-      if (data.email.length <= 0 || data.newPassword.length <= 0) {
+      setData({
+        ...data,
+      });
+
+      if (data.email.length <= 0) {
+        alert(data.email);
         alert("정확한 정보를 입력해 주세요.");
         return;
       }

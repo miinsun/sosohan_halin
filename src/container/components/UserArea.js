@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import {
-  Navbar, Nav, NavDropdown, Form, FormControl, Button, Container, Modal,
+  Nav, Modal,
 } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import { useUser } from "../../components";
 import LinkAlarm from "../../pages/LinkAlarm";
 import Login from "../../pages/Login";
@@ -25,19 +24,19 @@ const UserArea = () => {
     document.location.href = "/";
   };
 
-  const [show, setShow] = useState(false);
+  const [showLogin, setShowLogin] = useState(false);
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleCloseLogin = () => setShowLogin(false);
+  const handleShowLogin = () => setShowLogin(true);
 
   return (
     <div className="UserArea">
       {!sessionStorage.getItem("sessionId") && (
         <Nav className="GuestArea">
           {/* <Nav.Link href="/login" className="btn btn-primary text-light">Login</Nav.Link> */}
-          <Nav.Link onClick={handleShow} className="btn btn-primary text-light">Login</Nav.Link>
-          <Modal id="loginModal" show={show} onHide={handleClose}>
-            <Login />
+          <Nav.Link onClick={handleShowLogin} className="btn btn-primary text-light">Login</Nav.Link>
+          <Modal id="loginModal" show={showLogin} onHide={handleCloseLogin}>
+            <Login close={handleCloseLogin} />
           </Modal>
         </Nav>
       )}
