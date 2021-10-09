@@ -6,15 +6,25 @@ import {
 } from 'native-base';
 import RootNavigator from './src/Navigator/RootNavigator';
 import store from "./src/store";
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Main from './src/Navigator/MainTabNavigator';
+import InputStore from './src/Screen/Camera/InputStore';
+
+const Stack = createNativeStackNavigator();
+
 
 const App = () => {
   return (
     <Provider store={store}>
-      <NativeBaseProvider>
-        <Box flex={1} bg="white" safeAreaTop>
-          <RootNavigator />
-        </Box>
-      </NativeBaseProvider>
+        <NativeBaseProvider>
+          <NavigationContainer>
+            <Stack.Navigator>
+              <Stack.Screen name="Main" component={Main} />
+              <Stack.Screen name="InputStore" component={InputStore}/>
+            </Stack.Navigator>
+          </NavigationContainer>
+        </NativeBaseProvider>
     </Provider>
   );
 }

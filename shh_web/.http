@@ -9,13 +9,18 @@ GET {{BASE_URL}}/link
 
 GET {{BASE_URL}}/link/incoming/2
 
-GET {{BASE_URL}}/link/outcoming/2
+
+GET {{BASE_URL}}/link/incoming/2
+
+GET {{BASE_URL}}/coupon/user?storename=만리장성&businessnum=0000011111&date=2021-10-09&consumeruserid=minsun
 
 GET {{BASE_URL}}/link/alarm?storeid=2
 PUT {{BASE_URL}}/link/alarm/watched?storeid=2
 PUT {{BASE_URL}}/link/alarm/return?storeid=2
 
 POST {{BASE_URL}}/link
+
+
 Content-Type: application/json
 
 

@@ -1,12 +1,21 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, Button, Alert, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Button, Alert, TouchableOpacity } from 'react-native';
+import { VStack, Center, Heading, Text, NativeBaseProvider } from "native-base"
 import { Camera } from 'expo-camera';
 import PreviewPhoto from './PreviewPhoto';
+import { useNavigation } from '@react-navigation/native';
 
 let camera;
 
 const App =() => {
+  const navigation = useNavigation();
+  const timestamp = + new Date();
+  const [storeData, setStoreData] = useState({
+    storeName: null,
+    date: null,
+    businessNum: null,
+  });
   const [appData, setAppData] = useState({
     preview: false,
     photo: null,
@@ -35,8 +44,47 @@ const App =() => {
     Alert.alert("Touched");
   }
 
-  const takePicture = async () => {
-    const photo = await camera.takePictureAsync ();
+  
+  
+  const detectText = (base64) => {
+    fetch("https://4b99037f15eb4bc89fd878365fc07728.apigw.ntruss.com/custom/v1/11517/002e71dc6709a3ae2a683a123d31c01533cf2c16a88114107d2073537f6e815b/infer",
+     {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+          'X-OCR-SECRET': 'RURKd0VGSVFwWWxqZkRnYnJBbUJ4d0h3ZGV1RE1MTE8='
+        },
+        body: JSON.stringify({
+          "images": [
+                      {
+                        "format": "jpg",
+                        "name": "medium",
+                        "data": base64
+                      }
+                    ],
+          "lang": "ko",
+          "requestId": "userId",
+          "resultType": "string",
+          "timestamp": timestamp,
+          "version": "V1"
+        })
+    })
+    .then(response => { return response.json()})
+    .then(jsonRes => {
+      setStoreData({
+      storeName: jsonRes.images[0].fields[0].inferText,
+      businessNum :  jsonRes.images[0].fields[1].inferText,
+      date : jsonRes.images[0].fields[2].inferText,
+    })
+    console.log( jsonRes.images[0].fields[1].inferText);
+    }).catch(err => {
+      console.log('Error', err)
+    })
+  }
+
+const takePicture = async () => {
+  const options = { quality: 0.5, base64: true };
+    const photo = await camera.takePictureAsync (options);
 
     setAppData({
       ...appData,
@@ -44,20 +92,17 @@ const App =() => {
       photo,
     })
     console.log(photo);
+    detectText(photo.base64);
   }
-  
+
   const retakePicture = async () => {
     await setAppData({
       ...appData,
       preview: false,
       photo: null,
+
     }, async ()=> { await handleCamera() });
   }
-
-  const savePhoto = () => {
-
-  }
-
 
   return (
         <View style={styles.container}>
@@ -67,7 +112,9 @@ const App =() => {
                 <PreviewPhoto 
                   photo={appData.photo}
                   retakePicture={retakePicture}
-                  savePhoto={savePhoto}
+                  storeName = {storeData.storeName}
+                  businessNum ={storeData.businessNum}
+                  date = {storeData.date}
                   />
               ) : (
                 <Camera
@@ -120,16 +167,57 @@ const App =() => {
               )}
             </View>
           ) : (
-            <TouchableOpacity
-              onPress={handleCamera}
-              style={styles.touchableOpacity}
-            >
-              <Text
-                style={styles.pictureText}
-              >
-                Take picture
-              </Text>
-            </TouchableOpacity>
+            <NativeBaseProvider>
+              <Center flex={1} px="3">
+                <VStack space={5} alignItems="center">
+                <Heading textAlign="center" mb="10">
+                  쿠폰 등록
+                </Heading>
+                <TouchableOpacity
+                  onPress={handleCamera}
+                  style={styles.touchableOpacity}
+                >
+                  <Center w="64" 
+                  _text={{
+                    color: "white",
+                    fontWeight: "bold",
+                    fontSize: "lg",
+                  }}
+                  h="20" bg="primary.500" rounded="md" shadow={3}>
+                    영수증 인식
+                  </Center>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={handleCamera}
+                  style={styles.touchableOpacity}
+                >
+                  <Center w="64" 
+                  _text={{
+                    color: "white",
+                    fontWeight: "bold",
+                    fontSize: "lg",
+                  }}
+                  h="20" bg="primary.500" rounded="md" shadow={3}>
+                    영수증 가져오기
+                  </Center>
+                </TouchableOpacity>
+                <TouchableOpacity
+                onPress={() => navigation.navigate('InputStore')}
+                style={styles.touchableOpacity}
+                >
+                 <Center w="64" 
+                  _text={{
+                    color: "white",
+                    fontWeight: "bold",
+                    fontSize: "lg",
+                  }}
+                  h="20" bg="primary.500" rounded="md" shadow={3}>
+                    영수증 직접입력
+                  </Center>
+              </TouchableOpacity>
+              </VStack>
+              </Center>
+            </NativeBaseProvider>
           )
           }
           
@@ -145,15 +233,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  touchableOpacity: {
-    width: 130,
-    borderRadius: 4,
-    backgroundColor: '#14274e',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: 40
   },
   pictureText: {
     color: '#fff',
