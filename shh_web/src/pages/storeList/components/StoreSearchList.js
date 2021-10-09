@@ -5,7 +5,7 @@ import { CTLoading, useLoading, useStore } from "../../../components";
 import StoreSearchListView from "./StoreSearchListView";
 
 const StoreSearchList = () => {
-  const { myStores, storeGetAll } = useStore();
+  const { allStores, storeGetAll } = useStore();
   const { loading, setLoading } = useLoading(true);
   const location = useLocation();
 
@@ -28,27 +28,14 @@ const StoreSearchList = () => {
     fetch();
   }, []);
 
-  const removeMyStore = async (storeInfo) => {
-    try {
-      const store = storeInfo;
-
-      await setLoading(true);
-      fetch();
-    } catch (e) {
-      console.log(e);
-      await setLoading(false);
-    }
-  };
-
   return (
 
     loading ? (
       <CTLoading />
     ) : (
-      <StoreSearchList
-        total={myStores.total}
-        results={myStores.results}
-        remove={removeMyStore}
+      <StoreSearchListView
+        total={allStores.total}
+        results={allStores.results}
       />
     )
   );

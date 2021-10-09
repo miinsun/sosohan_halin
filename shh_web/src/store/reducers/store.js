@@ -78,6 +78,11 @@ const initialState = Map({
     results: List([]),
   }),
 
+  getAll: Map({
+    total: 0,
+    results: List([]),
+  }),
+
 });
 
 export default handleActions({
