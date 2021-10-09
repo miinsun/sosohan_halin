@@ -4,7 +4,6 @@ import {
   NativeBaseProvider,
   Box,
 } from 'native-base';
-import RootNavigator from './src/Navigator/RootNavigator';
 import store from "./src/store";
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
