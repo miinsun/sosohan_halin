@@ -9,7 +9,7 @@ import {
   Modal, Button, Form, Row, Col,
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import DoBtn from "../../LinkSuggestion/components/DoBtn";
+// import DoBtn from "../../LinkSuggestion/components/DoBtn";
 
 const validityToReadonly = () => {
   if ($("#formBasicCheckbox").is(":checked")) {
