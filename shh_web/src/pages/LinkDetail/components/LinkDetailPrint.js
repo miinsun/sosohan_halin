@@ -4,6 +4,8 @@ import { Link, useLocation } from "react-router-dom";
 import { CTLoading, useLoading, useLink } from "../../../components";
 import LinkDetailPrintView from "./LinkDetailPrintView";
 
+const storeId = sessionStorage.getItem("currentStoreId");
+
 const MyStorePrint = () => {
   const { link, linkGet } = useLink();
   const { loading, setLoading } = useLoading(true);

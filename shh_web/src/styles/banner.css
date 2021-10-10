@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300&display=swap');
+
+.seller-img{
+    background-image: url(../images/title.jpg);
+    background-size: 100%;
+}
+.link-img{
+}
+.title-wrapper1{
+    position: relative; 
+    top: -50px;
+}
+.title-wrapper2{
+    /* position: relative; 
+    top: -200px; */
+}
+.down-img{
+    margin-bottom: 100px;
+    opacity:1;
+}
+.title{
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 900;
+    font-size: 50px;
+}
+
+.title-content{
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 30px;
+}
+
+.chart-img{
+    position: relative; 
+    top: -100px;
+}
+
+.buildings1{
+    position: relative; 
+    right: -100px;
+}
