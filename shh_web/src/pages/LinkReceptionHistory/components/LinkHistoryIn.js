@@ -3,14 +3,15 @@ import React, { useEffect } from "react";
 import { CTLoading, useLoading, useLink } from "../../../components";
 import LinkHistoryInView from "./LinkHistoryInView";
 
+const storeId = sessionStorage.getItem("currentStoreId");
+
 const LinkHistoryIn = () => {
   const { links, linkGetIn, linkPut } = useLink();
   const { loading, setLoading } = useLoading(true);
-  const userId = sessionStorage.getItem("sessionId");
 
   const fetch = async () => {
     try {
-      await linkGetIn(2);
+      await linkGetIn(storeId);
     } catch (e) {
       console.log(e);
     } finally {
@@ -37,6 +38,7 @@ const LinkHistoryIn = () => {
       <CTLoading />
     ) : (
       <LinkHistoryInView
+        login={storeId}
         total={links.total}
         results={links.results}
         changeState={changeState}
