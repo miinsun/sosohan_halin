@@ -1,79 +1,112 @@
-import React from 'react'
-import { ImageBackground, Text, View, TouchableOpacity } from "react-native";
+import React, { useState } from 'react';
+import {
+  ImageBackground,
+  View,
+  TouchableOpacity,
+} from "react-native";
 
-const PreviewPhoto = ({ photo, retakePicture, savePhoto }) => {
+import {
+  Button,
+  Modal,
+  Text,
+  FormControl,
+  Input,
+  Center,
+  VStack,
+  HStack,
+  NativeBaseProvider,
+} from "native-base"
+
+const PreviewPhoto = ({ photo, retakePicture, storeName, businessNum, date }) => {
+
+  const [showModal, setShowModal] = useState(true)
+
   return (
-      <View
+    <>
+    <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
+      <Modal.Content maxWidth="400px">
+          <Modal.CloseButton />
+          <Modal.Header>상점 확인</Modal.Header>
+          <Modal.Body>
+            <VStack space={3}>
+              <HStack alignItems="center" justifyContent="space-between">
+                <Text fontWeight="medium">상점 이름</Text>
+                <Text color="blueGray.400">{storeName}</Text>
+              </HStack>
+              <HStack alignItems="center" justifyContent="space-between">
+                <Text fontWeight="medium">사업자 번호</Text>
+                <Text color="blueGray.400">{businessNum}</Text>
+              </HStack>
+              <HStack alignItems="center" justifyContent="space-between">
+                <Text fontWeight="medium">날짜</Text>
+                <Text color="green.500">{date}</Text>
+              </HStack>
+            </VStack>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button
+              flex="1"
+              onPress={() => {
+              }}
+            >
+              쿠폰 선택
+            </Button>
+          </Modal.Footer>
+      </Modal.Content>
+    </Modal>
+    <View
+      style={{
+        backgroundColor: "transparent",
+        flex: 1,
+        width: "100%",
+        height: "100%",
+      }}
+    >
+      <ImageBackground
+        source={{ uri: photo && photo.uri }}
         style={{
-          backgroundColor: 'transparent',
           flex: 1,
-          width: '100%',
-          height: '100%'
         }}
       >
-        <ImageBackground
-          source={{uri: photo && photo.uri}}
+        <View
           style={{
-            flex: 1
+            flex: 1,
+            flexDirection: "column",
+            padding: 15,
+            justifyContent: "flex-end",
           }}
         >
           <View
             style={{
-              flex: 1,
-              flexDirection: 'column',
-              padding: 15,
-              justifyContent: 'flex-end'
+              flexDirection: "row",
+              justifyContent: "space-between",
             }}
           >
-            <View
+            <TouchableOpacity
+              onPress={retakePicture}
               style={{
-                flexDirection: 'row',
-                justifyContent: 'space-between'
+                width: 130,
+                height: 40,
+
+                alignItems: "center",
+                borderRadius: 4,
               }}
             >
-              <TouchableOpacity
-                onPress={retakePicture}
+              <Text
                 style={{
-                  width: 130,
-                  height: 40,
-  
-                  alignItems: 'center',
-                  borderRadius: 4
+                  color: "#fff",
+                  fontSize: 20,
                 }}
               >
-                <Text
-                  style={{
-                    color: '#fff',
-                    fontSize: 20
-                  }}
-                >
-                  Re-take
-                </Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={savePhoto}
-                style={{
-                  width: 130,
-                  height: 40,
-  
-                  alignItems: 'center',
-                  borderRadius: 4
-                }}
-              >
-                <Text
-                  style={{
-                    color: '#fff',
-                    fontSize: 20
-                  }}
-                >
-                  save photo
-                </Text>
-              </TouchableOpacity>
-            </View>
+                Re-take
+              </Text>
+            </TouchableOpacity>
           </View>
-        </ImageBackground>
-      </View>
-  )
-}
+        </View>
+      </ImageBackground>
+    </View>
+    </>
+  );
+};
 
-export default PreviewPhoto
+export default PreviewPhoto;

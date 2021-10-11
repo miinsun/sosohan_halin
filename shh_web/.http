@@ -3,31 +3,47 @@
 
 GET {{BASE_URL}}/businessUser
 
-GET {{BASE_URL}}/businessUser/test
+GET {{BASE_URL}}/businessUser/123
 
 GET {{BASE_URL}}/link
 
 GET {{BASE_URL}}/link/incoming/2
 
-GET {{BASE_URL}}/link/outcoming/2
+
+GET {{BASE_URL}}/link/incoming/2
+
+GET {{BASE_URL}}/coupon/user?storename=만리장성&businessnum=0000011111&date=2021-10-09&consumeruserid=minsun
 
 GET {{BASE_URL}}/link/alarm?storeid=2
 PUT {{BASE_URL}}/link/alarm/watched?storeid=2
 PUT {{BASE_URL}}/link/alarm/return?storeid=2
 
+PUT {{BASE_URL}}/businessUser
+Content-Type: application/json
+
+{
+  "businessUserId" : "test",
+  "password": "1234",
+  "name" : "minsun1",
+  "email" : "minsun@naver.com",
+  "businessNum" : 1134567890,
+  "stores": [],
+  "state": 1
+}
+
+
 POST {{BASE_URL}}/link
 Content-Type: application/json
 
-
+{
   "linkId": "",
   "proposerId": "2",
   "receiverId": "3",
   "content": "제발!!",
   "isWatched": "",
   "state": "",
-  "management": "",
-  "proposalDate": "",
-
+  "management": ""
+}
 
 GET {{BASE_URL}}/link/detail/0/0
 

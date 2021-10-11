@@ -2,24 +2,34 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/destructuring-assignment */
 import { List } from "immutable";
-import React, { useState } from "react";
+import React, {
+  useState, forwardRef, useImperativeHandle, useEffect,
+} from "react";
 import { Link } from "react-router-dom";
-import { useLink } from "../../../components";
+import { useLink, useStore } from "../../../components";
 
-const LinkSuggestionInput = () => {
+const LinkSuggestionInput = forwardRef((props, ref) => {
   const { linkPost } = useLink();
+  const { store, storeGet } = useStore();
+
+  const storeId = sessionStorage.getItem("currentStoreId");
+
+  const fetch = async () => {
+    try {
+      await storeGet(storeId);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  useEffect(() => {
+    fetch();
+  }, []);
 
   const [data, setData] = useState({
-    linkId: "",
-    proposerId: "",
+    proposerId: storeId,
     receiverId: "",
     content: "",
-    isWatched: "",
-    state: "",
-    management: "",
-    proposalDate: "",
-    proposer: List([]),
-    receiver: List([]),
   });
 
   const handleChange = (e) => {
@@ -31,46 +41,31 @@ const LinkSuggestionInput = () => {
 
   const postLink = async () => {
     try {
-      console.log(data);
-
-      if (data.poposerId.length <= 0 || data.receiverId.length <= 0) {
-        alert("잘못된 접근입니다");
-        return;
-      }
-
       if (data.content.length === 0) {
         await linkPost({
-          linkId: "",
-          proposerId: "2",
+          proposerId: data.proposerId,
           receiverId: "3",
           content: `${data.proposerId}와 ${data.receiverId}의 제안을 원합니다`,
-          isWatched: 1,
-          state: 0,
-          management: 0,
-          proposalDate: "",
-          proposer: List([]),
-          receiver: List([]),
         });
       } else {
         await linkPost({
-          linkId: "",
-          proposerId: "2",
+          proposerId: data.proposerId,
           receiverId: "3",
           content: data.content,
-          isWatched: 1,
-          state: 0,
-          management: 0,
-          proposalDate: "",
-          proposer: List([]),
-          receiver: List([]),
         });
       }
     } catch (err) {
       console.log(err);
     }
-    console.log(data);
-    alert(`${data.receiverId}에 연계 신청을 보냈습니다`);
+    console.log(store);
+    alert(`${store.name}에 연계 신청을 보냈습니다`);
   };
+
+  useImperativeHandle(ref, () => ({
+    submit() {
+      postLink();
+    },
+  }));
 
   return (
     <div className="linkSuggestion">
@@ -80,7 +75,7 @@ const LinkSuggestionInput = () => {
       <form id="message-form" action="#" method="post">
         {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
         <label htmlFor="content">내용</label>
-        <input name="content" className="form-control" type="text" onChange={handleChange} placeholder={`${data.proposerId}와 ${data.receiverId}의 제안을 원합니다`} />
+        <input name="content" className="form-control" type="text" onChange={handleChange} placeholder={`${store.name}와 ${data.receiverId}의 제안을 원합니다`} />
 
       </form>
       <div className="DoBtn">
@@ -97,5 +92,6 @@ const LinkSuggestionInput = () => {
     </div>
 
   );
-};
+});
+
 export default LinkSuggestionInput;

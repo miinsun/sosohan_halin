@@ -3,14 +3,15 @@ import React, { useEffect } from "react";
 import { CTLoading, useLoading, useLink } from "../../../components";
 import LinkHistoryOutView from "./LinkHistoryOutView";
 
+const storeId = sessionStorage.getItem("currentStoreId");
+
 const LinkHistoryOut = () => {
   const { links, linkGetOut, linkPut } = useLink();
   const { loading, setLoading } = useLoading(true);
-  const userId = sessionStorage.getItem("sessionId");
 
   const fetch = async () => {
     try {
-      await linkGetOut(2);
+      await linkGetOut(storeId);
     } catch (e) {
       console.log(e);
     } finally {
@@ -37,6 +38,7 @@ const LinkHistoryOut = () => {
       <CTLoading />
     ) : (
       <LinkHistoryOutView
+        login={storeId}
         total={links.total}
         results={links.results}
         changeState={changeState}

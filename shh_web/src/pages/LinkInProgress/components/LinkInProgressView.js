@@ -5,7 +5,12 @@ import {
   Row, Col, Card, Button, Container,
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { CTTable } from "../../../components";
+import { CTTable, NeedLogin } from "../../../components";
+
+const goLogin = () => {
+  alert("로그인 후, 상점을 선택하고 이용해주세요");
+  document.location.href = "/";
+};
 
 const isIn = (results, total, changeState) => {
   if (total !== 0) {
@@ -65,10 +70,16 @@ const isIn = (results, total, changeState) => {
   );
 };
 
-const LinkInProgressView = ({ total, results, changeState }) => (
-  <div>
-    {isIn(results, total, changeState)}
-  </div>
+const LinkInProgressView = ({
+  login, total, results, changeState,
+}) => (
+  !login ? (
+    goLogin()
+  ) : (
+    <div>
+      {isIn(results, total, changeState)}
+    </div>
+  )
 );
 
 LinkInProgressView.propTypes = {
