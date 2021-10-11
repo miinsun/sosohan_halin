@@ -1,3 +1,4 @@
+import useConsumerCoupon from "./useConsumerCoupon";
 import useCoupon from "./useCoupon";
 import useLink from "./useLink";
 import useStore from "./useStore";
@@ -8,4 +9,5 @@ export {
   useCoupon,
   useStore,
   useLink,
+  useConsumerCoupon,
 };
