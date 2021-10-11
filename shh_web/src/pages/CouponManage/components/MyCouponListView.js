@@ -26,7 +26,7 @@ const MyCouponListView = ({
           <td>{index + 1}</td>
           <td>{data.name}</td>
           <td>{data.description}</td>
-          <td>{data.startDate} - {data.finishDate}</td>
+          <td>{data.startDate} ~ {data.finishDate}</td>
           <td>
 
             {/* <a className="btn btn-primary" onClick={() => { updateCoupon(data)}}>수정</a> */}

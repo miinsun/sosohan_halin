@@ -1,5 +1,6 @@
 import { combineReducers } from "redux";
 import { penderReducer } from "redux-pender";
+import consumerCoupon from "./consumerCoupon";
 import coupon from "./coupon";
 import link from "./link";
 import store from "./store";
@@ -12,6 +13,7 @@ const reducers = combineReducers({
   coupon,
   store,
   link,
+  consumerCoupon,
 });
 
 export default reducers;
