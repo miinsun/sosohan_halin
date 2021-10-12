@@ -5,6 +5,7 @@ import {
   Redirect,
 } from "react-router-dom";
 import TheLayout from "./container";
+import CouponRecog from "./pages/CouponRecog";
 import FindingId from "./pages/FindingId";
 import FindingIdResult from "./pages/FindingIdResult";
 import FindingPw from "./pages/FindingPw";
@@ -21,6 +22,8 @@ const App = () => (
     <Route exact path="/findingid" component={FindingId} />
     <Route exact path="/findingpw/result" component={FindingPwResult} />
     <Route exact path="/findingpw" component={FindingPw} />
+    <Route exact path="/couponRecog" component={CouponRecog} />
+
     <Route path="/" component={TheLayout} />
 
     <Redirect to="/login" />

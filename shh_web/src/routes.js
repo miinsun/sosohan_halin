@@ -1,6 +1,5 @@
 import Banner from "./Banner";
 import CouponManage from "./pages/CouponManage";
-import CouponRecog from "./pages/CouponRecog";
 import CouponUsage from "./pages/CouponUsage";
 import EditAccount from "./pages/EditAccount";
 import LinkAlarm from "./pages/LinkAlarm";
@@ -79,11 +78,6 @@ const routes = [
     path: "/couponUsage",
     exact: true,
     component: CouponUsage,
-  },
-  {
-    path: "/couponRecog",
-    exact: true,
-    component: CouponRecog,
   },
 
 ];
