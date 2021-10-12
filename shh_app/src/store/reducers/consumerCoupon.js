@@ -39,7 +39,6 @@ export const consumerCouponPut = createAction(
 const initialState = Map({
 
   consumerCoupon: Map({
-
     consumerCouponId: 0,
     downloadDate: new Date(),
     consumerUserId: 0,
