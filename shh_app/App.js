@@ -17,7 +17,14 @@ const App = () => {
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen name="Main" component={Main} />
-          <Stack.Screen name="InputStore" component={InputStore}/>
+          <Stack.Screen name="InputStore" component={InputStore}
+            options={{
+              headerRight: () => <CustomMenu />,
+              headerStyle: {
+                backgroundColor: '#2e46ff',
+              },
+            }}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </NativeBaseProvider>
