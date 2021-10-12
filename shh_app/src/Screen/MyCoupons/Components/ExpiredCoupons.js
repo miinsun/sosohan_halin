@@ -1,66 +1,48 @@
 import * as React from 'react';
+import { useEffect } from 'react';
 import {
     StyleSheet, 
     View,
-    TouchableOpacity,
     Alert,
-    VirtualizedList,
   } from 'react-native';
-import { NativeBaseProvider, Text, Flex, Spacer, List } from 'native-base';
+import { NativeBaseProvider, FlatList, Text, Box, Center, Flex, Spacer, List } from 'native-base';
+import { useConsumerCoupon } from '../../../components';
+import { CouponListView } from '.';
 
-// api 적용 전 임시 변수
-const total = 0;
-const list = {};
+const AvailableCoupons = () => {
 
-const DATA = []
+  const { consumerCouponList, consumerCouponGetAll } = useConsumerCoupon();
 
-const getItem = (_data, index) => ({
-  id: Math.random().toString(12).substring(0),
-  title: `Item ${index + 1}`,
-})
+  const total = consumerCouponList.total;
+  const data = consumerCouponList.results;
 
-const getItemCount = (_data) => 10
+  const onCouponPress = () => {
+    Alert.alert("쿠폰 사용된 날짜 팝업을 띄울 것? or no action?");
+  };
 
-const Item = ({ title }) => (
-  <List.Item
-    bg="emerald.200"
-    borderRadius="md"
-    justifyContent="center"
-    _text={{
-      fontSize: "2xl",
-    }}
-    px={4}
-    py={2}
-    my={2}
-    height={140}
-    onPress={onCouponPress}
-  >
-    {title}
-  </List.Item>
-)
-const onCouponPress = () => {
-    Alert.alert("만료 쿠폰은 클릭 X?");
-};
+  const fetch = async () => {
+    try {
+      await consumerCouponGetAll("hy", "state=1");
+    } catch (e) {
+      console.log(e);
+    } 
+    finally {
+      // setLoading(false);
+      console.log("expired");
+    }
+  };
 
-const onSortPress = () => {
-    Alert.alert("정렬 방법 선택 모달 띄우기: \n발급순, 마감임박순");
-};
+  useEffect(() => {
+    fetch();
+  }, []);
 
-const ExpiredCoupons = () => {
     return (
         <View style={styles.container}>
             <Flex direction="row">
                 <Text width="50%">총 {total}개</Text>
             </Flex>
             <View>
-            <VirtualizedList
-                data={DATA}
-                initialNumToRender={4}
-                renderItem={({ item }) => <Item title={item.title} />}
-                keyExtractor={(item) => item.key}
-                getItemCount={getItemCount}
-                getItem={getItem}
-            />
+            <CouponListView data={data} onCouponPress={onCouponPress} />
             </View>
         </View>
     );
@@ -78,6 +60,14 @@ const styles = StyleSheet.create({
     button: {
         alignItems: "center",
     },
+    item: {
+      height: 150,
+      padding: 20,
+      marginVertical: 10,
+      marginHorizontal: 8,
+      borderRadius: 10,
+      backgroundColor: "#fff",
+    },
 });
 
-export default ExpiredCoupons;
+export default AvailableCoupons;
