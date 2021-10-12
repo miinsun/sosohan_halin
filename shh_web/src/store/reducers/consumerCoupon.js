@@ -27,6 +27,7 @@ const initialState = Map({
     finishDate: "",
     useDate: "",
     state: 0,
+    remainingDay: -1,
 
   }),
 
