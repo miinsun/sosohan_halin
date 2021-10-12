@@ -2,7 +2,12 @@ import PropTypes from "prop-types";
 import React from "react";
 import { Button, Badge } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { CTTable } from "../../../components";
+import { CTTable, NeedLogin } from "../../../components";
+
+const goLogin = () => {
+  alert("로그인 후, 상점을 선택하고 이용해주세요");
+  document.location.href = "/";
+};
 
 const checkStateAndManagement = (data, changeState) => {
   if (data.state === 0) {
@@ -57,14 +62,20 @@ const checkStateAndManagement = (data, changeState) => {
   );
 };
 
-const LinkHistoryOutView = ({ total, results, changeState }) => (
-  <div>
-    <CTTable
-      columns={["번호 ", "수신상점명 ", "제안상태 ", "제안내용", "액션"]}
-      total={total}
-      emptyDataMessage="발신한 제안 내역이 없습니다."
-    >
-      {total > 0
+const LinkHistoryOutView = ({
+  login, total, results, changeState,
+}) => (
+  !login ? (
+    goLogin()
+  )
+    : (
+      <div>
+        <CTTable
+          columns={["번호 ", "수신상점명 ", "제안상태 ", "제안내용", "액션"]}
+          total={total}
+          emptyDataMessage="발신한 제안 내역이 없습니다."
+        >
+          {total > 0
         && results.map((data, index) => (
           <tr key={data.linkId}>
             <td>{index + 1}</td>
@@ -72,8 +83,10 @@ const LinkHistoryOutView = ({ total, results, changeState }) => (
             {checkStateAndManagement(data, changeState)}
           </tr>
         ))}
-    </CTTable>
-  </div>
+        </CTTable>
+      </div>
+    )
+
 );
 
 LinkHistoryOutView.propTypes = {

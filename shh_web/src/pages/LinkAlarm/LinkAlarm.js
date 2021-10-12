@@ -5,7 +5,7 @@ import LinkAlarmHistory from "./componenets/LinkAlarmHistory";
 
 const LinkAlarm = () => (
   <div className="LinkAlarm">
-    <LinkAlarmHistory />
+    {/* <LinkAlarmHistory /> */}
   </div>
 );
 

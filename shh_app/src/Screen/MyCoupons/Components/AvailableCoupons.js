@@ -7,6 +7,7 @@ import {
     VirtualizedList,
   } from 'react-native';
 import { NativeBaseProvider, Text, Flex, Spacer, List } from 'native-base';
+import { useConsumerCoupon, useUser } from '../../../components';
 
 // api 적용 전 임시 변수
 const total = 0;
@@ -47,6 +48,20 @@ const onSortPress = () => {
 };
 
 const AvailableCoupons = () => {
+
+  const { consumerCouponPost } = useConsumerCoupon();
+  // const { userGet } = useUser();
+
+  const onPress = async () => {
+    try {
+      await consumerCouponPost('hy', 3);
+    } catch (err) {
+      alert(err);
+      console.log(err);
+    }
+    // alert("완료");
+  }
+
     return (
         <View style={styles.container}>
             <Flex direction="row">
@@ -60,14 +75,20 @@ const AvailableCoupons = () => {
                 </TouchableOpacity>
             </Flex>
             <View>
-            <VirtualizedList
+            {/* <VirtualizedList
                 data={DATA}
                 initialNumToRender={4}
                 renderItem={({ item }) => <Item title={item.title} />}
                 keyExtractor={(item) => item.key}
                 getItemCount={getItemCount}
                 getItem={getItem}
-            />
+            /> */}
+              <TouchableOpacity
+                    style={styles.button}
+                    onPress={onPress}
+                >
+                    <Text>발급 받기</Text>
+                </TouchableOpacity>
             </View>
         </View>
     );

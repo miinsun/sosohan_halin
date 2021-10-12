@@ -1,31 +1,71 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/destructuring-assignment */
+import PropTypes from "prop-types";
 import React, { Component } from "react";
+import {
+  Card, Stack,
+} from "react-bootstrap";
+import { Shop } from "react-bootstrap-icons";
 
-class Coupon extends Component {
-  render() {
-    return (
-      <div className="Coupon">
-        <div className="container" style={{ border: "1px solid black" }}>
-          <div className="card mb-3" style={{ width: "100%" }}>
-            <div className="row g-0">
-              <div className="col-md-4">
-                <img src="..." className="img-fluid rounded-start" alt="..." />
-              </div>
-              <div className="col-md-8">
-                <div className="card-body">
-                  <p className="card-text">매장명</p>
-                  <h5 className="card-title">쿠폰명</h5>
-                  <p className="card-text">쿠폰 설명 어쩌구 저쩌구~~~~~~~~~~~~~~~~~~~~~~~</p>
-                  <p className="card-text"><small className="text-muted">(유효기간)2021.07.10~2021.08.21</small></p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
-}
+const Coupon = ({ consumerCoupon }) => (
+  <div>
+    <i className="bi bi-shop" />
+    <Card>
+      <Card.Footer>
+        <small className="text-muted">3일 남았습니다.</small>
+      </Card.Footer>
+      <Stack direction="horizontal" gap={3}>
+        <Card.Img
+          variant="bottom"
+          // eslint-disable-next-line no-octal-escape
+          src="https://upload.wikimedia.org/wikipedia/commons/6/63/Toss-logo.png"
+          style={{ width: "15%", paddingLeft: "2%" }}
+        />
+        <Card.Body style={{ paddingLeft: "0%" }}>
+          <Stack direction="horizontal" gap={3}>
+            <Stack gap={1} style={{ width: "60%" }}>
+              <Card.Text style={{ verticalAlign: "center" }}>
+                <Shop style={{ paddingBottom: "2px", paddingTop: "0px" }} /> {consumerCoupon.coupon.store.name}
+              </Card.Text>
+
+              <Card.Title>{consumerCoupon.coupon.name}</Card.Title>
+
+              <Card.Text>{consumerCoupon.coupon.description}</Card.Text>
+
+              {consumerCoupon.coupon.validity ? (
+                <Card.Text className="mb-2 text-muted">다운로드 후 {consumerCoupon.coupon.validity}일 간 사용 가능 </Card.Text>
+              ) : (
+                <Card.Text className="mb-2 text-muted">{consumerCoupon.coupon.finishDate}까지 사용 가능</Card.Text>
+              )}
+
+            </Stack>
+
+            <div className="vr" />
+
+            {consumerCoupon.state === 1 ? (
+              <Card.Text style={{ width: "20%" }}>
+                사용가능
+              </Card.Text>
+            ) : (
+              <Card.Text style={{ width: "20%" }}>
+                사용완료
+              </Card.Text>
+            )}
+          </Stack>
+        </Card.Body>
+      </Stack>
+    </Card>
+  </div>
+
+);
+
+Coupon.propTypes = {
+  // eslint-disable-next-line react/forbid-prop-types
+  consumerCoupon: PropTypes.object,
+};
+
+Coupon.defaultProps = {
+  consumerCoupon: {},
+};
 
 export default Coupon;
