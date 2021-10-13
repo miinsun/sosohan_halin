@@ -16,6 +16,7 @@ import { pender } from "redux-pender";
 import { StoreApi } from "../../remote";
 
 const STORE_GETMY = "store/GETMY";
+const STORE_GETALL = "store/GETALL";
 const STORE_GET = "store/GET";
 const STORE_PUT = "store/PUT";
 const STORE_REMOVE = "store/REMOVER";
@@ -30,6 +31,11 @@ export const storeGet = createAction(
 export const storeGetMy = createAction(
   STORE_GETMY,
   StoreApi.getMy,
+);
+
+export const storeGetAll = createAction(
+  STORE_GETALL,
+  StoreApi.getAll,
 );
 
 export const storePut = createAction(
@@ -57,15 +63,22 @@ const initialState = Map({
     address1: "",
     address2: "",
     telephone: "",
-    store_image1: "",
-    store_image2: "",
-    store_image3: "",
-    logoe_image: "",
+    storeImage1: "",
+    storeImage2: "",
+    storeImage3: "",
+    logoImage: "",
     introduce: "",
-    short_introduce: "",
+    shortIntroduce: "",
+    mainCategoryId: "",
+    subCategoryId: "",
   }),
 
   getMy: Map({
+    total: 0,
+    results: List([]),
+  }),
+
+  getAll: Map({
     total: 0,
     results: List([]),
   }),
@@ -82,6 +95,11 @@ export default handleActions({
   ...pender({
     type: STORE_GETMY,
     onSuccess: (state, action) => state.set("getMy", fromJS(action.payload.data)),
+  }),
+
+  ...pender({
+    type: STORE_GETALL,
+    onSuccess: (state, action) => state.set("getAll", fromJS(action.payload.data)),
   }),
 
   ...pender({
