@@ -17,14 +17,11 @@ const CouponRecogView = ({ consumerCoupon, update }) => (
       alertState()
     ) : (
       <div className="CouponRecog container-sm themed-container">
-        <CTLogo />
+        <CTLogo margin="30px" />
         <Coupon consumerCoupon={consumerCoupon} />
-        <br />
-        <br />
+        <br /><br />
         <Precautions />
-        <br />
-        <br />
-
+        <br /><br /> <br />
         <div className="d-grid gap-2">
           {consumerCoupon.state === 1 ? (
             <Button
@@ -40,6 +37,7 @@ const CouponRecogView = ({ consumerCoupon, update }) => (
               사용완료
             </Button>
           )}
+          <br /><br />
         </div>
       </div>
     )}

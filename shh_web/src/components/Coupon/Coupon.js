@@ -3,7 +3,7 @@
 import PropTypes from "prop-types";
 import React, { Component } from "react";
 import {
-  Card, Stack,
+  Card, Stack, Badge,
 } from "react-bootstrap";
 import { Shop } from "react-bootstrap-icons";
 
@@ -11,10 +11,10 @@ const Coupon = ({ consumerCoupon }) => (
   <div>
     <i className="bi bi-shop" />
     <Card>
-      <Card.Footer>
-        <small className="text-muted">3일 남았습니다.</small>
+      <Card.Footer style={{ fontSize: "14px" }}>
+        <small className="text-muted">{consumerCoupon.remainingDay}일 남았습니다.</small>
       </Card.Footer>
-      <Stack direction="horizontal" gap={3}>
+      <Stack direction="horizontal" gap={2}>
         <Card.Img
           variant="bottom"
           // eslint-disable-next-line no-octal-escape
@@ -22,35 +22,32 @@ const Coupon = ({ consumerCoupon }) => (
           style={{ width: "15%", paddingLeft: "2%" }}
         />
         <Card.Body style={{ paddingLeft: "0%" }}>
-          <Stack direction="horizontal" gap={3}>
-            <Stack gap={1} style={{ width: "60%" }}>
+          <Stack direction="horizontal" gap={2}>
+            <Stack gap={1} style={{ width: "70%" }}>
               <Card.Text style={{ verticalAlign: "center" }}>
-                <Shop style={{ paddingBottom: "2px", paddingTop: "0px" }} /> {consumerCoupon.coupon.store.name}
+                <Badge pill bg="secondary">
+                  <Shop style={{ paddingBottom: "2px", paddingTop: "0px" }} /> {consumerCoupon.coupon.store.name}
+                </Badge>
               </Card.Text>
 
               <Card.Title>{consumerCoupon.coupon.name}</Card.Title>
 
               <Card.Text>{consumerCoupon.coupon.description}</Card.Text>
 
-              {consumerCoupon.coupon.validity ? (
-                <Card.Text className="mb-2 text-muted">다운로드 후 {consumerCoupon.coupon.validity}일 간 사용 가능 </Card.Text>
-              ) : (
-                <Card.Text className="mb-2 text-muted">{consumerCoupon.coupon.finishDate}까지 사용 가능</Card.Text>
-              )}
-
+              <Card.Text className="mb-2 text-muted" style={{ fontSize: "10px" }}>
+                {consumerCoupon.coupon.finishDate} 까지 사용 가능
+              </Card.Text>
             </Stack>
 
             <div className="vr" />
 
-            {consumerCoupon.state === 1 ? (
-              <Card.Text style={{ width: "20%" }}>
-                사용가능
-              </Card.Text>
-            ) : (
-              <Card.Text style={{ width: "20%" }}>
-                사용완료
-              </Card.Text>
-            )}
+            <Card.Text style={{ width: "15%", textAlign: "center", fontSize: "90%" }}>
+              {consumerCoupon.state === 1 ? (
+                <>사용<br />가능</>
+              ) : (
+                <>사용<br />완료</>
+              )}
+            </Card.Text>
           </Stack>
         </Card.Body>
       </Stack>

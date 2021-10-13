@@ -1,23 +1,9 @@
 import client from "../client";
 import urls from "../urls";
 
-export const post = (consumerAccountId, couponId) => {
-    console.log(`${urls.consumerCoupon}/${consumerAccountId}/${couponId}`);
-    client.post(`${urls.consumerCoupon}/${consumerAccountId}/${couponId}`);
-};
-
-// export const post = (consumerAccountId, couponId) => {
-//     client.post(`${urls.consumerCoupon}/${consumerAccountId}/${couponId}`)
-//   .then(function (response) {
-//     console.log(response);
-//   })
-//   .catch(function (error) {
-//     console.log(error);
-//   });
-// };
-
-
-export const getAll = (consumerAccountId, params) => client.get(`${urls.consumerCoupon}/${consumerAccountId}?${params}`);
+// export const post = (receipt, couponId) => client.post(`${urls.consumerCoupon}/${couponId}`, receipt);
+export const post = (consumerCoupon) => client.post(`${urls.consumerCoupon}`, consumerCoupon);
+export const getAll = (consumerUserId, state) => client.get(`${urls.consumerCoupon}/${consumerUserId}/${state}`);
 export const get = (consumerAccountId, consumerCouponId) => client.get(`${urls.consumerCoupon}/${consumerAccountId}/${consumerCouponId}`);
 // put == use
 export const put = (consumerCouponId) => client.put(`${urls.consumerCoupon}/${consumerCouponId}`);

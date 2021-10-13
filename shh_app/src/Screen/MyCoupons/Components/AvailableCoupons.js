@@ -1,66 +1,78 @@
 import * as React from 'react';
+import { useEffect } from 'react';
 import {
     StyleSheet, 
     View,
     TouchableOpacity,
     Alert,
-    VirtualizedList,
   } from 'react-native';
-import { NativeBaseProvider, Text, Flex, Spacer, List } from 'native-base';
-import { useConsumerCoupon, useUser } from '../../../components';
-
-// api 적용 전 임시 변수
-const total = 0;
-const list = {};
-
-const DATA = []
-
-const getItem = (_data, index) => ({
-  id: Math.random().toString(12).substring(0),
-  title: `Item ${index + 1}`,
-})
-
-const getItemCount = (_data) => 10
-
-const Item = ({ title }) => (
-  <List.Item
-    bg="emerald.200"
-    borderRadius="md"
-    justifyContent="center"
-    _text={{
-      fontSize: "2xl",
-    }}
-    px={4}
-    py={2}
-    my={2}
-    height={140}
-    onPress={onCouponPress}
-  >
-    {title}
-  </List.Item>
-)
-const onCouponPress = () => {
-    Alert.alert("쿠폰 사용 모달 띄우기");
-};
-
-const onSortPress = () => {
-    Alert.alert("정렬 방법 선택 모달 띄우기: \n발급순, 마감임박순");
-};
+import { NativeBaseProvider, FlatList, Text, Box, Center, Flex, Spacer, List } from 'native-base';
+import { useConsumerCoupon } from '../../../components';
+import { CouponListView } from '.';
 
 const AvailableCoupons = () => {
+  const { consumerCouponList, consumerCouponPost, consumerCouponGetAll } = useConsumerCoupon();
 
-  const { consumerCouponPost } = useConsumerCoupon();
-  // const { userGet } = useUser();
+  const total = consumerCouponList.total;
+  const data = consumerCouponList.results;
+  console.log(data);
 
-  const onPress = async () => {
+  const onCouponPress = () => {
+      Alert.alert("쿠폰 사용 모달 띄우기");
+  };
+
+  const onSortPress = () => {
+      Alert.alert("정렬 방법 선택 모달 띄우기: \n발급순, 마감임박순");
+  };
+
+  const onDownloadPress = async () => {
     try {
-      await consumerCouponPost('hy', 3);
+      await consumerCouponPost(
+        {
+          consumerUserId: "hy",
+          couponId: 3,
+          receipt: {
+            receiptDate: "2021-10-13",
+            storeId: 2,
+            consumerUserId: "hy",
+          },
+          state: 1,
+          // downloadDate: null,
+          // finishDate: null,
+          // useDate: null,
+          // remainingDay: 0,
+        }
+      );
+        
+        
+        // {
+        //   receiptDate: "2021-10-09",
+        //   storeId: 2,
+        //   consumerUserId: "hy",
+        // }, 3);
+
+      alert("쿠폰 발급 완료");
     } catch (err) {
       alert(err);
       console.log(err);
     }
-    // alert("완료");
   }
+
+  const fetch = async () => {
+    try {
+      await consumerCouponGetAll("hy", 1);
+    } catch (e) {
+      console.log(e);
+    } 
+    finally {
+      // setLoading(false);
+      console.log("available");
+    }
+  };
+
+  useEffect(() => {
+    fetch();
+  }, []);
 
     return (
         <View style={styles.container}>
@@ -75,20 +87,13 @@ const AvailableCoupons = () => {
                 </TouchableOpacity>
             </Flex>
             <View>
-            {/* <VirtualizedList
-                data={DATA}
-                initialNumToRender={4}
-                renderItem={({ item }) => <Item title={item.title} />}
-                keyExtractor={(item) => item.key}
-                getItemCount={getItemCount}
-                getItem={getItem}
-            /> */}
               <TouchableOpacity
-                    style={styles.button}
-                    onPress={onPress}
-                >
-                    <Text>발급 받기</Text>
-                </TouchableOpacity>
+                style={styles.button}
+                onPress={onDownloadPress}
+              >
+                <Text>테스트용 쿠폰 다운로드</Text>
+              </TouchableOpacity>
+              <CouponListView data={data} onCouponPress={onCouponPress} />
             </View>
         </View>
     );
@@ -99,12 +104,16 @@ const styles = StyleSheet.create({
         flex: 1,
         padding: 10,
       },
-    row: {
-        flexDirection: "row",
-        flexWrap: "wrap",
-    },
     button: {
         alignItems: "center",
+    },
+    item: {
+      height: 150,
+      padding: 20,
+      marginVertical: 10,
+      marginHorizontal: 8,
+      borderRadius: 10,
+      backgroundColor: "#fff",
     },
 });
 

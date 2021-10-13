@@ -3,6 +3,7 @@ import useConsumerCoupon from "./useConsumerCoupon";
 import useLink from "./useLink";
 import useStore from "./useStore";
 import useUser from "./useUser";
+import useReceipt from "./useReceipt";
 
 export {
   useUser,
@@ -10,4 +11,5 @@ export {
   useConsumerCoupon,
   useStore,
   useLink,
+  useReceipt,
 };
