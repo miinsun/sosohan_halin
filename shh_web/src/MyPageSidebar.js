@@ -35,7 +35,7 @@ const MyPageSidebar = () => (
               {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
               <li>
                 <Link
-                  to="/storedeletemodifications"
+                  to="/storedeletemodifications?offset=0&limit=10"
                   className="link-dark rounded"
                 >상점 수정/삭제
                 </Link>

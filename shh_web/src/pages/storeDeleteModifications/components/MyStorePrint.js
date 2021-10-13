@@ -14,11 +14,9 @@ const MyStorePrint = () => {
   console.log(query);
   console.log(Qs.stringify(query));
 
-  const userId = sessionStorage.getItem("sessionId");
-
   const fetch = async () => {
     try {
-      await storeGetMy(userId);
+      await storeGetMy("123");
     } catch (e) {
       console.log(e);
     } finally {
