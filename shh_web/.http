@@ -51,4 +51,6 @@ GET  {{BASE_URL}}/store/som_business
 
 GET  {{BASE_URL}}/store/
 
+GET  {{BASE_URL}}/store/detail/2
+
 PUT {{BASE_URL}}/link?linkid=1&state=-1&management=-1

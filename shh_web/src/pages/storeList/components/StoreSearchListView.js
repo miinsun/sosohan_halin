@@ -6,30 +6,35 @@ import { CTTable } from "../../../components";
 
 const StoreSearchListView = ({ total, results }) => (
   <div>
-    <CTTable
-      columns={[
-        "번호",
-        "상점명",
-        "액션",
-      ]}
-      total={total}
-      emptyDataMessage="등록된 상점이 없습니다."
-    >
-      {total > 0 && results.map((data, index) => (
-        <tr key={data.storeId}>
-          <td>{index + 1}</td>
-          <td>{data.name}</td>
-          <td>
-            <Link className="btn btn-primary" to="/storeRegistration">수정</Link>
-
-            {/* eslint-disable-next-line  */}
-            <a className="btn btn-primary" onClick={() => remove(data)}>삭제
-            </a>
-          </td>
-        </tr>
+    <div>
+      {total > 0 && results.map((data) => (
+        <div key={data.storeId}>
+          <div className="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+            <div className="col-auto d-none d-lg-block">
+              <img width="200px" height="200px" src={data.logoImage} />
+            </div>
+            <div className="col p-4 d-flex flex-column position-static">
+              <strong className="d-inline-block mb-2 text-success">{data.mainCategory}</strong>
+              <h3 className="mb-0">
+                <Link
+                  to={{
+                    pathname: "/storeDetail",
+                    store: data,
+                  }}
+                  className="link-dark rounded"
+                >{data.name}
+                </Link>
+              </h3><p />
+              <div className="mb-1 text-muted">{data.shortIntroduce}</div>
+              <div className="mb-1 text-muted">{data.address1} {data.address2}</div>
+              <div className="mb-1 text-muted">{data.telephone}</div>
+            </div>
+          </div>
+        </div>
       ))}
-    </CTTable>
+    </div>
   </div>
+
   // <div className="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
   //   <div className="col-auto d-none d-lg-block">
   //     <img src="https://lab.hanium.or.kr/uploads/-/system/appearance/header_logo/1/content_logo.png" />

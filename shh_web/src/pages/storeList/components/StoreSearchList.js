@@ -10,7 +10,6 @@ const StoreSearchList = () => {
   const location = useLocation();
 
   const query = Qs.parse(location.search);
-
   console.log(query);
   console.log(Qs.stringify(query));
 
