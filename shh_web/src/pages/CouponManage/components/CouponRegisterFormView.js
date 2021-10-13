@@ -4,11 +4,10 @@
 
 import $ from "jquery";
 import PropTypes from "prop-types";
-import React, { Component, useState } from "react";
+import React from "react";
 import {
   Modal, Button, Form, Row, Col,
 } from "react-bootstrap";
-import { Link } from "react-router-dom";
 
 const validityToReadonly = () => {
   if ($("#formBasicCheckbox").is(":checked")) {
@@ -19,15 +18,14 @@ const validityToReadonly = () => {
 };
 
 const CouponRegisterFormView = ({
-  btnName, confirmBtn, coupon, insert, update, data, setData,
+  confirmBtn, coupon, insert, update, data, setData, modalRef, show, setShow,
 }) => {
-  const [show, setShow] = useState(false);
+  // const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
   const handleChange = (e) => {
     setData({
-      ...data,
+      ...coupon,
 
       [e.target.name]: e.target.value,
     });
@@ -35,9 +33,9 @@ const CouponRegisterFormView = ({
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
-        {btnName}
-      </Button>
+      {/* <Button variant="primary" onClick={handleInsert}>
+        + 등록하기
+      </Button> */}
 
       <Modal
         show={show}
@@ -150,12 +148,10 @@ const CouponRegisterFormView = ({
 };
 
 CouponRegisterFormView.propTypes = {
-  btnName: PropTypes.string,
   confirmBtn: PropTypes.string,
 };
 
 CouponRegisterFormView.defaultProps = {
-  btnName: "",
   confirmBtn: "",
 };
 

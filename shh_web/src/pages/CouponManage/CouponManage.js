@@ -2,14 +2,17 @@ import PropTypes from "prop-types";
 import Qs from "query-string";
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { CTLoading, useLoading, useCoupon } from "../../../components";
-import CouponRegisterFormView from "./CouponRegisterFormView";
+import { CTLoading, useLoading, useCoupon } from "../../components";
+import CouponManageView from "./CouponManageView";
 
-const CouponManage = ({ couponInfo }) => {
+const CouponManage = () => {
   const {
     coupon, couponPost, couponPut, couponList, couponGetAll, couponRemove,
   } = useCoupon();
   const { loading, setLoading } = useLoading(true);
+  const [couponInfo, setCouponInfo] = useState(null);
+  // const [show, setShow] = useState(false);
+
   const location = useLocation();
 
   // const query = Qs.parse(location.search);
@@ -52,15 +55,13 @@ const CouponManage = ({ couponInfo }) => {
     finishDate: "",
   });
 
-  console.log(data.name);
-
   const updateCoupon = async () => {
     try {
       // if (data.email.length <= 0 || data.newPassword.length <= 0) {
       //   alert("정확한 정보를 입력해 주세요.");
       //   return;
       // }
-
+      await setLoading(true);
       await couponPut(data.couponId, {
         couponId: data.couponId,
         name: data.name,
@@ -71,6 +72,7 @@ const CouponManage = ({ couponInfo }) => {
         startDate: data.startDate,
         finishDate: data.finishDate,
       });
+      fetch();
     } catch (err) {
       console.log(err);
     }
@@ -78,6 +80,7 @@ const CouponManage = ({ couponInfo }) => {
 
   const insertCoupon = async () => {
     try {
+      await setLoading(true);
       await couponPost({
         couponId: null,
         name: data.name,
@@ -88,18 +91,17 @@ const CouponManage = ({ couponInfo }) => {
         startDate: data.startDate,
         finishDate: data.finishDate,
       });
+      fetch();
     } catch (e) {
       console.log(e);
       await setLoading(false);
     }
   };
 
-  const removeCoupon = async (couponInfo) => {
+  const removeCoupon = async (rCoupon) => {
     try {
-      const coupon = couponInfo;
-
       await setLoading(true);
-      await couponRemove(coupon);
+      await couponRemove(rCoupon);
       fetch();
     } catch (e) {
       console.log(e);
@@ -137,8 +139,13 @@ const CouponManage = ({ couponInfo }) => {
         total={couponList.total}
         results={couponList.results}
         remove={removeCoupon}
+        // coupon={couponInfo}
         insert={insertCoupon}
         update={updateCoupon}
+        data={data}
+        setData={setData}
+        couponInfo={couponInfo}
+        setCouponInfo={setCouponInfo}
       />
     )
 
