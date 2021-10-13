@@ -11,11 +11,10 @@ import { useConsumerCoupon } from '../../../components';
 import { CouponListView } from '.';
 
 const AvailableCoupons = () => {
-  const { consumerCouponList, consumerCouponPost, consumerCouponGetAll } = useConsumerCoupon();
+  const { consumerCouponList, consumerCouponPost } = useConsumerCoupon();
 
   const total = consumerCouponList.total;
   const data = consumerCouponList.results;
-  console.log(data);
 
   const onCouponPress = () => {
       Alert.alert("쿠폰 사용 모달 띄우기");
@@ -31,49 +30,15 @@ const AvailableCoupons = () => {
         {
           consumerUserId: "hy",
           couponId: 3,
-          receipt: {
-            receiptDate: "2021-10-13",
-            storeId: 2,
-            consumerUserId: "hy",
-          },
           state: 1,
-          // downloadDate: null,
-          // finishDate: null,
-          // useDate: null,
-          // remainingDay: 0,
-        }
+        }, "2021-10-13", 2,
       );
-        
-        
-        // {
-        //   receiptDate: "2021-10-09",
-        //   storeId: 2,
-        //   consumerUserId: "hy",
-        // }, 3);
-
       alert("쿠폰 발급 완료");
     } catch (err) {
       alert(err);
       console.log(err);
     }
   }
-
-  const fetch = async () => {
-    try {
-      await consumerCouponGetAll("hy", 1);
-    } catch (e) {
-      console.log(e);
-    } 
-    finally {
-      // setLoading(false);
-      console.log("available");
-    }
-  };
-
-  useEffect(() => {
-    fetch();
-  }, []);
-
     return (
         <View style={styles.container}>
             <Flex direction="row">

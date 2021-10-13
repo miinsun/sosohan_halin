@@ -11,30 +11,14 @@ import { CouponListView } from '.';
 
 const AvailableCoupons = () => {
 
-  const { consumerCouponList, consumerCouponGetAll } = useConsumerCoupon();
+  const { consumerCouponListExpired } = useConsumerCoupon();
 
-  const total = consumerCouponList.total;
-  const data = consumerCouponList.results;
+  const total = consumerCouponListExpired.total;
+  const data = consumerCouponListExpired.results;
 
   const onCouponPress = () => {
     Alert.alert("쿠폰 사용된 날짜 팝업을 띄울 것? or no action?");
   };
-
-  const fetch = async () => {
-    try {
-      await consumerCouponGetAll("hy", 1);
-    } catch (e) {
-      console.log(e);
-    } 
-    finally {
-      // setLoading(false);
-      console.log("expired");
-    }
-  };
-
-  useEffect(() => {
-    fetch();
-  }, []);
 
     return (
         <View style={styles.container}>
