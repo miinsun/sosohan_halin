@@ -1,40 +1,17 @@
-import Qs from "query-string";
-import React, { useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
-import { CTLoading, useLoading, useStore } from "../../components";
-import StoreDetailView from "./StoreDetailView";
+/* eslint-disable import/no-named-as-default */
+import React from "react";
+import { Link } from "react-router-dom";
+import { CTOneButton } from "../../components";
+// import OneButton from "./components/OneButton";
+import StoreInformation from "./components/StoreInformation";
 
-const StoreDetail = () => {
-  const { store, storeGet } = useStore();
-  const { loading, setLoading } = useLoading(true);
-  const location = useLocation();
-
-  const { storeId } = location.state;
-
-  const fetch = async () => {
-    try {
-      await storeGet(storeId);
-    } catch (e) {
-      console.log(e);
-    } finally {
-      await setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    fetch();
-  }, []);
-
-  return (
-
-    loading ? (
-      <CTLoading />
-    ) : (
-      <StoreDetailView
-        store={store}
-      />
-    )
-  );
-};
+const StoreDetail = () => (
+  <div>
+    <StoreInformation />
+    <Link to="/linksuggest">
+      <CTOneButton type="button" title="제안하기" />
+    </Link>
+  </div>
+);
 
 export default StoreDetail;
