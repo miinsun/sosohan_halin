@@ -6,7 +6,6 @@ import {
 import { NativeBaseProvider, FlatList, Text } from 'native-base';
 
 const CouponListView = (props) => {
-  console.log("view:" + props.data);
   return (
     <FlatList
       data={props.data}
