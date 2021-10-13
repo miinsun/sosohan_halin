@@ -15,8 +15,8 @@ const initialState = Map({
 
   receipt: Map({
     storeName: "",
-    businessNum: 0,
-    date: "",
+    businessNum: "",
+    receiptDate: "",
     consumeruserId: "",
   }),
 
