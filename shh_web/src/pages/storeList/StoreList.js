@@ -7,6 +7,7 @@ import StoreSearchList from "./components/StoreSearchList";
 const StoreList = () => (
   <div className="d-flex flex-column h-100">
     <StoreSearch />
+    <p />
     <StoreSearchList />
   </div>
 );

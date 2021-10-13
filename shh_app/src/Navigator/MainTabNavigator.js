@@ -8,6 +8,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import ScreenHome from "../Screen/Home"
 import ScreenCamera from "../Screen/Camera"
 import ScreenMyCoupons from "../Screen/MyCoupons"
+import ScreenCouponList from "../Screen/CouponList"
 
 const navigationOptionHandler = () => ({
   headerShown: false,
@@ -19,11 +20,12 @@ const TabMain = createBottomTabNavigator();
 const MainTabNavigator = () => (
   <TabMain.Navigator>
     <TabMain.Screen name="홈" 
-      component={ScreenHome} 
+      component={ScreenCouponList} 
       options={{
         tabBarLabel: '홈',
         tabBarIcon: ({ color, size }) => (
-          <MaterialCommunityIcons name="home" color={color} size={size} />
+          // <MaterialCommunityIcons name="home" color={color} size={size} />
+          <MaterialCommunityIcons name="couponList" color={color} size={size} />
         ),
         headerShown: false,
       }}

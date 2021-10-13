@@ -47,6 +47,10 @@ Content-Type: application/json
 
 GET {{BASE_URL}}/link/detail/0/0
 
-GET  {{BASE_URL}}/store/test\
+GET  {{BASE_URL}}/store/som_business
+
+GET  {{BASE_URL}}/store/
+
+GET  {{BASE_URL}}/store/detail/2
 
 PUT {{BASE_URL}}/link?linkid=1&state=-1&management=-1
