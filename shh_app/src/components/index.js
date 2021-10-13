@@ -24,7 +24,7 @@ export {
   useUser,
   useCoupon,
   useConsumerCoupon,
-  useStore,
+  useStore, 
   useLink,
   useReceipt,
 };

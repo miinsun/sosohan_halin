@@ -2,12 +2,13 @@
 /* eslint-disable no-undef */
 /* eslint-disable react/destructuring-assignment */
 import PropTypes from "prop-types";
-import React from "react";
+import React, { useState } from "react";
+import { Button } from "react-bootstrap";
 import { CTTable, CTOneButton, useCoupon } from "../../../components";
-import CouponRegisterForm from "./CouponRegisterForm";
+import CouponRegisterFormView from "./CouponRegisterFormView";
 
 const MyCouponListView = ({
-  total, results, remove,
+  total, results, remove, setCouponInfo, confirmBtn, setConfirmBtn, setShow,
 }) => (
   <div>
     <CTTable
@@ -29,9 +30,12 @@ const MyCouponListView = ({
           <td>{data.startDate} ~ {data.finishDate}</td>
           <td>
 
-            {/* <a className="btn btn-primary" onClick={() => { updateCoupon(data)}}>수정</a> */}
             {/* eslint-disable */}
-            <CouponRegisterForm couponInfo={data} />
+            {/* <CouponRegisterFormView couponInfo={data} /> */}
+            
+            <Button variant="primary" onClick={() => { setShow(true); setCouponInfo(data); setConfirmBtn("수정"); }}>
+              수정
+            </Button>
 
             {/* eslint-disable */}
             <a
