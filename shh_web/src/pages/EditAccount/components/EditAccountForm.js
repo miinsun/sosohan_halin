@@ -6,11 +6,13 @@ const EditAccountForm = () => {
   const { user, userPut } = useUser();
 
   const [data, setData] = useState({
-    email: `${user.email}`,
+    email: user.email,
     curPassword: "",
     newPassword: "",
     newPasswordConfirm: "",
   });
+
+  console.log(`email:${data.email}`);
 
   const handleChange = (e) => {
     setData({
@@ -22,10 +24,6 @@ const EditAccountForm = () => {
   const updateUser = async () => {
     try {
       console.log(data);
-
-      setData({
-        ...data,
-      });
 
       if (data.email.length <= 0) {
         alert(data.email);

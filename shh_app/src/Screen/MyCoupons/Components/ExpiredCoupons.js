@@ -22,7 +22,7 @@ const AvailableCoupons = () => {
 
   const fetch = async () => {
     try {
-      await consumerCouponGetAll("hy", "state=1");
+      await consumerCouponGetAll("hy", 1);
     } catch (e) {
       console.log(e);
     } 
