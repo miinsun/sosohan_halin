@@ -5,6 +5,7 @@ import { ConsumerCouponApi } from "../../remote";
 
 const CONSUMER_COUPON_POST = "consumerCoupon/POST";
 const CONSUMER_COUPON_GETALL = "consumerCoupon/GETALL";
+const CONSUMER_COUPON_GETALLEXPIRED = "consumerCoupon/GETALLEXPIRED";
 const CONSUMER_COUPON_GET = "consumerCoupon/GET";
 const CONSUMER_COUPON_PUT = "consumerCoupon/PUT";
 // const CONSUMER_COUPON_REMOVE = "consumerCoupon/REMOVE";
@@ -17,6 +18,11 @@ export const consumerCouponPost = createAction(
 export const consumerCouponGetAll = createAction(
     CONSUMER_COUPON_GETALL,
     ConsumerCouponApi.getAll,
+);
+
+export const consumerCouponGetAllExpired = createAction(
+  CONSUMER_COUPON_GETALLEXPIRED,
+  ConsumerCouponApi.getAllExpired,
 );
 
 export const consumerCouponGet = createAction(
@@ -52,6 +58,11 @@ const initialState = Map({
     results: List([]),
   }),
 
+  consumerCouponListExpired: Map({
+    total: 0,
+    results: List([]),
+  }),
+
 });
 
 export default handleActions({
@@ -63,6 +74,11 @@ export default handleActions({
   ...pender({
     type: CONSUMER_COUPON_GETALL,
     onSuccess: (state, action) => state.set("consumerCouponList", fromJS(action.payload.data)),
+  }),
+
+  ...pender({
+    type: CONSUMER_COUPON_GETALLEXPIRED,
+    onSuccess: (state, action) => state.set("consumerCouponListExpired", fromJS(action.payload.data)),
   }),
 
   ...pender({
