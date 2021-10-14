@@ -6052,6 +6052,11 @@ react-native-animatable@1.3.3:
   dependencies:
     prop-types "^15.7.2"
 
+react-native-bootstrap-icons@^1.5.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/react-native-bootstrap-icons/-/react-native-bootstrap-icons-1.5.0.tgz#2cc050aff24365c256a3f4460fb7efc431fbd2c4"
+  integrity sha512-yi1qTE4/nrGJMeoJAmKNMLSfjrp5OIkl9l6xy2d7+can9RrrNRT5wt3E7yY0Oh+QdWs0BuuiOx1VPMliKVU8Lw==
+
 react-native-camera@^4.2.1:
   version "4.2.1"
   resolved "https://registry.yarnpkg.com/react-native-camera/-/react-native-camera-4.2.1.tgz#caf74081f055e89d7e9b0cd5108965d808c60e90"

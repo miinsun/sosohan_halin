@@ -1,12 +1,38 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import {
     StyleSheet, 
     TouchableOpacity,
     View,
+    Dimensions
   } from 'react-native';
-import { NativeBaseProvider, Flex, Spacer, FlatList, Text, Center, VStack, HStack, Image, Pressable, Box } from 'native-base';
+import { 
+  NativeBaseProvider, 
+  Flex, 
+  Spacer, 
+  FlatList, 
+  Text, 
+  Center, 
+  VStack, 
+  Image, 
+  Pressable, 
+  Box,
+  Button,
+  Modal,
+  NativeBaseProvider,
+  Heading,
+  Stack,
+  HStack,
+  CircleIcon,
+  WarningIcon, 
+} from 'native-base';
 import { style } from 'styled-system';
 import DashedLine from 'react-native-dashed-line';
+import { CouponUseView } from '.';
+
+const [showModal, setShowModal] = useState(false);
+const [consumerCouponId, setConsumerCouponId] = useState(-1);
+const [storeName, setStoreName] = useState("");
+const [couponName, setCouponName] = useState("");
 
 const MyCouponListView = ({total,data,isCouponAvailable,onCouponPress,onSortPress}) => {
   return (
@@ -54,16 +80,35 @@ const MyCouponListView = ({total,data,isCouponAvailable,onCouponPress,onSortPres
                   <Text fontSize="xs" isTruncated maxW="160px" color="#aaa">{item.finishDate} 까지</Text>
                 </VStack>
                 <DashedLine axis='vertical' dashLength={5} dashThickness={1.5} dashGap={7} dashColor='#ccc'/>
-                <Center w="75px" >
-                  {isCouponAvailable && (<Text fontSize="md" color="#777">사용 가능</Text>)}
-                  {item.state == 0 && (<Text fontSize="md" color="#777">사용 완료</Text>)}
-                  {item.state == -1 && (<Text fontSize="md" color="#777">기한 만료</Text>)}
-                </Center>
+                <Pressable
+                  style={styles.button}
+                  onPress={
+                    () => {
+                      setConsumerCouponId(item.consumerCouponId); 
+                      setStoreName(item.coupon.store.name);
+                      setCouponName(item.coupon.name);
+                      setShowModal(true);
+                    } 
+                  }
+                >
+                  <Center w="75px" >
+                    {isCouponAvailable && (<Text fontSize="md" color="#777">사용 가능</Text>)}
+                    {item.state == 0 && (<Text fontSize="md" color="#777">사용 완료</Text>)}
+                    {item.state == -1 && (<Text fontSize="md" color="#777">기한 만료</Text>)}
+                  </Center>
+                </Pressable>
               </HStack>
             </Box>
           </Pressable>
         )}
         keyExtractor={(item) => item.consumerCouponId}
+      />
+
+      <CouponUseView 
+        consumerCouponId={consumerCouponId} 
+        storeName={storeName}
+        couponName={couponName}
+        setShowModal={setShowModal}
       />
     </View>
 </View>

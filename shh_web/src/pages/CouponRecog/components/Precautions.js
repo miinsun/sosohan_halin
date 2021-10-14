@@ -11,7 +11,7 @@ class Precautions extends Component {
     return (
       <Card>
         <Card.Body>
-          <Card.Title style={{ color: "red", fontSize: "15px" }}>
+          <Card.Title style={{ color: "#f87171", fontSize: "15px", fontWeight: "bold" }}>
             <ExclamationOctagon style={{ paddingBottom: "2px", paddingTop: "0px" }} /> 주의사항
           </Card.Title>
           <Card.Text className="sm text-muted">

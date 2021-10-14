@@ -1,4 +1,4 @@
-const BASE_URL= "http://172.30.1.43:8089"
+const BASE_URL= "http://172.30.1.56:8089"
 
 const urls = {
     coupon: `${BASE_URL}/api/v1/coupon`,
