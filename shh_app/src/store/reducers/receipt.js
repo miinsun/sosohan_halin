@@ -1,33 +1,31 @@
+<<<<<<< HEAD
 import { fromJS, Map } from "immutable";
+=======
+import { fromJS, List, Map } from "immutable";
+>>>>>>> feature/22
 import { createAction, handleActions } from "redux-actions";
 import { pender } from "redux-pender";
 import { ReceiptApi } from "../../remote";
 
-const RECEIPT_GET = "receipt/GET";
+const RECEIPT_GETRECEIPTBYPARAMS = "receipt/GETRECEIPTBYPARAMS";
 
 
-export const receiptGet = createAction(
-    RECEIPT_GET,
-    ReceiptApi.get,
+export const receiptGetParam = createAction(
+  RECEIPT_GETRECEIPTBYPARAMS,
+  ReceiptApi.getReceiptByParams,
 );
 
 const initialState = Map({
-
-  receipt: Map({
-    storeName: "",
-    businessNum: "",
-    receiptDate: "",
-    consumeruserId: "",
+  isInReceipt: Map({
+    isIn: false,
+    store: [],
   }),
 
 });
 
 export default handleActions({
-
   ...pender({
-    type: RECEIPT_GET,
-    onSuccess: (state, action) => state.set("receipt", fromJS(action.payload.data)),
+    type: RECEIPT_GETRECEIPTBYPARAMS,
+    onSuccess: (state, action) => state.set("isInReceipt", fromJS(action.payload.data)),
   }),
-
-
 }, initialState);

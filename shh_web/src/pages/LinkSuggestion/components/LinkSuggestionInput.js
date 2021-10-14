@@ -1,7 +1,6 @@
 /* eslint-disable max-len */
 /* eslint-disable react/prop-types */
 /* eslint-disable react/destructuring-assignment */
-import { List } from "immutable";
 import React, {
   useState, forwardRef, useImperativeHandle, useEffect,
 } from "react";

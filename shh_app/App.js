@@ -12,6 +12,7 @@ import Main from './src/Navigator/MainTabNavigator';
 import InputStore from './src/Screen/Camera/InputStore';
 import MyCoupons from './src/Screen/MyCoupons';
 
+import NotAvailable from './src/Screen/Camera/NotAvailable';
 const Stack = createNativeStackNavigator();
 
 
@@ -25,6 +26,7 @@ const App = () => {
                 <Stack.Screen options={{ headerShown: false }} name="Main" component={Main} />
                 <Stack.Screen options={{ headerShown: false }} name="InputStore" component={InputStore}/>
                 <Stack.Screen options={{ headerShown: false }} name="MyCoupons" component={MyCoupons}/>
+                <Stack.Screen options={{ headerShown: false }} name="NotAvailable" component={NotAvailable}/>
               </Stack.Navigator>
             </OverflowMenuProvider>
           </NavigationContainer>
