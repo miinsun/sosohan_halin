@@ -11,7 +11,7 @@ import {
   useConsumerCoupon,
   useStore,
   useLink,
-  useReceipt
+  useReceipt,
 } from "./Use";
 
 export {

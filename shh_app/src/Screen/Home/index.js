@@ -27,8 +27,6 @@ import AppBar from "../../layout/AppBar/AppBar";
 const Home = () => {
   let [service, setService] = React.useState("");
   return (
-    <>
-      <AppBar title="소소한 할인" />
       <View backgroundColor="#fff" flex="1">
         <Stack space={3} alignItems="center">
           <HStack space={3}>
@@ -109,7 +107,6 @@ const Home = () => {
           <StoreList />
         </ScrollView>
       </View>
-    </>
   );
 };
 

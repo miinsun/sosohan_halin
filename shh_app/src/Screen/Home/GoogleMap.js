@@ -1,12 +1,13 @@
 import React from "react";
 import {PROVIDER_GOOGLE} from 'react-native-maps';
 import MapView, {Marker}  from 'react-native-maps';
-import { StyleSheet, Dimensions } from 'react-native';
-import { Center} from 'native-base';
+import { StyleSheet, Dimensions  } from 'react-native';
+import { Box, Center} from 'native-base';
 
 const GoogleMap = () => {
   return (
     <Center>
+    <Box>
       <MapView style={styles.map} 
       zoomEnabled={true}
       provider={PROVIDER_GOOGLE}
@@ -38,6 +39,17 @@ const GoogleMap = () => {
           description="아시아 레스토랑"
         />
       </MapView>
+      <Center
+          bg="primary.500"
+          _text={{ color: 'white', fontWeight: '700', fontSize: '2xl' }}
+          position="absolute"
+          top={0}
+          px="2"
+          py="1"
+        >
+          추천 매장
+        </Center>
+      </Box>
     </Center>
   );
 };

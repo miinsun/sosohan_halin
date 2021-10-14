@@ -3,20 +3,20 @@ import { useActions, useShallowEqualSelectorToJS } from "./components";
 
 const useConsumerCoupon = () => {
   const consumerCoupon = useShallowEqualSelectorToJS((state) => (state.consumerCoupon.get("consumerCoupon")));
-  const consumerCouponList = useShallowEqualSelectorToJS((state) => (state.consumerCoupon.get("consumerCouponList")));
+  const consumerCouponListAvailable = useShallowEqualSelectorToJS((state) => (state.consumerCoupon.get("consumerCouponListAvailable")));
   const consumerCouponListExpired = useShallowEqualSelectorToJS((state) => (state.consumerCoupon.get("consumerCouponListExpired")));
 
   const actions = useActions(reducer);
 
   return {
     consumerCoupon,
-    consumerCouponList,
+    consumerCouponListAvailable,
     consumerCouponListExpired,
 
     consumerCouponGet: actions.consumerCouponGet,
     consumerCouponPut: actions.consumerCouponPut,
     consumerCouponPost: actions.consumerCouponPost,
-    consumerCouponGetAll: actions.consumerCouponGetAll,
+    consumerCouponGetAllAvailable: actions.consumerCouponGetAllAvailable,
     consumerCouponGetAllExpired: actions.consumerCouponGetAllExpired,
     // consumerCouponRemove: reducer.consumerCouponRemove,
 
