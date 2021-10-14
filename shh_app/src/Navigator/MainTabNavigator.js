@@ -20,12 +20,12 @@ const TabMain = createBottomTabNavigator();
 const MainTabNavigator = () => (
   <TabMain.Navigator>
     <TabMain.Screen name="홈" 
-      component={ScreenCouponList} 
+      component={ScreenHome} 
       options={{
         tabBarLabel: '홈',
         tabBarIcon: ({ color, size }) => (
-          // <MaterialCommunityIcons name="home" color={color} size={size} />
-          <MaterialCommunityIcons name="couponList" color={color} size={size} />
+          <MaterialCommunityIcons name="home" color={color} size={size} />
+          // <MaterialCommunityIcons name="couponList" color={color} size={size} />
         ),
         headerShown: false,
       }}
