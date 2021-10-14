@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import {
   Modal, Button,
 } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import Signup from "../../Signup";
 
 const SignupLink = ({ close }) => {
@@ -16,13 +17,15 @@ const SignupLink = ({ close }) => {
   // };
 
   return (
-    <span className="SignupLink">
+    <div className="SignupLink text-muted">
       {/* <Link className="btn btn-secondary" to="/signup">회원가입</Link> */}
-      <Button className="btn btn-secondary" onClick={() => { handleShow(); }}>회원가입</Button>
+      {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+      <Link className="text-reset" onClick={handleShow}>아직 회원이 아니신가요?</Link>
+      {/* <Button className="btn btn-secondary" onClick={() => { handleShow(); }}>회원가입</Button> */}
       <Modal id="signupModal" show={show} onHide={handleClose}>
         <Signup />
       </Modal>
-    </span>
+    </div>
   );
 };
 export default SignupLink;

@@ -1,42 +1,67 @@
-// import Qs from "query-string";
-// import React, { useEffect } from "react";
-// import { useLoading, useCoupon } from "../../../components";
-// import CouponListView from "./CouponListView";
+import * as React from 'react';
+import { useEffect } from 'react';
 
-// const CouponList = () => {
-//   const { couponList, couponGetLinked } = useCoupon();
-//   const { loading, setLoading } = useLoading(true);
-//   const location = useLocation();
+import CouponListView from './CouponListView';
+import ScreenMyCoupons from "../MyCoupons/index.js"
+import { useCoupon, useConsumerCoupon } from '../../components';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
-//   const query = Qs.parse(location.search);
-//   console.log(query);
-//   console.log(Qs.stringify(query));
+const Tab = createMaterialTopTabNavigator();
 
-//   const fetch = async () => {
-//     try {
-//       await couponGetLinked();
-//     } catch (e) {
-//       console.log(e);
-//     } finally {
-//       await setLoading(false);
-//     }
-//   };
+const CouponList = ({storeName, receiptDate}) => {
 
-//   useEffect(() => {
-//     fetch();
-//   }, []);
+  const { couponList, couponGetLinked, } = useCoupon();
 
-//   return (
+  const fetch = async () => {
+    try {
+      await couponGetLinked(3);
+    } catch (e) {
+      console.log(e);
+    } 
+    finally {
+    }
+  };
 
-//     loading ? (
-//       <CTLoading />
-//     ) : (
-//       <CouponListView
-//         total={coupon.total}
-//         results={coupon.results}
-//       />
-//     )
-//   );
-// };
+  useEffect(() => {
+    fetch();
+    console.log("fetched");
+  }, []);
 
-// export default CouponList;
+  const { consumerCouponPost } = useConsumerCoupon();
+  const onDownloadPress = async (couponId, storeId) => {
+    try {
+      await consumerCouponPost(
+        {
+            consumerUserId: "hy",
+            couponId: couponId,
+            state: 1,
+        }, receiptDate, storeId,
+      );
+      alert("쿠폰 발급 완료");
+    } catch (err) {
+      alert(err);
+      console.log(err);
+    } 
+  }
+
+return (
+    <Tab.Navigator
+        screenOptions={{
+          tabBarLabelStyle: { fontSize: 15 },
+          swipeEnabled: false,
+        }}
+      >
+        <Tab.Screen name="사용 가능 쿠폰">
+          {() => <CouponListView
+            storeName={storeName} 
+            total={couponList.total} 
+            data={couponList.results}
+            onDownloadPress={onDownloadPress}
+            />   }
+        </Tab.Screen>
+        
+      </Tab.Navigator>
+);
+}
+
+export default CouponList;

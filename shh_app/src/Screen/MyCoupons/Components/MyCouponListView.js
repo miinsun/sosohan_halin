@@ -70,6 +70,7 @@ const MyCouponListView = ({total,data,isCouponAvailable,onCouponPress,onSortPres
                     w="69px"
                     h="92px"
                     borderRadius={5}
+                    marginTop={1000}
                   />
                 </VStack>
                 <VStack w="160px" mt={6} mb={2} mr={1} space={1}>

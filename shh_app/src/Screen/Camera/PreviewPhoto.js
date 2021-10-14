@@ -74,7 +74,7 @@ const PreviewPhoto = ({ photo, retakePicture, storeName, businessNum, date}) => 
           <Modal.Footer>
             <Button
               flex="1"
-              onPress={fetch}
+              onPress={fetch => navigation.navigate('CouponList',{storeName : storeName, receiptDate:date})}
             >
               쿠폰 선택
             </Button>

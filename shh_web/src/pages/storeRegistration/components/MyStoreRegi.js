@@ -196,7 +196,7 @@ const MyStoreRegi = () => {
               <textarea className="form-control" name="introduction" onChange={handleChange} />
             </div>
             <div className="col-12">
-              <label htmlFor="category" className="form-label">카테고리</label>
+              <label htmlFor="category" className="form-label">메인 카테고리</label>
               <select className="form-select" name="mainCategoryId" required onChange={handleChange}>
                 <option>메인 카테고리를 선택하세요</option>
                 <option value="1">식당</option>
@@ -205,12 +205,13 @@ const MyStoreRegi = () => {
               </select>
             </div>
             <div className="col-12">
-              <label htmlFor="category" className="form-label">카테고리</label>
+              <label htmlFor="category" className="form-label">서브 카테고리</label>
               <select className="form-select" name="subCategoryId" required onChange={handleChange}>
                 <option>서브 카테고리를 선택하세요</option>
-                <option>식당</option>
-                <option>카페</option>
-                <option>놀거리</option>
+                <option>한식</option>
+                <option>양식</option>
+                <option>중식</option>
+                <option>일식</option>
               </select>
             </div>
             <div className="col-12">
