@@ -5,9 +5,10 @@ GET {{BASE_URL}}/businessUser
 
 GET {{BASE_URL}}/businessUser/123
 
-GET {{BASE_URL}}/link
+GET {{BASE_URL}}/store?name=만리장성&num=0000011111
 
 GET {{BASE_URL}}/link/incoming/2
+GET {{BASE_URL}}/receipt?storename=만리장성&businessnum=0000011111&date=2021-10-11&consumeruserid=hy
 
 
 GET {{BASE_URL}}/link/incoming/2

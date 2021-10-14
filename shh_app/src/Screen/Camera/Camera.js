@@ -41,7 +41,6 @@ const App = () => {
   const handleCamera = async () => {
     // try {
     const { status } = await Camera.requestCameraPermissionsAsync();
-    console.log(status);
     if (status === "granted") {
       setAppData({
         ...appData,
@@ -59,8 +58,8 @@ const App = () => {
     Alert.alert("Touched");
   };
 
-  const detectText = (base64) => {
-    fetch(
+  const detectText = async (base64) => {
+     fetch(
       "https://4b99037f15eb4bc89fd878365fc07728.apigw.ntruss.com/custom/v1/11517/002e71dc6709a3ae2a683a123d31c01533cf2c16a88114107d2073537f6e815b/infer",
       {
         method: "POST",
@@ -87,39 +86,47 @@ const App = () => {
       .then((response) => {
         return response.json();
       })
-      .then((jsonRes) => {
-        setStoreData({
-          storeName: jsonRes.images[0].fields[0].inferText,
-          businessNum: jsonRes.images[0].fields[1].inferText,
-          date: jsonRes.images[0].fields[2].inferText,
-        });
-        console.log(jsonRes.images[0].fields[1].inferText);
+      .then(async (jsonRes) => {
+        if(jsonRes.images[0].inferResult !== "FAILURE"){
+          await setStoreData({
+            storeName: jsonRes.images[0].fields[0].inferText,
+            businessNum: jsonRes.images[0].fields[1].inferText,
+            date: jsonRes.images[0].fields[2].inferText,
+          });
+        };
       })
+
       .catch((err) => {
         console.log("Error", err);
       });
   };
-
+  
   const takePicture = async () => {
     const options = { quality: 0.5, base64: true };
     const photo = await camera.takePictureAsync(options);
 
-    setAppData({
+    await setAppData({
       ...appData,
       preview: true,
       photo,
     });
-    console.log(photo);
-    detectText(photo.base64);
+    
+    await detectText(photo.base64);
   };
 
   const retakePicture = async () => {
+    await setStoreData(
+      {
+        storeName: null,
+        date: null,
+        businessNum: null,
+      });
     await setAppData(
       {
         ...appData,
         preview: false,
         photo: null,
-      },
+      }, 
       async () => {
         await handleCamera();
       }

@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, componentDidUpdate } from 'react';
 import {
   ImageBackground,
   View,
   TouchableOpacity,
+  Input,
 } from "react-native";
 
 import {
@@ -10,20 +11,47 @@ import {
   Modal,
   Text,
   FormControl,
-  Input,
   Center,
   VStack,
   HStack,
   NativeBaseProvider,
+  Badge,
 } from "native-base"
+import { useReceipt } from '../../components';
+import NotAvailable from "./NotAvailable";
+import { useNavigation } from "@react-navigation/native";
 
-const PreviewPhoto = ({ photo, retakePicture, storeName, businessNum, date }) => {
+const PreviewPhoto = ({ photo, retakePicture, storeName, businessNum, date}) => {
+  const { isInReceipt, receiptGetParam } = useReceipt();
+  const [showModal, setShowModal] = useState(true);
+  const navigation = useNavigation();
 
-  const [showModal, setShowModal] = useState(true)
+  const fetch = async () => {
+    try {
+      console.log(storeName);
+      await receiptGetParam("storename=만리장성&businessnum=0000011112&date=2021-10-11&consumeruserid=hy");
+      const store = isInReceipt.result;
+
+      if(!store){
+        navigation.navigate('NotAvailable');
+      }
+      else{
+        if(isInReceipt.isin){
+          navigation.navigate('NotAvailable');
+        }
+
+        //if isin이 false이고, store 객체가 있으면 쿠폰 선택가능
+      }
+
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   return (
     <>
-    <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
+    {storeName ? (
+      <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
       <Modal.Content maxWidth="400px">
           <Modal.CloseButton />
           <Modal.Header>상점 확인</Modal.Header>
@@ -46,14 +74,17 @@ const PreviewPhoto = ({ photo, retakePicture, storeName, businessNum, date }) =>
           <Modal.Footer>
             <Button
               flex="1"
-              onPress={() => {
-              }}
+              onPress={fetch}
             >
               쿠폰 선택
             </Button>
           </Modal.Footer>
       </Modal.Content>
     </Modal>
+    ) : ( 
+      <Badge colorScheme="success"> 로딩중... </Badge>
+    )}
+    
     <View
       style={{
         backgroundColor: "transparent",

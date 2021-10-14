@@ -9,7 +9,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Main from './src/Navigator/MainTabNavigator';
 import InputStore from './src/Screen/Camera/InputStore';
-
+import NotAvailable from './src/Screen/Camera/NotAvailable';
 const Stack = createNativeStackNavigator();
 
 
@@ -21,6 +21,7 @@ const App = () => {
             <Stack.Navigator>
               <Stack.Screen name="Main" component={Main} />
               <Stack.Screen name="InputStore" component={InputStore}/>
+              <Stack.Screen name="NotAvailable" component={NotAvailable}/>
             </Stack.Navigator>
           </NavigationContainer>
         </NativeBaseProvider>
