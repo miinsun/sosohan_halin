@@ -22,8 +22,10 @@ const SelectShop = () => {
   const handleChange = (e) => {
     const storeIndex = e.target.value;
     const { storeId } = myStores.results[storeIndex];
+    sessionStorage.setItem("currentStoreIndex", storeIndex);
     sessionStorage.setItem("currentStoreId", storeId);
-    console.log(`current store id: ${storeId}, 
+    console.log(`current store index: ${storeIndex},
+    current store id: ${storeId}, 
     current store name: ${myStores.results[storeIndex].name}`);
   };
 
@@ -31,7 +33,12 @@ const SelectShop = () => {
     <select onChange={handleChange}>
       <option value="-1">=내 상점 선택=</option>
       {myStores.total > 0 && myStores.results.map((data, index) => (
-        <option value={index}>{data.name}</option>))}
+        <option
+          value={index}
+          selected={sessionStorage.getItem("currentStoreIndex") === { index }}
+        >{data.name}
+        </option>
+      ))}
     </select>
 
   );

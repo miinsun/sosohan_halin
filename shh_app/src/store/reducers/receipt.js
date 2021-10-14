@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import { fromJS, Map } from "immutable";
-=======
 import { fromJS, List, Map } from "immutable";
->>>>>>> feature/22
 import { createAction, handleActions } from "redux-actions";
 import { pender } from "redux-pender";
 import { ReceiptApi } from "../../remote";

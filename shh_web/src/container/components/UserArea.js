@@ -34,8 +34,8 @@ const UserArea = () => {
       {!sessionStorage.getItem("sessionId") && (
         <Nav className="GuestArea">
           {/* <Nav.Link href="/login" className="btn btn-primary text-light">Login</Nav.Link> */}
-          <Nav.Link onClick={handleShowLogin} className="btn btn-primary text-light">Login</Nav.Link>
-          <Modal id="loginModal" show={showLogin} onHide={handleCloseLogin}>
+          <Nav.Link onClick={handleShowLogin} className="btn btn-primary text-light">로그인</Nav.Link>
+          <Modal id="loginModal" size="sm" dialogClassName="my-modal" show={showLogin} onHide={handleCloseLogin}>
             <Login close={handleCloseLogin} />
           </Modal>
         </Nav>
@@ -45,7 +45,7 @@ const UserArea = () => {
           <Nav.Link href="/editaccount">{sessionId}님</Nav.Link>
           <SelectShop />
           <LinkAlarm />
-          <Nav.Link onClick={logout} className="btn btn-secondary text-light">Logout</Nav.Link>
+          <Nav.Link onClick={logout} className="btn btn-secondary text-light">로그아웃</Nav.Link>
         </Nav>
       )}
     </div>
