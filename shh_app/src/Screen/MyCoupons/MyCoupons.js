@@ -3,18 +3,19 @@ import { useEffect } from 'react';
 
 import { View } from 'react-native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import { AvailableCoupons, ExpiredCoupons } from './Components';
+import { MyCouponList } from './Components';
 import { useConsumerCoupon } from '../../components';
 import AppBar from "../../layout/AppBar/AppBar";
 
 const Tab = createMaterialTopTabNavigator();
 
 const MyCoupons = () => {
-  const { consumerCouponGetAll, consumerCouponGetAllExpired } = useConsumerCoupon();
+
+  const { consumerCouponGetAllAvailable, consumerCouponGetAllExpired, consumerCouponListAvailable, consumerCouponListExpired } = useConsumerCoupon();
 
   const fetch = async () => {
     try {
-      await consumerCouponGetAll("hy", 1);
+      await consumerCouponGetAllAvailable("hy", 1);
       await consumerCouponGetAllExpired("hy", 0);
     } catch (e) {
       console.log(e);
@@ -26,11 +27,10 @@ const MyCoupons = () => {
 
   useEffect(() => {
     fetch();
+    console.log("fetched");
   }, []);
 
   return (
-    <>
-      <AppBar title="소소한 할인" />
       <Tab.Navigator
         screenOptions={{
           tabBarLabelStyle: { fontSize: 15 },
@@ -38,10 +38,21 @@ const MyCoupons = () => {
           swipeEnabled: false,
         }}
       >
-        <Tab.Screen name="사용 가능 쿠폰" component={AvailableCoupons} />
-        <Tab.Screen name="만료 쿠폰" component={ExpiredCoupons} />
+        <Tab.Screen name="사용 가능 쿠폰">
+          {() => <MyCouponList 
+            isCouponAvailable={true} 
+            total={consumerCouponListAvailable.total} 
+            data={consumerCouponListAvailable.results}
+          />}
+        </Tab.Screen>
+        <Tab.Screen name="만료 쿠폰">
+          {() => <MyCouponList 
+            isCouponAvailable={false} 
+            total={consumerCouponListExpired.total} 
+            data={consumerCouponListExpired.results}
+          />}
+        </Tab.Screen>
       </Tab.Navigator>
-    </>
   );
 }
 
