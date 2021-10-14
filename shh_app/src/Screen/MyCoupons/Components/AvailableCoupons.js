@@ -8,7 +8,7 @@ import {
   } from 'react-native';
 import { NativeBaseProvider, FlatList, Text, Box, Center, Flex, Spacer, List } from 'native-base';
 import { useConsumerCoupon } from '../../../components';
-import { CouponListView } from '.';
+import { MyCouponListView } from '.';
 
 const AvailableCoupons = () => {
   const { consumerCouponList, consumerCouponPost } = useConsumerCoupon();
@@ -59,7 +59,7 @@ const AvailableCoupons = () => {
               >
                 <Text>테스트용 쿠폰 다운로드</Text>
               </TouchableOpacity>
-              <CouponListView data={data} isCouponAvailable={true} onCouponPress={onCouponPress} />
+              <MyCouponListView data={data} isCouponAvailable={true} onCouponPress={onCouponPress} />
             </View>
         </View>
     );

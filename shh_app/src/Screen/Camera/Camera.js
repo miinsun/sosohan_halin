@@ -127,8 +127,6 @@ const App = () => {
   };
 
   return (
-    <>
-    <AppBar title = "영수증 인식" />
     <View style={styles.container}>
       {appData.hasPermission ? (
         <View style={styles.cameraContainer}>
@@ -289,7 +287,6 @@ const App = () => {
       )}
       <StatusBar style="auto" />
     </View>
-    </>
   );
 };
 

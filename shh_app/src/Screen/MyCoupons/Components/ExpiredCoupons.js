@@ -7,7 +7,7 @@ import {
   } from 'react-native';
 import { NativeBaseProvider, FlatList, Text, Box, Center, Flex, Spacer, List } from 'native-base';
 import { useConsumerCoupon } from '../../../components';
-import { CouponListView } from '.';
+import { MyCouponListView } from '.';
 
 const AvailableCoupons = () => {
 
@@ -22,7 +22,7 @@ const AvailableCoupons = () => {
                 <Text width="50%">총 {total}개</Text>
             </Flex>
             <View>
-            <CouponListView data={data} isCouponAvailable={false} />
+            <MyCouponListView data={data} isCouponAvailable={false} />
             </View>
         </View>
     );

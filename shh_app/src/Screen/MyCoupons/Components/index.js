@@ -1,9 +1,9 @@
 import AvailableCoupons from "./AvailableCoupons";
 import ExpiredCoupons from "./ExpiredCoupons";
-import CouponListView from "./CouponListView";
+import MyCouponListView from "./MyCouponListView";
 
 export {
     AvailableCoupons,
     ExpiredCoupons,
-    CouponListView,
+    MyCouponListView,
 };

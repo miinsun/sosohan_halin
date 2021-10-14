@@ -29,8 +29,6 @@ const MyCoupons = () => {
   }, []);
 
   return (
-    <>
-      <AppBar title="소소한 할인" />
       <Tab.Navigator
         screenOptions={{
           tabBarLabelStyle: { fontSize: 15 },
@@ -41,7 +39,6 @@ const MyCoupons = () => {
         <Tab.Screen name="사용 가능 쿠폰" component={AvailableCoupons} />
         <Tab.Screen name="만료 쿠폰" component={ExpiredCoupons} />
       </Tab.Navigator>
-    </>
   );
 }
 

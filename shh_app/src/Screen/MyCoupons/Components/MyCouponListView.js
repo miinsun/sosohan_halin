@@ -7,7 +7,7 @@ import { NativeBaseProvider, Spacer, FlatList, Text, Center, VStack, HStack, Ima
 import { style } from 'styled-system';
 import DashedLine from 'react-native-dashed-line';
 
-const CouponListView = (props) => {
+const MyCouponListView = (props) => {
 
   const isCouponAvailable = props.isCouponAvailable;
 
@@ -62,4 +62,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CouponListView;
+export default MyCouponListView;
