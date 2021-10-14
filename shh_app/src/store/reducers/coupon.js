@@ -5,6 +5,7 @@ import { CouponApi } from "../../remote";
 
 const COUPON_POST = "coupon/POST";
 const COUPON_GETALL = "coupon/GETALL";
+const COUPON_GETLINKED = "coupon/GETLINKED";
 const COUPON_GET = "coupon/GET";
 const COUPON_PUT = "coupon/PUT";
 // const COUPON_REMOVE = "coupon/REMOVE";
@@ -17,6 +18,11 @@ export const couponPost = createAction(
 export const couponGetAll = createAction(
   COUPON_GETALL,
   CouponApi.getAll,
+);
+
+export const couponGetLinked = createAction(
+  COUPON_GETLINKED,
+  CouponApi.getLinked,
 );
 
 export const couponGet = createAction(
@@ -69,6 +75,11 @@ export default handleActions({
 
   ...pender({
     type: COUPON_GETALL,
+    onSuccess: (state, action) => state.set("couponList", fromJS(action.payload.data)),
+  }),
+
+  ...pender({
+    type: COUPON_GETLINKED,
     onSuccess: (state, action) => state.set("couponList", fromJS(action.payload.data)),
   }),
 

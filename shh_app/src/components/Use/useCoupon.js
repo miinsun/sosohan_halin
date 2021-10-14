@@ -15,6 +15,7 @@ const useCoupon = () => {
     couponPut: actions.couponPut,
     couponPost: actions.couponPost,
     couponGetAll: actions.couponGetAll,
+    couponGetLinked: actions.couponGetLinked,
     couponRemove: reducer.couponRemove,
 
     // userPut: reducer.userPut,

@@ -1,81 +1,42 @@
-import * as React from 'react';
-import {
-    StyleSheet, 
-    View,
-    TouchableOpacity,
-    Alert,
-    VirtualizedList,
-  } from 'react-native';
-import { NativeBaseProvider, Text, Flex, Spacer, List } from 'native-base';
+// import Qs from "query-string";
+// import React, { useEffect } from "react";
+// import { useLoading, useCoupon } from "../../../components";
+// import CouponListView from "./CouponListView";
 
-// api 적용 전 임시 변수
-const total = 0;
-const list = {};
+// const CouponList = () => {
+//   const { couponList, couponGetLinked } = useCoupon();
+//   const { loading, setLoading } = useLoading(true);
+//   const location = useLocation();
 
-const DATA = []
+//   const query = Qs.parse(location.search);
+//   console.log(query);
+//   console.log(Qs.stringify(query));
 
-const getItem = (_data, index) => ({
-  id: Math.random().toString(12).substring(0),
-  title: `Item ${index + 1}`,
-})
+//   const fetch = async () => {
+//     try {
+//       await couponGetLinked();
+//     } catch (e) {
+//       console.log(e);
+//     } finally {
+//       await setLoading(false);
+//     }
+//   };
 
-const getItemCount = (_data) => 10
+//   useEffect(() => {
+//     fetch();
+//   }, []);
 
-const Item = ({ title }) => (
-  <List.Item
-    bg="emerald.200"
-    borderRadius="md"
-    justifyContent="center"
-    _text={{
-      fontSize: "2xl",
-    }}
-    px={4}
-    py={2}
-    my={2}
-    height={140}
-    onPress={onCouponPress}
-  >
-    {title}
-  </List.Item>
-)
-const onCouponPress = () => {
-    Alert.alert("다운로드!");
-};
+//   return (
 
+//     loading ? (
+//       <CTLoading />
+//     ) : (
+//       <CouponListView
+//         total={coupon.total}
+//         results={coupon.results}
+//       />
+//     )
+//   );
+// };
 
-const CouponList = () => {
-    return (
-        <View style={styles.container}>
-            <Flex direction="row">
-                <Text width="50%">{data.storeName}</Text>
-                <Spacer />
-            </Flex>
-            <View>
-            <VirtualizedList
-                data={DATA}
-                initialNumToRender={4}
-                renderItem={({ item }) => <Item title={item.title} />}
-                keyExtractor={(item) => item.key}
-                getItemCount={getItemCount}
-                getItem={getItem}
-            />
-            </View>
-        </View>
-    );
-}
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        padding: 10,
-      },
-    row: {
-        flexDirection: "row",
-        flexWrap: "wrap",
-    },
-    button: {
-        alignItems: "center",
-    },
-});
-
-export default CouponList;
+// export default CouponList;
