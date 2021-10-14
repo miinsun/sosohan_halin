@@ -1,17 +1,17 @@
 import * as React from 'react';
 import { useEffect } from 'react';
 
-import { View } from 'react-native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { MyCouponList } from './Components';
 import { useConsumerCoupon } from '../../components';
-import AppBar from "../../layout/AppBar/AppBar";
+import { CTLoading, useLoading } from '../../components/CTLoading';
 
 const Tab = createMaterialTopTabNavigator();
 
 const MyCoupons = () => {
 
   const { consumerCouponGetAllAvailable, consumerCouponGetAllExpired, consumerCouponListAvailable, consumerCouponListExpired } = useConsumerCoupon();
+  const { loading, setLoading } = useLoading(true);
 
   const fetch = async () => {
     try {
@@ -21,7 +21,7 @@ const MyCoupons = () => {
       console.log(e);
     } 
     finally {
-      // setLoading(false);
+      setLoading(false);
     }
   };
 
@@ -30,7 +30,10 @@ const MyCoupons = () => {
     console.log("fetched");
   }, []);
 
-  return (
+  return (   
+    loading ? (
+      <CTLoading />
+    ) : (
       <Tab.Navigator
         screenOptions={{
           tabBarLabelStyle: { fontSize: 15 },
@@ -53,6 +56,7 @@ const MyCoupons = () => {
           />}
         </Tab.Screen>
       </Tab.Navigator>
+    )
   );
 }
 
