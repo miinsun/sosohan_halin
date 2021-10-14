@@ -4,7 +4,7 @@ import urls from "../urls";
 export const post = (form) => client.post(`${urls.coupon}`, form);
 export const getAll = (storeId, params) => client.get(`${urls.coupon}/${storeId}?${params}`);
 export const get = (storeId, couponId) => client.get(`${urls.coupon}/${storeId}/${couponId}`);
-export const getLinked = (storeId) => client.get(`${urls.coupon}/${storeId}`);
+export const getLinked = (storeId) => client.get(`${urls.coupon}/linkedCoupon/${storeId}`);
 export const put = (couponId, form) => client.put(`${urls.coupon}/${couponId}`, form);
 export const remove = (form) => client.delete(`${urls.coupon}`, {
   data: form,

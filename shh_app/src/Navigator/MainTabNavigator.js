@@ -15,7 +15,6 @@ import {
 import ScreenHome from "../Screen/Home"
 import ScreenCamera from "../Screen/Camera"
 import ScreenMyCoupons from "../Screen/MyCoupons"
-import ScreenCouponList from "../Screen/CouponList"
 
 const navigationOptionHandler = () => ({
   headerShown: false,

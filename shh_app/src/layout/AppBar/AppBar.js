@@ -28,14 +28,14 @@ const AppBar = ({ title }) => {
             {title}
           </Text>
         </HStack>
-        <HStack space="2">
+        {/* <HStack space="2">
           <IconButton
             icon={
               <MaterialIcons name="account-circle" size={30} color="info.600" />
             }
             borderRadius="full"
           />
-        </HStack>
+        </HStack> */}
       </HStack>
     </>
   );

@@ -11,6 +11,7 @@ import { OverflowMenuProvider } from 'react-navigation-header-buttons';
 import Main from './src/Navigator/MainTabNavigator';
 import InputStore from './src/Screen/Camera/InputStore';
 import MyCoupons from './src/Screen/MyCoupons';
+import CouponList from "./src/Screen/CouponList"
 
 import NotAvailable from './src/Screen/Camera/NotAvailable';
 const Stack = createNativeStackNavigator();
@@ -27,6 +28,7 @@ const App = () => {
                 <Stack.Screen options={{ headerShown: false }} name="InputStore" component={InputStore}/>
                 <Stack.Screen options={{ headerShown: false }} name="MyCoupons" component={MyCoupons}/>
                 <Stack.Screen options={{ headerShown: false }} name="NotAvailable" component={NotAvailable}/>
+                <Stack.Screen options={{ headerShown: false }} name="CouponList" component={CouponList}/>
               </Stack.Navigator>
             </OverflowMenuProvider>
           </NavigationContainer>
