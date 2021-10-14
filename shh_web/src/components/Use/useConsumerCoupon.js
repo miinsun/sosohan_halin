@@ -1,3 +1,4 @@
+import React, { useSelector } from "react";
 import * as reducer from "../../store/reducers/consumerCoupon";
 import { useActions, useShallowEqualSelectorToJS } from "./components";
 

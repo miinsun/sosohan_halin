@@ -11,14 +11,18 @@ const CouponRecog = () => {
   const { loading, setLoading } = useLoading(true);
   const location = useLocation();
 
-  // const query = Qs.parse(location.search);
+  const query = Qs.parse(location.search);
+  if (Qs.stringify(query) === "") {
+    return (
+      <div>{alert("잘못된 접근입니다.")} </div>
+    );
+  }
 
-  // console.log(query);
-  // console.log(Qs.stringify(query));
+  const queryObject = { cCouponId: Qs.stringify(query).split("=")[1] };
 
   const fetch = async () => {
     try {
-      await consumerCouponGet(1);
+      await consumerCouponGet(queryObject.cCouponId * 1);
     } catch (e) {
       console.log(e);
     } finally {
@@ -33,10 +37,7 @@ const CouponRecog = () => {
   const updateConsumerCoupon = async (couponInfo) => {
     try {
       const coupon = couponInfo;
-
       await setLoading(true);
-
-      console.log(`updateConsumerCoupon : ${couponInfo.state}`);
       await consumerCouponPut(coupon);
       fetch();
     } catch (e) {
