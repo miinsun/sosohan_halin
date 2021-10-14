@@ -2,10 +2,10 @@ import React from 'react'
 import ScreenCouponList from "./CouponList";
 
 
-const MyCoupons = ({ }) => {
+const CouponList = ({}) => {
   return (
     <ScreenCouponList />
   )
 }
 
-export default MyCoupons;
+export default CouponList;

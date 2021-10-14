@@ -1,42 +1,57 @@
-// import Qs from "query-string";
-// import React, { useEffect } from "react";
-// import { useLoading, useCoupon } from "../../../components";
-// import CouponListView from "./CouponListView";
+import * as React from 'react';
+import { useEffect } from 'react';
+import {
+    StyleSheet, 
+    View,
+    TouchableOpacity,
+    Alert,
+  } from 'react-native';
+import { NativeBaseProvider, FlatList, Text, Box, Center, Flex, Spacer, List } from 'native-base';
+import { useCoupon } from '../../components';
+import { CouponListView } from '../MyCoupons/Components/CouponListView';
 
-// const CouponList = () => {
-//   const { couponList, couponGetLinked } = useCoupon();
-//   const { loading, setLoading } = useLoading(true);
-//   const location = useLocation();
+const CouponList = ({store}) => {
+  const { couponList, couponGetLinked } = useCoupon();
+  
+  const total = couponList.total;
+  const data = couponList.result;
 
-//   const query = Qs.parse(location.search);
-//   console.log(query);
-//   console.log(Qs.stringify(query));
+  const onDownloadPress = async () => {
+    try {
+      await couponGetLinked(2);
+      alert("hi");
+    } catch (err) {
+      alert(err);
+      console.log(err);
+    }
+  }
 
-//   const fetch = async () => {
-//     try {
-//       await couponGetLinked();
-//     } catch (e) {
-//       console.log(e);
-//     } finally {
-//       await setLoading(false);
-//     }
-//   };
+    return (
+        <View style={styles.container}>
+            <Flex direction="row">
+                <Text width="100%">상점명</Text>
+            </Flex>
+            <Text width="100%">다운로드 가능한 쿠폰(총 0개)</Text>
+        </View>
+    );
+}
 
-//   useEffect(() => {
-//     fetch();
-//   }, []);
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        padding: 10,
+        backgroundColor: "#fff",
+      },
+    button: {
+        alignItems: "center",
+    },
+    item: {
+      height: 150,
+      padding: 20,
+      marginVertical: 10,
+      marginHorizontal: 8,
+      borderRadius: 10,
+    },
+});
 
-//   return (
-
-//     loading ? (
-//       <CTLoading />
-//     ) : (
-//       <CouponListView
-//         total={coupon.total}
-//         results={coupon.results}
-//       />
-//     )
-//   );
-// };
-
-// export default CouponList;
+export default CouponList;
