@@ -1,9 +1,11 @@
 import * as React from 'react';
 import { useEffect } from 'react';
 
+import { View } from 'react-native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { AvailableCoupons, ExpiredCoupons } from './Components';
 import { useConsumerCoupon } from '../../components';
+import AppBar from "../../layout/AppBar/AppBar";
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -27,16 +29,19 @@ const MyCoupons = () => {
   }, []);
 
   return (
-    <Tab.Navigator
-      screenOptions={{
-        tabBarLabelStyle: { fontSize: 15 },
-        // tabBarStyle: { backgroundColor: 'powderblue' },
-        swipeEnabled: false,
-      }}
-    >
-      <Tab.Screen name="사용 가능 쿠폰" component={AvailableCoupons} />
-      <Tab.Screen name="만료 쿠폰" component={ExpiredCoupons} />
-    </Tab.Navigator>
+    <>
+      <AppBar title="소소한 할인" />
+      <Tab.Navigator
+        screenOptions={{
+          tabBarLabelStyle: { fontSize: 15 },
+          // tabBarStyle: { backgroundColor: 'powderblue' },
+          swipeEnabled: false,
+        }}
+      >
+        <Tab.Screen name="사용 가능 쿠폰" component={AvailableCoupons} />
+        <Tab.Screen name="만료 쿠폰" component={ExpiredCoupons} />
+      </Tab.Navigator>
+    </>
   );
 }
 
