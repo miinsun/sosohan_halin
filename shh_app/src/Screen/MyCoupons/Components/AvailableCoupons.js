@@ -15,9 +15,10 @@ const AvailableCoupons = () => {
 
   const total = consumerCouponList.total;
   const data = consumerCouponList.results;
+  console.log(data);
 
-  const onCouponPress = () => {
-      Alert.alert("쿠폰 사용 모달 띄우기");
+  const onCouponPress = (consumerCouponId) => {
+      Alert.alert("consumerCouponId: " + consumerCouponId);
   };
 
   const onSortPress = () => {
@@ -58,7 +59,7 @@ const AvailableCoupons = () => {
               >
                 <Text>테스트용 쿠폰 다운로드</Text>
               </TouchableOpacity>
-              <CouponListView data={data} onCouponPress={onCouponPress} />
+              <CouponListView data={data} isCouponAvailable={true} onCouponPress={onCouponPress} />
             </View>
         </View>
     );
@@ -68,6 +69,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         padding: 10,
+        backgroundColor: "#fff",
       },
     button: {
         alignItems: "center",

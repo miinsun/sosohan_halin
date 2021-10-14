@@ -24,6 +24,7 @@
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-42.0.0.tar.gz",
     "react-native-camera": "^4.2.1",
+    "react-native-dashed-line": "^1.1.0",
     "react-native-gesture-handler": "^1.10.3",
     "react-native-maps": "0.28.0",
     "react-native-modal": "^13.0.0",

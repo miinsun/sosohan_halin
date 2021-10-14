@@ -16,17 +16,13 @@ const AvailableCoupons = () => {
   const total = consumerCouponListExpired.total;
   const data = consumerCouponListExpired.results;
 
-  const onCouponPress = () => {
-    Alert.alert("쿠폰 사용된 날짜 팝업을 띄울 것? or no action?");
-  };
-
     return (
         <View style={styles.container}>
             <Flex direction="row">
                 <Text width="50%">총 {total}개</Text>
             </Flex>
             <View>
-            <CouponListView data={data} onCouponPress={onCouponPress} />
+            <CouponListView data={data} isCouponAvailable={false} />
             </View>
         </View>
     );
@@ -36,6 +32,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         padding: 10,
+        backgroundColor: "#fff",
       },
     row: {
         flexDirection: "row",
