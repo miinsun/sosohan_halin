@@ -4,7 +4,7 @@ import { pender } from "redux-pender";
 import { ConsumerCouponApi } from "../../remote";
 
 const CONSUMER_COUPON_POST = "consumerCoupon/POST";
-const CONSUMER_COUPON_GETALL = "consumerCoupon/GETALL";
+const CONSUMER_COUPON_GETALLAVAILABLE = "consumerCoupon/GETALL";
 const CONSUMER_COUPON_GETALLEXPIRED = "consumerCoupon/GETALLEXPIRED";
 const CONSUMER_COUPON_GET = "consumerCoupon/GET";
 const CONSUMER_COUPON_PUT = "consumerCoupon/PUT";
@@ -15,9 +15,9 @@ export const consumerCouponPost = createAction(
     ConsumerCouponApi.post,
   );
 
-export const consumerCouponGetAll = createAction(
-    CONSUMER_COUPON_GETALL,
-    ConsumerCouponApi.getAll,
+export const consumerCouponGetAllAvailable = createAction(
+    CONSUMER_COUPON_GETALLAVAILABLE,
+    ConsumerCouponApi.getAllAvailable,
 );
 
 export const consumerCouponGetAllExpired = createAction(
@@ -53,7 +53,7 @@ const initialState = Map({
     useDate: new Date(),
   }),
 
-  consumerCouponList: Map({
+  consumerCouponListAvailable: Map({
     total: 0,
     results: List([]),
   }),
@@ -72,8 +72,8 @@ export default handleActions({
   }),
 
   ...pender({
-    type: CONSUMER_COUPON_GETALL,
-    onSuccess: (state, action) => state.set("consumerCouponList", fromJS(action.payload.data)),
+    type: CONSUMER_COUPON_GETALLAVAILABLE,
+    onSuccess: (state, action) => state.set("consumerCouponListAvailable", fromJS(action.payload.data)),
   }),
 
   ...pender({
