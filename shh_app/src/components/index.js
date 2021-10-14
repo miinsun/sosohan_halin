@@ -11,11 +11,7 @@ import {
   useConsumerCoupon,
   useStore,
   useLink,
-<<<<<<< HEAD
-  useReceipt
-=======
   useReceipt,
->>>>>>> feature/22
 } from "./Use";
 
 export {
