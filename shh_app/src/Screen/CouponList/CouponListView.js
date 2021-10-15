@@ -25,8 +25,10 @@ const CouponListView = ({storeName,total,data, onDownloadPress}) => {
               <HStack h={40}>
                 <VStack mx={2} space={5} alignItems="center">
                   <Image
-                    source={item.store.logoImage}
-                    alt="Alternate Text"
+                    source={{
+                                            uri: (item.store.logoImage),
+                                          }}
+                    alt="alt image"
                     w="69px"
                     h="92px"
                     borderRadius={5}
