@@ -61,15 +61,18 @@ const MyCouponListView = ({
             // console.log(item.coupon.store.name);
             // setCouponName(item.coupon.name);
             // console.log(item.coupon.name);
-            try {
-            setShowModal2(true);
-            } catch (e) {
-              alert('에러: ' + e);
+            if (item.state == 1) {
+              try {
+                setShowModal2(true);
+                setConsumerCouponId(item.consumerCouponId);
+              } catch (e) {
+                alert('에러: ' + e);
+              }
             }
             // } catch(e) {
             //   console.log(e);
             // }
-            alert('모달');
+            // alert('모달');
           } }>
             <Box h={40} mx={1} my={2} bg={isCouponAvailable ? "blueGray.50" : "#eee"} rounded="md" shadow={3}>
               <HStack h={40}>
@@ -79,13 +82,12 @@ const MyCouponListView = ({
                   </Box>
                   <Image
                     source={{
-                      uri: "https://wallpaperaccess.com/full/317501.jpg",
+                      uri: (item.coupon.store.logoImage),
                     }}
                     alt="상점 이미지"
                     w="69px"
                     h="92px"
                     borderRadius={5}
-                    marginTop={1000}
                   />
                 </VStack>
                 <VStack w="160px" mt={6} mb={2} mr={1} space={1}>
@@ -96,22 +98,21 @@ const MyCouponListView = ({
                   <Text fontSize="xs" isTruncated maxW="160px" color="#aaa">{item.finishDate} 까지</Text>
                 </VStack>
                 <DashedLine axis='vertical' dashLength={5} dashThickness={1.5} dashGap={7} dashColor='#ccc'/>
-                
-                  <Center w="75px" >
-                    {isCouponAvailable && (<Text fontSize="md" color="#777">사용 가능</Text>)}
-                    {item.state == 0 && (<Text fontSize="md" color="#777">사용 완료</Text>)}
-                    {item.state == -1 && (<Text fontSize="md" color="#777">기한 만료</Text>)}
-                  </Center>
+                  
+                <Center w="75px" >
+                  {isCouponAvailable && (<Text fontSize="md" color="#777">사용 가능</Text>)}
+                  {item.state == 0 && (<Text fontSize="md" color="#777">사용 완료</Text>)}
+                  {item.state == -1 && (<Text fontSize="md" color="#777">기한 만료</Text>)}
+                </Center>
               </HStack>
             </Box>
-          </Pressable>
+          </Pressable> 
         )}
         keyExtractor={(item) => item.consumerCouponId.toString()}
       />
 
-      
     </View>
-</View>
+  </View>
 
 
 
