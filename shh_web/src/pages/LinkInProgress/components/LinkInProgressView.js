@@ -16,6 +16,7 @@ const isIn = (results, total, changeState) => {
   if (total !== 0) {
     return (
       <div>
+        <h2 className="my-3"> 연계할인관리 </h2>
         <Row xs={10} md={5} className="g-4">
           {total > 0
             && results.map((data) => (

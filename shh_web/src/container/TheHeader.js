@@ -17,7 +17,7 @@ const TheHeader = () => {
   const toggleNavbar = () => setCollapsed(!collapsed);
 
   return (
-    <header className="sticky-top">
+    <header className="sticky-top mb-3">
       <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
         <Container>
           <Navbar.Brand className="text-primary" href="/"><CTLogo margin="1px" width="170px" /></Navbar.Brand>

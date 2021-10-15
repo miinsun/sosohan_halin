@@ -7,7 +7,7 @@ const CouponList = ({route}) => {
   return (
     <>
     <AppBar title = "" />
-    <ScreenCouponList storeName={route.params.storeName} receiptDate={route.params.receiptDate} />
+    <ScreenCouponList store={route.params.store} receiptDate={route.params.receiptDate} navigation={route.params.navigation}/>
     </>
   )
 }

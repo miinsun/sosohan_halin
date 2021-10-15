@@ -69,13 +69,15 @@ const LinkHistoryInView = ({
   !login ? (
     goLogin()
   ) : (
-    <div>
-      <CTTable
-        columns={["번호 ", "제안상점명 ", "제안상태 ", "제안 내용", "액션 "]}
-        total={total}
-        emptyDataMessage="제안 내역이 없습니다."
-      >
-        {total > 0
+    <>
+      <h2 className="my-3"> 연계할인관리 </h2>
+      <div>
+        <CTTable
+          columns={["번호 ", "제안상점명 ", "제안상태 ", "제안 내용", "액션 "]}
+          total={total}
+          emptyDataMessage="제안 내역이 없습니다."
+        >
+          {total > 0
           && results.map((data, index) => (
             <tr key={data.linkId}>
               <td>{index + 1}</td>
@@ -83,8 +85,9 @@ const LinkHistoryInView = ({
               {checkStateAndManagement(data, changeState)}
             </tr>
           ))}
-      </CTTable>
-    </div>
+        </CTTable>
+      </div>
+    </>
   )
 );
 
