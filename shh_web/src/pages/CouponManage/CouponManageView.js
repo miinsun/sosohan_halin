@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 // import Sidebar from "./components/Sidebar";
 import { Button } from "react-bootstrap";
+import CouponSidebar from "../../CouponSidebar";
 import { CTOneButton, useCoupon } from "../../components";
 import CouponRegisterFormView from "./components/CouponRegisterFormView";
 import MyCouponListView from "./components/MyCouponListView";
@@ -25,37 +26,39 @@ const CouponManageView = ({
 
   return (
     <div className="CouponManage">
-      {/* <Sidebar /> */}
-      <h1>쿠폰 관리</h1>
+      <CouponSidebar />
+      <div className="mx-auto col-6">
+        <h4 className="mb-3">쿠폰 등록</h4>
 
-      <div>
-        <div style={{ textAlign: "right" }}>
-          <Button variant="primary" onClick={handleInsert} className="rounded-pill">
-            + 등록하기
-          </Button>
+        <div>
+          <div style={{ textAlign: "right" }}>
+            <Button variant="primary" onClick={handleInsert} className="rounded-pill">
+              + 등록하기
+            </Button>
+          </div>
+
+          <MyCouponListView
+            total={total}
+            results={results}
+            remove={remove}
+            setCouponInfo={setCouponInfo}
+            confirmBtn={confirmBtn}
+            setConfirmBtn={setConfirmBtn}
+            setShow={setShow}
+          />
         </div>
 
-        <MyCouponListView
-          total={total}
-          results={results}
-          remove={remove}
-          setCouponInfo={setCouponInfo}
+        <CouponRegisterFormView
           confirmBtn={confirmBtn}
-          setConfirmBtn={setConfirmBtn}
+          coupon={couponInfo}
+          insert={insert}
+          update={update}
+          data={data}
+          setData={setData}
+          show={show}
           setShow={setShow}
         />
       </div>
-
-      <CouponRegisterFormView
-        confirmBtn={confirmBtn}
-        coupon={couponInfo}
-        insert={insert}
-        update={update}
-        data={data}
-        setData={setData}
-        show={show}
-        setShow={setShow}
-      />
     </div>
   );
 };

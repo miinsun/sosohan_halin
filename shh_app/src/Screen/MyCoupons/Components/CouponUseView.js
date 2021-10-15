@@ -18,7 +18,7 @@ import {
 } from 'native-base';
 import { Dimensions } from 'react-native';
 import { useState } from 'react';
-import { CouponUseView } from '.';
+// import { CouponUseView } from '.';
 
 const windowHeight = Dimensions.get('window').height;
 

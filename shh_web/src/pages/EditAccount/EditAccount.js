@@ -22,10 +22,10 @@ const EditAccount = () => {
   }, []);
 
   return (
-    <div className="EditAccount">
+    <div className="EditAccount container">
       <MyPageSideBar />
       <div className="mx-auto col-6">
-        <h3>회원 정보 수정</h3>
+        <h4 className="mb-3">회원 정보 수정</h4>
         <EditAccountForm />
       </div>
     </div>

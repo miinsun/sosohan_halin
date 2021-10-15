@@ -4,7 +4,7 @@ import routes, { defaultRedirect } from "../routes";
 
 const TheMain = () => (
   <main className="flex-shrink-0">
-    <div className="container">
+    <div className="container mt-4">
       {/* <h1 className="mt-5">Welcome to 소소한 할인</h1> */}
       <Switch>
         {

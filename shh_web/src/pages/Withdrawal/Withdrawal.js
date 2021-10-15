@@ -8,7 +8,7 @@ const Withdrawal = () => (
   <div className="Withdrawal">
     <MyPageSidebar />
     <div className="mx-auto col-6">
-      <h3>회원 탈퇴</h3>
+      <h4 className="mb-3">회원 탈퇴</h4>
       <WithdrawalForm />
     </div>
   </div>

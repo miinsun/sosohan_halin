@@ -153,80 +153,76 @@ const MyStoreRegi = () => {
 
     //   </div>
     // ) : (
-    <div>
-
-      <div className="col-md-7 col-lg-8">
-        <h4 className="mb-3">상점 등록</h4>
-        <form className="needs-validation" noValidate>
+    <div className="mx-auto col-6">
+      <h4 className="mb-3">상점 등록</h4>
+      <form className="needs-validation" noValidate>
+        <div className="col-6">
+          <label htmlFor="photo" className="form-label">로고사진 </label>
+          <input type="file" name="logoImage" onChange={handleChange} /><p />
+        </div>
+        <div className="col-6">
+          <label htmlFor="photo" className="form-label">상점사진1 </label>
+          <input type="file" name="storeImage1" onChange={handleChange} /><p />
+          <label htmlFor="photo" className="form-label">상점사진2 </label>
+          <input type="file" name="storeImage2" onChange={handleChange} /><p />
+          <label htmlFor="photo" className="form-label">상점사진3 </label>
+          <input type="file" name="storeImage3" onChange={handleChange} /><p />
+        </div>
+        <div className="row g-3">
           <div className="col-12">
-            <label htmlFor="photo" className="form-label">로고사진 </label>
-            <input type="file" name="logoImage" onChange={handleChange} /><p />
+            <label htmlFor="name" className="form-label">상호명</label>
+            <input type="text" className="form-control" name="name" required onChange={handleChange} />
           </div>
           <div className="col-12">
-            <label htmlFor="photo" className="form-label">상점사진1 </label>
-            <input type="file" name="storeImage1" onChange={handleChange} /><p />
-            <label htmlFor="photo" className="form-label">상점사진2 </label>
-            <input type="file" name="storeImage2" onChange={handleChange} /><p />
-            <label htmlFor="photo" className="form-label">상점사진3 </label>
-            <input type="file" name="storeImage3" onChange={handleChange} /><p />
+            <label htmlFor="address" className="form-label">위치1</label>
+            <input type="text" className="form-control" name="address1" required onChange={handleChange} />
           </div>
-          <div className="row g-3">
-            <div className="col-12">
-              <label htmlFor="name" className="form-label">상호명</label>
-              <input type="text" className="form-control" name="name" required onChange={handleChange} />
-            </div>
-            <div className="col-12">
-              <label htmlFor="address" className="form-label">위치1</label>
-              <input type="text" className="form-control" name="address1" required onChange={handleChange} />
-            </div>
-            <div className="col-12">
-              <label htmlFor="address" className="form-label">위치2</label>
-              <input type="text" className="form-control" name="address2" required onChange={handleChange} />
-            </div>
-            <div className="col-12">
-              <label htmlFor="registrationNum" className="form-label">회원 아이디</label>
-              <input type="text" className="form-control" name="businessUserId" disabled value={sessionStorage.sessionId} />
-            </div>
-            <div className="col-12">
-              <label htmlFor="phone" className="form-label">매장 전화번호</label>
-              <input type="text" className="form-control" name="telephone" required onChange={handleChange} />
-            </div>
-            <div className="col-12">
-              <label htmlFor="introduction" className="form-label">상점소개</label><p />
-              <textarea className="form-control" name="introduction" onChange={handleChange} />
-            </div>
-            <div className="col-12">
-              <label htmlFor="category" className="form-label">메인 카테고리</label>
-              <select className="form-select" name="mainCategoryId" required onChange={handleChange}>
-                <option>메인 카테고리를 선택하세요</option>
-                <option value="1">식당</option>
-                <option value="2">카페</option>
-                <option value="3">놀거리</option>
-              </select>
-            </div>
-            <div className="col-12">
-              <label htmlFor="category" className="form-label">서브 카테고리</label>
-              <select className="form-select" name="subCategoryId" required onChange={handleChange}>
-                <option>서브 카테고리를 선택하세요</option>
-                <option>한식</option>
-                <option>양식</option>
-                <option>중식</option>
-                <option>일식</option>
-              </select>
-            </div>
-            <div className="col-12">
-              <label htmlFor="shortIntroduction" className="form-label">상점 한 줄 소개</label>
-              <input type="text" className="form-control" name="shortIntroduce" required onChange={handleChange} />
-            </div>
-
-            <hr className="my-4" />
-            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-            <Link className="btn btn-primary" onClick={insertStore}>등록</Link>
-
+          <div className="col-12">
+            <label htmlFor="address" className="form-label">위치2</label>
+            <input type="text" className="form-control" name="address2" required onChange={handleChange} />
           </div>
-        </form>
-      </div>
+          <div className="col-12">
+            <label htmlFor="registrationNum" className="form-label">회원 아이디</label>
+            <input type="text" className="form-control" name="businessUserId" disabled value={sessionStorage.sessionId} />
+          </div>
+          <div className="col-12">
+            <label htmlFor="phone" className="form-label">매장 전화번호</label>
+            <input type="text" className="form-control" name="telephone" required onChange={handleChange} />
+          </div>
+          <div className="col-12">
+            <label htmlFor="introduction" className="form-label">상점소개</label><p />
+            <textarea className="form-control" name="introduction" onChange={handleChange} />
+          </div>
+          <div className="col-12">
+            <label htmlFor="category" className="form-label">메인 카테고리</label>
+            <select className="form-select" name="mainCategoryId" required onChange={handleChange}>
+              <option>메인 카테고리를 선택하세요</option>
+              <option value="1">식당</option>
+              <option value="2">카페</option>
+              <option value="3">놀거리</option>
+            </select>
+          </div>
+          <div className="col-12">
+            <label htmlFor="category" className="form-label">서브 카테고리</label>
+            <select className="form-select" name="subCategoryId" required onChange={handleChange}>
+              <option>서브 카테고리를 선택하세요</option>
+              <option>한식</option>
+              <option>양식</option>
+              <option>중식</option>
+              <option>일식</option>
+            </select>
+          </div>
+          <div className="col-12">
+            <label htmlFor="shortIntroduction" className="form-label">상점 한 줄 소개</label>
+            <input type="text" className="form-control" name="shortIntroduce" required onChange={handleChange} />
+          </div>
 
+          <hr className="my-4" />
+          {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+          <Link className="btn btn-primary" onClick={insertStore}>등록</Link>
+
+        </div>
+      </form>
     </div>
     // )
 

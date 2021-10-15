@@ -18,7 +18,7 @@ import {
   Box,
   Button,
   Modal,
-  NativeBaseProvider,
+  // NativeBaseProvider,
   Heading,
   Stack,
   HStack,
