@@ -1,0 +1,91 @@
+// 1. Include functions first (so you can manipulate colors, SVGs, calc, etc)
+@import "../../node_modules/bootstrap/scss/functions";
+
+// 2. Include any default variable overrides here
+$primary: #54baeb;
+$secondary: #fafafa;
+$info: #2d75bd;
+$dark: #474747;
+$warning: #b1b1b1;
+
+$theme-colors: (
+  "primary": $primary,
+  "secondary": $secondary,
+  "info": $info,
+  "dark": $dark,
+  "waring": $warning,
+);
+
+// 3. Include remainder of required Bootstrap stylesheets
+@import "../../node_modules/bootstrap/scss/variables";
+@import "../../node_modules/bootstrap/scss/mixins";
+
+// 4. Include any optional Bootstrap components as you like
+@import "../../node_modules/bootstrap/scss/root";
+@import "../../node_modules/bootstrap/scss/reboot";
+@import "../../node_modules/bootstrap/scss/type";
+@import "../../node_modules/bootstrap/scss/images";
+@import "../../node_modules/bootstrap/scss/containers";
+@import "../../node_modules/bootstrap/scss/grid";
+
+$sidebar-bg-color: $secondary !default;
+$sidebar-color: $dark !default;
+$sidebar-width: 190px !default;
+// $sidebar-collapsed-width: 80px !default;
+$highlight-color: $warning !default;
+$submenu-bg-color: #ffffff !default;
+$submenu-bg-color-collapsed: #2b2b2b !default;
+// $icon-bg-color: #2b2b2b !default;
+// $icon-size: 35px !default;
+// $submenu-indent: 24px !default;
+// $breakpoint-xs: 480px !default;
+// $breakpoint-sm: 576px !default;
+// $breakpoint-md: 768px !default;
+// $breakpoint-lg: 992px !default;
+// $breakpoint-xl: 1200px !default;
+// $breakpoint-xxl: 1600px !default;
+
+@import "~react-pro-sidebar/dist/scss/styles.scss";
+
+.pro-sidebar {
+  // margin-top: 20px;
+  position: fixed;
+  overflow: auto;
+  /* display: inline-flex; */
+  height: auto;
+}
+
+.pro-sidebar
+  .pro-menu
+  .pro-menu-item.pro-sub-menu
+  .pro-inner-list-item
+  .pro-inner-item {
+  padding: 0px;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#root {
+  min-height: 100%;
+}
+
+.body-wrapper {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.bodyContent {
+  flex: 1;
+  padding-bottom: 100px;
+}
+
+// .pro-menu-item {
+//   margin: 10px;
+// }

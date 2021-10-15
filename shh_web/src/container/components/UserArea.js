@@ -45,6 +45,7 @@ const UserArea = () => {
           <Nav.Link href="/editaccount">{sessionId}님</Nav.Link>
           <SelectShop />
           <LinkAlarm />
+          <span className="mx-1" />
           <Nav.Link onClick={logout} className="btn btn-secondary text-light">로그아웃</Nav.Link>
         </Nav>
       )}

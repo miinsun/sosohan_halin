@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 import { CTTable } from "../../../components";
 
 const MyStorePrintView = ({ total, results, remove }) => (
-  <div>
+  <div className="mx-auto col-6">
+    <h4 className="mb-3">상점 수정/삭제</h4>
     <CTTable
       columns={[
         "번호",

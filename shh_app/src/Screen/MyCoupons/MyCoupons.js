@@ -75,12 +75,13 @@ const MyCoupons = () => {
       </Tab.Navigator>
       
       <CouponUseView 
-        // consumerCouponId={consumerCouponId} 
+        consumerCouponId={consumerCouponId}
         // storeName={storeName}
         // couponName={couponName}
         showModal2={showModal2}
         setShowModal2={setShowModal2}
       />
+      
     </>
     )
   );
