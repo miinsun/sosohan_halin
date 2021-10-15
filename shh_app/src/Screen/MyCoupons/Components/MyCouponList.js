@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useEffect } from 'react';
+import { useState } from 'react';
 import {
     StyleSheet, 
     View,
@@ -8,9 +8,17 @@ import {
   } from 'react-native';
 import { NativeBaseProvider, Text, Pressable } from 'native-base';
 import { useConsumerCoupon } from '../../../components';
-import { MyCouponListView } from '.';
+import { MyCouponListView, CouponUseView } from '.';
 
-const MyCouponList = ({isCouponAvailable, total, data}) => {
+const MyCouponList = ({
+  isCouponAvailable, 
+  total, 
+  data,
+  setShowModal2,
+  setConsumerCouponId,
+  setStoreName,
+  setCouponName
+}) => {
 
   // 여기부터
   const { consumerCouponPost } = useConsumerCoupon();
@@ -31,10 +39,6 @@ const MyCouponList = ({isCouponAvailable, total, data}) => {
   }
   // 여기까지는 CouponList 완성 후 CouponList 쪽으로 이동할 예정
 
-  const onCouponPress = (consumerCouponId) => {
-      Alert.alert("consumerCouponId: " + consumerCouponId);
-  };
-
   const onSortPress = () => {
       Alert.alert("정렬 방법 선택 모달 띄우기: \n발급순, 마감임박순");
   };
@@ -47,7 +51,17 @@ const MyCouponList = ({isCouponAvailable, total, data}) => {
       </Pressable>
       {/* 여기까지는 CouponList 완성 후 CouponList 쪽으로 이동할 예정 */}
 
-      <MyCouponListView total={total} data={data} isCouponAvailable={isCouponAvailable} onCouponPress={onCouponPress} onSortPress={onSortPress} />
+      <MyCouponListView 
+        total={total} 
+        data={data} 
+        isCouponAvailable={isCouponAvailable} 
+        onSortPress={onSortPress}
+        setShowModal2= {setShowModal2}
+        setConsumerCouponId={setConsumerCouponId} 
+        setStoreName={setStoreName}
+        setCouponName={setCouponName}
+      />
+      
     </>
   );
 }

@@ -3,7 +3,6 @@ import {
     StyleSheet, 
     TouchableOpacity,
     View,
-    Dimensions
   } from 'react-native';
 import { 
   NativeBaseProvider, 
@@ -16,25 +15,24 @@ import {
   Image, 
   Pressable, 
   Box,
-  Button,
-  Modal,
-  // NativeBaseProvider,
-  Heading,
-  Stack,
   HStack,
-  CircleIcon,
-  WarningIcon, 
+  Button
 } from 'native-base';
 import { style } from 'styled-system';
 import DashedLine from 'react-native-dashed-line';
 import { CouponUseView } from '.';
 
-const [showModal, setShowModal] = useState(false);
-const [consumerCouponId, setConsumerCouponId] = useState(-1);
-const [storeName, setStoreName] = useState("");
-const [couponName, setCouponName] = useState("");
+const MyCouponListView = ({
+  total,
+  data,
+  isCouponAvailable,
+  onSortPress, 
+  setShowModal2,
+  setConsumerCouponId,
+  setStoreName,
+  setCouponName
+}) => {
 
-const MyCouponListView = ({total,data,isCouponAvailable,onCouponPress,onSortPress}) => {
   return (
     <View style={styles.container}>
     <Flex direction="row">
@@ -55,7 +53,24 @@ const MyCouponListView = ({total,data,isCouponAvailable,onCouponPress,onSortPres
         alignContent="center"
         data={data}
         renderItem={({ item }) => (
-          <Pressable onPress={() => {isCouponAvailable && onCouponPress(item.consumerCouponId)}}>
+          <Pressable onPress={() => {
+            // try {
+            // setConsumerCouponId(item.consumerCouponId); 
+            // console.log(consumerCouponId);
+            // setStoreName(item.coupon.store.name);
+            // console.log(item.coupon.store.name);
+            // setCouponName(item.coupon.name);
+            // console.log(item.coupon.name);
+            try {
+            setShowModal2(true);
+            } catch (e) {
+              alert('에러: ' + e);
+            }
+            // } catch(e) {
+            //   console.log(e);
+            // }
+            alert('모달');
+          } }>
             <Box h={40} mx={1} my={2} bg={isCouponAvailable ? "blueGray.50" : "#eee"} rounded="md" shadow={3}>
               <HStack h={40}>
                 <VStack mx={2} space={5} alignItems="center">
@@ -66,7 +81,7 @@ const MyCouponListView = ({total,data,isCouponAvailable,onCouponPress,onSortPres
                     source={{
                       uri: "https://wallpaperaccess.com/full/317501.jpg",
                     }}
-                    alt="Alternate Text"
+                    alt="상점 이미지"
                     w="69px"
                     h="92px"
                     borderRadius={5}
@@ -81,36 +96,20 @@ const MyCouponListView = ({total,data,isCouponAvailable,onCouponPress,onSortPres
                   <Text fontSize="xs" isTruncated maxW="160px" color="#aaa">{item.finishDate} 까지</Text>
                 </VStack>
                 <DashedLine axis='vertical' dashLength={5} dashThickness={1.5} dashGap={7} dashColor='#ccc'/>
-                <Pressable
-                  style={styles.button}
-                  onPress={
-                    () => {
-                      setConsumerCouponId(item.consumerCouponId); 
-                      setStoreName(item.coupon.store.name);
-                      setCouponName(item.coupon.name);
-                      setShowModal(true);
-                    } 
-                  }
-                >
+                
                   <Center w="75px" >
                     {isCouponAvailable && (<Text fontSize="md" color="#777">사용 가능</Text>)}
                     {item.state == 0 && (<Text fontSize="md" color="#777">사용 완료</Text>)}
                     {item.state == -1 && (<Text fontSize="md" color="#777">기한 만료</Text>)}
                   </Center>
-                </Pressable>
               </HStack>
             </Box>
           </Pressable>
         )}
-        keyExtractor={(item) => item.consumerCouponId}
+        keyExtractor={(item) => item.consumerCouponId.toString()}
       />
 
-      <CouponUseView 
-        consumerCouponId={consumerCouponId} 
-        storeName={storeName}
-        couponName={couponName}
-        setShowModal={setShowModal}
-      />
+      
     </View>
 </View>
 
