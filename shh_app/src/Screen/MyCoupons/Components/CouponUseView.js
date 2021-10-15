@@ -18,14 +18,15 @@ import {
 } from 'native-base';
 import { Dimensions } from 'react-native';
 import { useState } from 'react';
-import { CouponUseView } from '.';
 
 const windowHeight = Dimensions.get('window').height;
 
-const CouponUseView = ({consumerCouponId, storeName, couponName, setShowModal}) => {
-  return (
-    <>
-      <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
+// const CouponUseView = ({consumerCouponId, storeName, couponName, showModal2, setShowModal2}) => {
+    const CouponUseView = ({ showModal2, setShowModal2}) => {
+        return (
+          <>
+          <Button onPress={() => setShowModal2(true)}>Button</Button>
+      <Modal isOpen={showModal2} onClose={() => setShowModal2(false)}>
         <Modal.Content height="auto" maxHeight={windowHeight - 60}>
           <Modal.CloseButton />
           <Modal.Header>쿠폰 사용</Modal.Header>
@@ -43,16 +44,20 @@ const CouponUseView = ({consumerCouponId, storeName, couponName, setShowModal}) 
                   textAlign="center">
                   <Stack p="4" space={3}>
                     <Text fontSize="s" color="coolGray.600">
-                      {storeName}
+                      {/* {storeName} */}
+                      상점명
                     </Text>
-                    <Text fontSize="lg">{couponName}</Text>
+                    <Text fontSize="lg">
+                        {/* {couponName} */}
+                        쿠폰명
+                        </Text>
                   </Stack>
                 </Box>
               </Center>
               <Center w="135" h="135" bg="#54BAEB" rounded="md" shadow={5}>
                 <Image
                   source={{
-                    uri: `https://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=http://172.30.1.56:3000/couponRecog?cCouponId=${consumerCouponId}`,
+                    uri: "https://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=http://172.30.1.56:3000/couponRecog?cCouponId=1",
                   }}
                   alt="사용자 쿠폰 QR코드"
                   size="xl"
@@ -86,22 +91,9 @@ const CouponUseView = ({consumerCouponId, storeName, couponName, setShowModal}) 
               </Box>
             </VStack>
           </Modal.Body>
-
-          {/*<Modal.Footer>
-            <Button.Group variant="ghost" space={2}>
-              <Button>LEARN ME</Button>
-              <Button>
-                onPress={() => {
-                  setShowModal(false)
-                }}
-              >
-                ACCEPT
-              </Button>
-            </Button.Group>
-          </Modal.Footer> */}
         </Modal.Content>
       </Modal>
-    </>
+      </>
   );
 };
 
