@@ -1,3 +1,5 @@
+//효진
+//const BASE_URL= "http://172.30.1.56:8089"
 const BASE_URL= "http://192.168.35.149:8089"
 
 
