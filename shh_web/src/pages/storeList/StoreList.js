@@ -5,7 +5,8 @@ import StoreSearch from "./components/StoreSearch";
 import StoreSearchList from "./components/StoreSearchList";
 
 const StoreList = () => (
-  <div className="d-flex flex-column h-100">
+  <div className=" d-flex flex-column h-100">
+    <p className="fs-3">상점 리스트</p>
     <StoreSearch />
     <p />
     <StoreSearchList />

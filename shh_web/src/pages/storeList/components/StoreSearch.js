@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 // eslint-disable-next-line import/no-unresolved
-import "bootstrap/dist/css/bootstrap.min.css";
+// import "bootstrap/dist/css/bootstrap.min.css";
 
 export class StoreSearch extends Component {
   render() {
