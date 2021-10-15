@@ -2,19 +2,18 @@ import * as React from 'react';
 import { useEffect } from 'react';
 
 import CouponListView from './CouponListView';
-import ScreenMyCoupons from "../MyCoupons/index.js"
 import { useCoupon, useConsumerCoupon } from '../../components';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
 const Tab = createMaterialTopTabNavigator();
 
-const CouponList = ({storeName, receiptDate}) => {
+const CouponList = ({store, receiptDate, navigation}) => {
 
   const { couponList, couponGetLinked, } = useCoupon();
 
   const fetch = async () => {
     try {
-      await couponGetLinked(3);
+      await couponGetLinked(store.storeId);
     } catch (e) {
       console.log(e);
     } 
@@ -38,6 +37,7 @@ const CouponList = ({storeName, receiptDate}) => {
         }, receiptDate, storeId,
       );
       alert("쿠폰 발급 완료");
+      navigation.goBack();
     } catch (err) {
       alert(err);
       console.log(err);
@@ -53,7 +53,7 @@ return (
       >
         <Tab.Screen name="사용 가능 쿠폰">
           {() => <CouponListView
-            storeName={storeName} 
+            storeName={store.name} 
             total={couponList.total} 
             data={couponList.results}
             onDownloadPress={onDownloadPress}

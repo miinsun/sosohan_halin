@@ -29,10 +29,12 @@ const PreviewPhoto = ({ photo, retakePicture, storeName, businessNum, date}) => 
   const fetch = async () => {
     try {
       console.log(storeName);
-      await receiptGetParam("storename=만리장성&businessnum=0000011112&date=2021-10-11&consumeruserid=hy");
+      await receiptGetParam("storename=만리장성&businessnum=0000011111&date=2019-10-17&consumeruserid=hy");
       const store = isInReceipt.result;
 
       if(!store){
+        console.log(storeName);
+
         navigation.navigate('NotAvailable');
       }
       else{
@@ -41,6 +43,7 @@ const PreviewPhoto = ({ photo, retakePicture, storeName, businessNum, date}) => 
         }
 
         //if isin이 false이고, store 객체가 있으면 쿠폰 선택가능
+        navigation.navigate('CouponList',{store : store, receiptDate:date, navigation:navigation});
       }
 
     } catch (e) {
@@ -74,7 +77,7 @@ const PreviewPhoto = ({ photo, retakePicture, storeName, businessNum, date}) => 
           <Modal.Footer>
             <Button
               flex="1"
-              onPress={fetch => navigation.navigate('CouponList',{storeName : storeName, receiptDate:date})}
+              onPress={fetch}
             >
               쿠폰 선택
             </Button>
