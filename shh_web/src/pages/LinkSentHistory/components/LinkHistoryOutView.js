@@ -70,8 +70,7 @@ const LinkHistoryOutView = ({
   )
     : (
       <>
-        <h2 className="my-3"> 연계할인관리 </h2>
-        <div>
+        <div className="mt-4 shadow-sm p-3 mb-5 bg-body rounded">
           <CTTable
             columns={["번호 ", "수신상점명 ", "제안상태 ", "제안내용", "액션"]}
             total={total}

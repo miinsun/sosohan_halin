@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@400;500;600&display=swap');
+
+
+div{
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.title{
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 900;
+    font-size: 50px;
+}
+
+.title-content{
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 30px;
+}

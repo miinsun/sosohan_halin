@@ -70,8 +70,7 @@ const LinkHistoryInView = ({
     goLogin()
   ) : (
     <>
-      <h2 className="my-3"> 연계할인관리 </h2>
-      <div>
+      <div className="mt-4 shadow-sm p-3 mb-5 bg-body rounded">
         <CTTable
           columns={["번호 ", "제안상점명 ", "제안상태 ", "제안 내용", "액션 "]}
           total={total}

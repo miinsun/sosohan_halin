@@ -5,7 +5,7 @@ import {
   Row, Col, Card, Button, Container,
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { CTTable, NeedLogin } from "../../../components";
+import "../../../styles/base.css";
 
 const goLogin = () => {
   alert("로그인 후, 상점을 선택하고 이용해주세요");
@@ -15,13 +15,12 @@ const goLogin = () => {
 const isIn = (results, total, changeState) => {
   if (total !== 0) {
     return (
-      <div>
-        <h2 className="my-3"> 연계할인관리 </h2>
+      <div className="mb-5">
         <Row xs={10} md={5} className="g-4">
           {total > 0
             && results.map((data) => (
               <Col>
-                <Card className="text-center">
+                <Card className="text-center mt-4 shadow  mb-3 bg-body rounded">
                   <Card.Header>{data.proposer.name}
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-link" viewBox="0 0 16 16">
                       <path d="M6.354 5.5H4a3 3 0 0 0 0 6h3a3 3 0 0 0 2.83-4H9c-.086

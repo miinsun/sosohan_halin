@@ -1,10 +1,11 @@
 import PropTypes from "prop-types";
 import React from "react";
+import { Table } from "react-bootstrap";
 import CTNoDataIndication from "./CTNoDataIndication";
 import CTTableHeader from "./CTTableHeader";
 
 const CTTable = ({ children, total, ...props }) => (
-  <table>
+  <Table hover>
     {/* eslint-disable-next-line react/jsx-props-no-spreading */}
     <CTTableHeader {...props} />
     <tbody>
@@ -13,7 +14,7 @@ const CTTable = ({ children, total, ...props }) => (
         <CTNoDataIndication {...props} />
       )}
     </tbody>
-  </table>
+  </Table>
 );
 
 CTTable.propTypes = {

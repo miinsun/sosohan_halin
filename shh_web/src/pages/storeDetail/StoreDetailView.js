@@ -5,11 +5,19 @@ import { CTOneButton } from "../../components";
 import StoreInformationView from "./components/StoreInformationView";
 
 const StoreDetailView = ({ store }) => (
+
   <div>
     <StoreInformationView store={store} />
-    <Link to="/linksuggest">
+    <Link to={{
+      pathname: "/linksuggest",
+      state: {
+        receiver: store,
+      },
+    }}
+    >
       <CTOneButton type="button" title="제안하기" />
     </Link>
+
   </div>
 );
 

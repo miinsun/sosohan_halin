@@ -9,17 +9,20 @@ class Sidebar extends Component {
     const handleSelect = (eventKey) => window.location.href = (`${eventKey}`);
 
     return (
-      <Nav variant="tabs" defaultActiveKey="/link/out" onSelect={handleSelect}>
-        <Nav.Item>
-          <Nav.Link href="/link">진행 제안</Nav.Link>
-        </Nav.Item>
-        <Nav.Item>
-          <Nav.Link href="/link/in">수신 제안</Nav.Link>
-        </Nav.Item>
-        <Nav.Item>
-          <Nav.Link eventKey="/link/out">발신 제안</Nav.Link>
-        </Nav.Item>
-      </Nav>
+      <>
+        <div className="title mb-3 text-primary"> 연계 관리 </div>
+        <Nav variant="tabs" defaultActiveKey="/link/out" onSelect={handleSelect}>
+          <Nav.Item>
+            <Nav.Link href="/link">진행 제안</Nav.Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Nav.Link href="/link/in">수신 제안</Nav.Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Nav.Link eventKey="/link/out">발신 제안</Nav.Link>
+          </Nav.Item>
+        </Nav>
+      </>
     );
   }
 }

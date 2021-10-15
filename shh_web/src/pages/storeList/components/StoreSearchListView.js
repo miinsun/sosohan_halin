@@ -8,8 +8,8 @@ const StoreSearchListView = ({ total, results }) => (
   <div>
     <div>
       {total > 0 && results.map((data) => (
-        <div key={data.storeId}>
-          <div className="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div className="shadow p-3 mb-3 bg-body rounded" key={data.storeId}>
+          <div className="row g-0  rounded overflow-hidden flex-md-row mb-4  h-md-250 position-relative">
             <div className="col-auto d-none d-lg-block">
               <img width="200px" height="200px" src={data.logoImage} />
             </div>

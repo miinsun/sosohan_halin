@@ -10,7 +10,7 @@ import CouponRegisterFormView from "./CouponRegisterFormView";
 const MyCouponListView = ({
   total, results, remove, setCouponInfo, confirmBtn, setConfirmBtn, setShow,
 }) => (
-  <div>
+  <div className="mt-4 shadow-sm p-3 mb-5 bg-body rounded">
     <CTTable
       columns={[
         "No",

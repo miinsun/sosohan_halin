@@ -6,6 +6,7 @@ import { Button } from "react-bootstrap";
 import { CTOneButton, useCoupon } from "../../components";
 import CouponRegisterFormView from "./components/CouponRegisterFormView";
 import MyCouponListView from "./components/MyCouponListView";
+import "../../styles/base.css";
 
 const CouponManageView = ({
   total,
@@ -26,7 +27,7 @@ const CouponManageView = ({
   return (
     <div className="CouponManage">
       {/* <Sidebar /> */}
-      <h1>쿠폰 관리</h1>
+      <div className="title mb-3 text-primary"> 쿠폰 관리 </div>
 
       <div>
         <div style={{ textAlign: "right" }}>
