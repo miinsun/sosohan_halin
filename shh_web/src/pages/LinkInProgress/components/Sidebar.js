@@ -17,10 +17,10 @@ class Sidebar extends Component {
             <Nav.Link eventKey="/link">진행 중</Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link eventKey="/link/in">수신 제안</Nav.Link>
+            <Nav.Link eventKey="/linkreception">수신 제안</Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link eventKey="/link/out">발신 제안</Nav.Link>
+            <Nav.Link eventKey="/linksent">발신 제안</Nav.Link>
           </Nav.Item>
         </Nav>
       </>

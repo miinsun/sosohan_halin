@@ -12,15 +12,15 @@ class Sidebar extends Component {
       <>
         <div className="fs-3 mb-3 mx-5 text-dark"> 연계 관리 </div>
         {/* <div className="title mb-3 text-primary"> 연계 관리 </div> */}
-        <Nav variant="tabs" defaultActiveKey="/link/out" onSelect={handleSelect}>
+        <Nav variant="tabs" defaultActiveKey="/linksent" onSelect={handleSelect}>
           <Nav.Item>
             <Nav.Link eventKey="/link">진행 중</Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link eventKey="/link/in">수신 제안</Nav.Link>
+            <Nav.Link eventKey="/linkreception">수신 제안</Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link eventKey="/link/out">발신 제안</Nav.Link>
+            <Nav.Link eventKey="/linksent">발신 제안</Nav.Link>
           </Nav.Item>
         </Nav>
       </>
