@@ -54,25 +54,16 @@ const MyCouponListView = ({
         data={data}
         renderItem={({ item }) => (
           <Pressable onPress={() => {
-            // try {
-            // setConsumerCouponId(item.consumerCouponId); 
-            // console.log(consumerCouponId);
-            // setStoreName(item.coupon.store.name);
-            // console.log(item.coupon.store.name);
-            // setCouponName(item.coupon.name);
-            // console.log(item.coupon.name);
             if (item.state == 1) {
               try {
                 setShowModal2(true);
                 setConsumerCouponId(item.consumerCouponId);
+                setStoreName(item.coupon.store.name);
+                setCouponName(item.coupon.name);
               } catch (e) {
                 alert('에러: ' + e);
               }
             }
-            // } catch(e) {
-            //   console.log(e);
-            // }
-            // alert('모달');
           } }>
             <Box h={40} mx={1} my={2} bg={isCouponAvailable ? "blueGray.50" : "#eee"} rounded="md" shadow={3}>
               <HStack h={40}>
