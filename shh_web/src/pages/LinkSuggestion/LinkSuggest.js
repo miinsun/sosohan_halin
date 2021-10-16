@@ -43,8 +43,8 @@ const LinkSuggest = ({ location }) => {
       if (data.content.length === 0) {
         await linkPost({
           proposerId: data.proposerId,
-          receiverId: "3",
-          content: `${store.name}와 ${receiver.name}의 제안을 원합니다`,
+          receiverId: data.receiverId,
+          content: `${store.name}(이)가 ${receiver.name}(과)와의 제안을 원합니다`,
         });
       } else {
         await linkPost({

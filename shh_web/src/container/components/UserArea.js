@@ -1,16 +1,41 @@
 import React, { useState } from "react";
 import {
-  Nav, Modal,
+  Nav, Modal, Button,
 } from "react-bootstrap";
-import { useUser } from "../../components";
+import { useUser, useStore } from "../../components";
 import LinkAlarm from "../../pages/LinkAlarm";
-import Login from "../../pages/Login";
+import LoginModal from "../../pages/Login";
 import SelectShop from "./SelectShop";
 
-const sessionId = sessionStorage.getItem("sessionId");
-
 const UserArea = () => {
-  const { userLogout } = useUser();
+  const { userLogin, userLogout } = useUser();
+  const { storeGetMy, myStores } = useStore();
+
+  const getMyStores = async () => {
+    try {
+      await storeGetMy(sessionStorage.getItem("sessionId"));
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const login = async (data) => {
+    try {
+      console.log(data);
+
+      if (data.businessUserId.length <= 0 || data.password.length <= 0) {
+        alert("정확한 정보를 입력해 주세요.");
+        return;
+      }
+
+      const response = await userLogin(data.businessUserId, data.password);
+      sessionStorage.setItem("sessionId", response.data);
+      document.location.href = "/";
+    } catch (e) {
+      alert("로그인 정보를 확인해 주세요.");
+      console.log(e);
+    }
+  };
 
   const logout = async () => {
     try {
@@ -33,20 +58,20 @@ const UserArea = () => {
     <div className="UserArea">
       {!sessionStorage.getItem("sessionId") && (
         <Nav className="GuestArea">
-          {/* <Nav.Link href="/login" className="btn btn-primary text-light">Login</Nav.Link> */}
-          <Nav.Link onClick={handleShowLogin} className="btn btn-primary text-light">로그인</Nav.Link>
-          <Modal id="loginModal" size="sm" dialogClassName="my-modal" show={showLogin} onHide={handleCloseLogin}>
-            <Login close={handleCloseLogin} />
-          </Modal>
+          <Nav.Link
+            onClick={handleShowLogin}
+            className="btn btn-outline-primary text-primary"
+          >로그인
+          </Nav.Link>
+          <LoginModal onHide={handleCloseLogin} close={handleCloseLogin} showLogin={showLogin} login={login} />
         </Nav>
       )}
       {sessionStorage.getItem("sessionId") && (
         <Nav className="LoginArea">
-          <Nav.Link href="/editaccount">{sessionId}님</Nav.Link>
-          <SelectShop />
+          <Nav.Link href="/editaccount">{sessionStorage.getItem("sessionId")}님</Nav.Link>
+          <SelectShop fetch={getMyStores} />
           <LinkAlarm />
-          <span className="mx-1" />
-          <Nav.Link onClick={logout} className="btn btn-secondary text-light">로그아웃</Nav.Link>
+          <Nav.Link onClick={logout} className="btn btn-outline-secondary text-muted">로그아웃</Nav.Link>
         </Nav>
       )}
     </div>

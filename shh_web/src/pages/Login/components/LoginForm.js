@@ -3,11 +3,8 @@ import {
   Form, FormGroup, Button, FloatingLabel,
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { useUser } from "../../../components";
 
-const LoginForm = () => {
-  const { user, userLogin } = useUser();
-
+const LoginForm = ({ login }) => {
   const [data, setData] = useState({
     businessUserId: "",
     password: "",
@@ -18,30 +15,6 @@ const LoginForm = () => {
       ...data,
       [e.target.name]: e.target.value,
     });
-  };
-
-  const login = async () => {
-    try {
-      console.log(data);
-
-      if (data.businessUserId.length <= 0 || data.password.length <= 0) {
-        alert("정확한 정보를 입력해 주세요.");
-        return;
-      }
-
-      // await userLogin({
-      //   businessUserId: data.businessUserId,
-      //   password: data.password,
-      // });
-      const response = await userLogin(data.businessUserId, data.password);
-      sessionStorage.setItem("sessionId", response.data);
-
-      document.location.href = "/";
-    } catch (err) {
-      alert("로그인 정보를 확인해 주세요.");
-      console.log(err);
-      // document.location.href = "/login";
-    }
   };
 
   return (
@@ -60,9 +33,14 @@ const LoginForm = () => {
         <Form.Check type="checkbox" label="아이디 저장" />
       </Form.Group>
       <div className="text-center">
-        <Button className="w-100 my-3 btn btn-lg btn-primary" variant="primary" type="button" onClick={login}>
+        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+        <Link
+          className="w-100 my-3 btn btn-lg btn-outline-primary text-primary"
+          type="button"
+          onClick={() => { login(data); }}
+        >
           로그인
-        </Button>
+        </Link>
       </div>
     </Form>
 

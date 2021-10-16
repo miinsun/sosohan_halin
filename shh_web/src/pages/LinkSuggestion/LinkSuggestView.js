@@ -57,7 +57,7 @@ const LinkSuggestView = ({
               rows={10}
               name="content"
               onChange={handleChange}
-              placeholder={`${proposer.name}와 ${receiver.name}의 제안을 원합니다`}
+              placeholder={`${proposer.name}(이)가 ${receiver.name}(과)와의 제안을 원합니다`}
             />
           </Form.Group>
         </Form>

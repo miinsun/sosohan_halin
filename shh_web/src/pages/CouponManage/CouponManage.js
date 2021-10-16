@@ -22,8 +22,8 @@ const CouponManage = () => {
 
   const fetch = async () => {
     try {
-      // await couponGetAll(sessionStorage.getItem("sessionId"), "");
-      await couponGetAll(2, "");
+      await couponGetAll(sessionStorage.getItem("sessionId"), "");
+      // await couponGetAll(2, "");
     } catch (e) {
       console.log(e);
     } finally {

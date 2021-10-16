@@ -47,6 +47,7 @@ const MyStoreRegi = () => {
   const insertStore = async () => {
     await storePost({
       ...store,
+      businessUserId: data.businessUserId,
       name: data.name,
       address1: data.address1,
       address2: data.address2,
@@ -217,10 +218,12 @@ const MyStoreRegi = () => {
             <input type="text" className="form-control" name="shortIntroduce" required onChange={handleChange} />
           </div>
 
-          <hr className="my-4" />
+          {/* <hr className="my-4" /> */}
           {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-          <Link className="btn btn-primary" onClick={insertStore}>등록</Link>
-
+          <div className="text-center">
+            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+            <Link className="btn btn-primary" onClick={insertStore}>등록</Link>
+          </div>
         </div>
       </form>
     </div>

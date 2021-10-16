@@ -16,7 +16,7 @@ const MyCouponList = () => {
 
   const fetch = async () => {
     try {
-      await couponGetAll(2, "");
+      await couponGetAll(sessionStorage.getItem("sessionId"), "");
     } catch (e) {
       console.log(e);
     } finally {

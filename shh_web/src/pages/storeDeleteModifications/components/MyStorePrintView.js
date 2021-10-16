@@ -1,5 +1,8 @@
 import PropTypes from "prop-types";
 import React from "react";
+import {
+  Button,
+} from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { CTTable } from "../../../components";
 
@@ -20,11 +23,11 @@ const MyStorePrintView = ({ total, results, remove }) => (
           <td>{index + 1}</td>
           <td>{data.name}</td>
           <td>
-            <Link className="btn btn-primary" to="/storeRegistration">수정</Link>
+            <Button variant="primary" className=" mx-1" to="/storeRegistration">수정</Button>
 
             {/* eslint-disable-next-line  */}
-            <a className="btn btn-primary" onClick={() => remove(data)}>삭제
-            </a>
+            <Button variant="outline-secondary" className="mx-1" onClick={() => remove(data)}>삭제
+            </Button>
           </td>
         </tr>
       ))}
