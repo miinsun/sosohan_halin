@@ -39,7 +39,11 @@ const isIn = (results, total, changeState) => {
                     </Card.Text>
                   </Card.Body>
                   <Card.Footer>
-                    <Button variant="secondary" onClick={() => changeState(data.linkId, data.state, -1)}>연계취소</Button>
+                    <Button
+                      variant="outline-secondary"
+                      onClick={() => changeState(data.linkId, data.state, -1)}
+                    >연계취소
+                    </Button>
                   </Card.Footer>
                 </Card>
               </Col>
@@ -59,7 +63,7 @@ const isIn = (results, total, changeState) => {
             <Card.Img variant="top" src="../logo192.png" />
             <Card.Footer>
               <Link to="/storelist">
-                <Button>다른 상점 둘러보기</Button>
+                <Button variant="outline-primary">다른 상점 둘러보기</Button>
               </Link>
             </Card.Footer>
           </Card>

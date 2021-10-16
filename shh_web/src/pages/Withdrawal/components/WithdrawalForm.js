@@ -44,7 +44,7 @@ const WithdrawalForm = () => {
         <p />
       </div>
       <div className="text-center">
-        <Link className="btn btn-secondary" to="/">취소</Link>{" "}
+        {/* <Link className="btn btn-outline-secondary" to="/">취소</Link>{" "} */}
         {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
         <Link className="btn btn-primary" onClick={withdraw}>탈퇴</Link>
       </div>

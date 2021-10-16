@@ -33,16 +33,15 @@ const MyCouponListView = ({
             {/* eslint-disable */}
             {/* <CouponRegisterFormView couponInfo={data} /> */}
             
-            <Button variant="primary" onClick={() => { setShow(true); setCouponInfo(data); setConfirmBtn("수정"); }}>
+            <Button variant="primary" className="my-1" onClick={() => { setShow(true); setCouponInfo(data); setConfirmBtn("수정"); }}>
               수정
             </Button>
-
             {/* eslint-disable */}
-            <a
-              className="btn btn-primary"
+            <Button
+              variant="outline-secondary" className="my-1" 
               onClick={() => { if (confirm("쿠폰을 삭제하시겠습니까?")) remove(data); }}
             >삭제
-            </a>
+            </Button>
           </td>
         </tr>
       ))}

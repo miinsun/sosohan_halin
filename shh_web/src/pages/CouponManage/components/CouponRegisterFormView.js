@@ -128,11 +128,11 @@ const CouponRegisterFormView = ({
         </Modal.Body>
 
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
+          <Button variant="outline-secondary" onClick={handleClose}>
             취소
           </Button>
           <Button
-            variant="primary"
+            variant="outline-primary"
             onClick={() => {
               if (confirmBtn === "등록") {
                 insert(data);

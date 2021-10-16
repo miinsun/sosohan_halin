@@ -86,6 +86,97 @@ body {
   padding-bottom: 100px;
 }
 
-// .pro-menu-item {
-//   margin: 10px;
-// }
+.nav-item {
+  min-width: 130px;
+  text-align: center;
+}
+
+.btn-primary {
+  color: $secondary;
+  background-color: $primary;
+  border-color: $primary;
+}
+
+.btn-primary:hover {
+  color: $primary;
+  background-color: $secondary;
+  border-color: $primary;
+}
+
+.btn-check:active + .btn-primary,
+.btn-check:checked + .btn-primary,
+.btn-primary.active,
+.btn-primary.dropdown-toggle.show,
+.btn-primary:active {
+  color: #fff;
+  background-color: $secondary;
+  border-color: $primary;
+}
+
+.btn-outline-primary {
+  color: $primary;
+  border-color: $primary;
+}
+
+.btn-outline-primary:hover {
+  color: $primary;
+  background-color: $secondary;
+  border-color: $primary;
+}
+
+.btn-check:active + .btn-outline-primary,
+.btn-check:checked + .btn-outline-primary,
+.btn-outline-primary.active,
+.btn-outline-primary.dropdown-toggle.show,
+.btn-outline-primary:active {
+  color: #fff;
+  background-color: $secondary;
+  border-color: $primary;
+}
+
+.btn-outline-secondary {
+  color: $warning;
+  border-color: $warning;
+}
+
+.btn-outline-secondary:hover {
+  color: $warning;
+  background-color: $secondary;
+  border-color: $warning;
+}
+
+.btn-check:active + .btn-outline-secondary,
+.btn-check:checked + .btn-outline-secondary,
+.btn-outline-secondary.active,
+.btn-outline-secondary.dropdown-toggle.show,
+.btn-outline-secondary:active {
+  color: #fff;
+  background-color: $secondary;
+  border-color: $secondary;
+}
+
+.dropdown-menu-dark {
+  color: $primary;
+  background-color: #fff;
+  border-color: $warning;
+}
+
+.dropdown-menu-dark .dropdown-item {
+  color: $dark;
+}
+
+.dropdown-menu-dark .dropdown-item:hover {
+  color: $warning;
+  background-color: #fff;
+}
+
+.dropdown-menu-dark .dropdown-item:active {
+  color: $warning;
+  background-color: #fff;
+}
+
+.dropdown-menu-dark .dropdown-item.active,
+.dropdown-menu-dark .dropdown-item:active {
+  color: $dark;
+  background-color: #ddd;
+}

@@ -14,17 +14,20 @@ const checkStateAndManagement = (data, changeState) => {
   if (data.state === 0) {
     return (
       <>
-        <td><Badge bg="secondary">대기상태</Badge></td>
+        <td><Badge bg="warning">대기상태</Badge></td>
         <td>{data.content}</td>
         <td>
           {/* eslint-disable-next-line  */}
-          <a className="btn btn-primary" onClick={() => changeState(data.linkId, 1, 1)}>
+          <Button variant="primary" className="mx-1" onClick={() => changeState(data.linkId, 1, 1)}>
             수락
-          </a>
+          </Button>
           {/* eslint-disable-next-line  */}
-          <a className="btn btn-info" onClick={() => changeState(data.linkId, -1, data.management)}>
+          <Button variant="outline-secondary"
+            className="mx-1"
+            onClick={() => changeState(data.linkId, -1, data.management)}
+          >
             거절
-          </a>
+          </Button>
         </td>
       </>
     );
@@ -33,7 +36,7 @@ const checkStateAndManagement = (data, changeState) => {
     if (data.management === -1) {
       return (
         <>
-          <td><Badge bg="secondary">연계종료</Badge></td>
+          <td><Badge bg="dark">연계종료</Badge></td>
           <td>{data.content}</td>
           <td />
         </>
@@ -56,7 +59,7 @@ const checkStateAndManagement = (data, changeState) => {
   }
   return (
     <>
-      <td><Badge bg="secondary">승인거부</Badge></td>
+      <td><Badge bg="danger">승인거부</Badge></td>
       <td>{data.content}</td>
       <td />
     </>

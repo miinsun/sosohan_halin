@@ -8,7 +8,8 @@ export class StoreSearch extends Component {
       <div>
         <form className="d-flex">
           <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-          <button className="btn btn-outline-success" type="submit">Search</button>
+          <button className="btn btn-outline-primary text-primary" type="submit">Search</button>
+          <div className="mx-1" />
           <select className="form-select" id="country" required>
             <option value="">검색옵션...</option>
             <option>상점명</option>
