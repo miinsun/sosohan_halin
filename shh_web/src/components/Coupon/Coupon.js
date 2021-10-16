@@ -17,22 +17,21 @@ const Coupon = ({ consumerCoupon }) => (
       <Stack direction="horizontal" gap={2}>
         <Card.Img
           variant="bottom"
-          // eslint-disable-next-line no-octal-escape
-          src="https://upload.wikimedia.org/wikipedia/commons/6/63/Toss-logo.png"
+          src={consumerCoupon.coupon.store.logoImage}
           style={{ width: "15%", paddingLeft: "2%" }}
         />
         <Card.Body style={{ paddingLeft: "0%" }}>
           <Stack direction="horizontal" gap={2}>
             <Stack gap={1} style={{ width: "70%" }}>
               <Card.Text style={{ verticalAlign: "center" }}>
-                <Badge pill bg="secondary">
+                <Badge pill style={{ backgroundColor: "#a1a1aa" }}>
                   <Shop style={{ paddingBottom: "2px", paddingTop: "0px" }} /> {consumerCoupon.coupon.store.name}
                 </Badge>
               </Card.Text>
 
-              <Card.Title>{consumerCoupon.coupon.name}</Card.Title>
+              <Card.Title style={{ fontWeight: "bold" }}>{consumerCoupon.coupon.name}</Card.Title>
 
-              <Card.Text>{consumerCoupon.coupon.description}</Card.Text>
+              <Card.Text style={{ fontSize: "13px" }}>{consumerCoupon.coupon.description}</Card.Text>
 
               <Card.Text className="mb-2 text-muted" style={{ fontSize: "10px" }}>
                 {consumerCoupon.coupon.finishDate} 까지 사용 가능
