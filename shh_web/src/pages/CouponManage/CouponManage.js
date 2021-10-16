@@ -14,6 +14,11 @@ const CouponManage = () => {
   // const [show, setShow] = useState(false);
 
   const location = useLocation();
+  const storeId = sessionStorage.getItem("currentStoreId");
+  if (storeId == null) {
+    alert("로그인 후, 상점을 선택하고 이용해주세요");
+    document.location.href = "/";
+  }
 
   // const query = Qs.parse(location.search);
 
@@ -22,8 +27,7 @@ const CouponManage = () => {
 
   const fetch = async () => {
     try {
-      await couponGetAll(sessionStorage.getItem("sessionId"), "");
-      // await couponGetAll(2, "");
+      await couponGetAll(storeId, "");
     } catch (e) {
       console.log(e);
     } finally {
@@ -38,7 +42,7 @@ const CouponManage = () => {
   const [data, setData] = couponInfo ? useState({
     couponId: coupon.couponId,
     name: coupon.name,
-    storeId: 2,
+    storeId: coupon.storeId,
     available: coupon.available,
     description: coupon.description,
     validity: coupon.validity,
@@ -47,7 +51,7 @@ const CouponManage = () => {
   }) : useState({
     couponId: null,
     name: "",
-    storeId: 2,
+    storeId,
     available: true,
     description: "",
     validity: null,
@@ -75,6 +79,8 @@ const CouponManage = () => {
       fetch();
     } catch (err) {
       console.log(err);
+    } finally {
+      await setLoading(false);
     }
   };
 
@@ -84,7 +90,7 @@ const CouponManage = () => {
       await couponPost({
         couponId: null,
         name: data.name,
-        storeId: 2,
+        storeId,
         available: true,
         description: data.description,
         validity: data.validity,
@@ -94,6 +100,7 @@ const CouponManage = () => {
       fetch();
     } catch (e) {
       console.log(e);
+    } finally {
       await setLoading(false);
     }
   };
@@ -105,33 +112,12 @@ const CouponManage = () => {
       fetch();
     } catch (e) {
       console.log(e);
+    } finally {
       await setLoading(false);
     }
   };
 
   return (
-  // couponInfo ? (
-  //   <CouponRegisterFormView
-  //     btnName="수정"
-  //     confirmBtn="수정"
-  //     coupon={couponInfo}
-  //     insert={insertCoupon}
-  //     update={updateCoupon}
-  //     data={data}
-  //     setData={setData}
-  //   />
-  // ) : (
-  //   <CouponRegisterFormView
-  //     btnName="+ 등록하기"
-  //     confirmBtn="등록"
-  //     coupon={null}
-  //     insert={insertCoupon}
-  //     update={updateCoupon}
-  //     data={data}
-  //     setData={setData}
-  //   />
-  // )
-
     loading ? (
       <CTLoading />
     ) : (
@@ -139,7 +125,6 @@ const CouponManage = () => {
         total={couponList.total}
         results={couponList.results}
         remove={removeCoupon}
-        // coupon={couponInfo}
         insert={insertCoupon}
         update={updateCoupon}
         data={data}

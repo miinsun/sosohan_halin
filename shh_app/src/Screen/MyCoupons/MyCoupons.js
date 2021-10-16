@@ -5,10 +5,7 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 import { MyCouponList, CouponUseView } from './Components';
 import { useConsumerCoupon } from '../../components';
 import { CTLoading, useLoading } from '../../components/CTLoading';
-import {
-  Button,
-  Modal,
-} from 'native-base';
+
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -76,8 +73,8 @@ const MyCoupons = () => {
       
       <CouponUseView 
         consumerCouponId={consumerCouponId}
-        // storeName={storeName}
-        // couponName={couponName}
+        storeName={storeName}
+        couponName={couponName}
         showModal2={showModal2}
         setShowModal2={setShowModal2}
       />

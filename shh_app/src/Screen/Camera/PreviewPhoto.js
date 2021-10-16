@@ -29,7 +29,7 @@ const PreviewPhoto = ({ photo, retakePicture, storeName, businessNum, date}) => 
   const fetch = async () => {
     try {
       console.log(storeName);
-      await receiptGetParam("storename=만리장성&businessnum=0000011111&date=2019-10-17&consumeruserid=hy");
+      await receiptGetParam("storename=방탈출 미로&businessnum=1111122222&date=2021-08-17&consumeruserid=hy");
       const store = isInReceipt.result;
 
       if(!store){

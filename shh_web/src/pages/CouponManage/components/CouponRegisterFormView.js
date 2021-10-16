@@ -18,25 +18,27 @@ const validityToReadonly = () => {
 };
 
 const CouponRegisterFormView = ({
-  confirmBtn, coupon, insert, update, data, setData, modalRef, show, setShow,
+  confirmBtn, coupon, insert, update, data, setData, show, setShow,
 }) => {
-  // const [show, setShow] = useState(false);
-
   const handleClose = () => setShow(false);
   const handleChange = (e) => {
-    setData({
-      ...coupon,
+    if (coupon == null) {
+      setData({
+        ...data,
 
-      [e.target.name]: e.target.value,
-    });
+        [e.target.name]: e.target.value,
+      });
+    } else {
+      setData({
+        ...coupon,
+
+        [e.target.name]: e.target.value,
+      });
+    }
   };
 
   return (
     <>
-      {/* <Button variant="primary" onClick={handleInsert}>
-        + 등록하기
-      </Button> */}
-
       <Modal
         show={show}
         onHide={handleClose}

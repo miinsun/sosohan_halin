@@ -21,8 +21,7 @@ import { useState } from 'react';
 
 const windowHeight = Dimensions.get('window').height;
 
-// const CouponUseView = ({consumerCouponId, storeName, couponName, showModal2, setShowModal2}) => {
-const CouponUseView = ({ consumerCouponId, showModal2, setShowModal2}) => {
+const CouponUseView = ({consumerCouponId, storeName, couponName, showModal2, setShowModal2}) => {
     return (
       <>
         <Modal isOpen={showModal2} onClose={() => setShowModal2(false)}>
@@ -43,29 +42,27 @@ const CouponUseView = ({ consumerCouponId, showModal2, setShowModal2}) => {
                     textAlign="center">
                     <Stack p="4" space={3}>
                       <Text fontSize="sm" color="coolGray.600">
-                        {/* {storeName} */}
-                        상점명
+                        {storeName} 
+                        {/* 상점명*/}
                       </Text>
                       <Text fontSize="lg">
-                        {/* {couponName} */}
-                        쿠폰명
-                      </Text>
-                      <Text fontSize="sm">
-                        (테스트 후 삭제) 쿠폰id: {consumerCouponId}
+                        {couponName}
+                        {/* 쿠폰명*/}
                       </Text>
                     </Stack>
                   </Box>
                 </Center>
+
                 <Center w="135" h="135" bg="#54BAEB" rounded="md" shadow={5}>
                   <Image
                     source={{
-                      uri: "https://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=http://172.30.1.56:3000/couponRecog?cCouponId=1",
+                      uri: "https://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=http://172.30.1.56:3000/couponRecog?cCouponId=" + consumerCouponId,
                     }}
                     alt="사용자 쿠폰 QR코드"
                     size="xl"
                   />
                 </Center>
-                {/* <Center w="72" h="64" bg="emerald.500" rounded="md" shadow={3}></Center>*/}
+
                 <Box
                   rounded="lg"
                   overflow="hidden"

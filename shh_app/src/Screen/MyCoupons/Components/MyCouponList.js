@@ -46,9 +46,9 @@ const MyCouponList = ({
   return (
     <>
       {/* 여기부터 */}
-      <Pressable  style={styles.button} onPress={onDownloadPress}>
+      {/* <Pressable  style={styles.button} onPress={onDownloadPress}>
         <Text>테스트용 쿠폰 다운로드</Text>
-      </Pressable>
+      </Pressable> */}
       {/* 여기까지는 CouponList 완성 후 CouponList 쪽으로 이동할 예정 */}
 
       <MyCouponListView 
