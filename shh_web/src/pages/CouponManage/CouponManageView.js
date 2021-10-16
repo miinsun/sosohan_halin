@@ -13,7 +13,6 @@ const CouponManageView = ({
   total,
   results,
   remove,
-  // coupon,
   insert,
   update,
   data,
