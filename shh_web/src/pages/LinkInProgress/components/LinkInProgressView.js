@@ -20,7 +20,7 @@ const isIn = (results, total, changeState) => {
           {total > 0
             && results.map((data) => (
               <Col>
-                <Card className="text-center mt-4 shadow  mb-3 bg-body rounded">
+                <Card className="text-center mt-4 shadow mb-3 bg-body rounded">
                   <Card.Header>{data.proposer.name}
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-link" viewBox="0 0 16 16">
                       <path d="M6.354 5.5H4a3 3 0 0 0 0 6h3a3 3 0 0 0 2.83-4H9c-.086
@@ -32,15 +32,15 @@ const isIn = (results, total, changeState) => {
                     </svg>
                     {data.receiver.name}
                   </Card.Header>
-                  <Card.Body>
+                  <Card.Body className="text-left">
                     <Card.Text>
-                      {data.content}<br />
-                      <p className="text-muted">{data.proposalDate}</p>
+                      {data.content}
+                      <p className="card-date text-muted">{data.proposalDate}</p>
                     </Card.Text>
                   </Card.Body>
                   <Card.Footer>
                     <Button
-                      variant="outline-secondary"
+                      variant="secondary"
                       onClick={() => changeState(data.linkId, data.state, -1)}
                     >연계취소
                     </Button>
@@ -54,8 +54,10 @@ const isIn = (results, total, changeState) => {
   }
 
   return (
-    <Container className="text-center">
-      <Row>
+    <Container className="text-center p-5">
+      <div className="my-5 fs-5">진행 중인 연계가 없습니다!</div>
+      <Link to="/storelist" className="btn btn-outline-primary">다른 상점 둘러보기</Link>
+      {/* <Row>
         <Col sm />
         <Col sm>
           <Card className="text-center" style={{ width: "18rem" }}>
@@ -69,7 +71,7 @@ const isIn = (results, total, changeState) => {
           </Card>
         </Col>
         <Col sm />
-      </Row>
+      </Row> */}
     </Container>
   );
 };

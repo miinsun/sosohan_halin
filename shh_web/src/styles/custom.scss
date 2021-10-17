@@ -180,3 +180,14 @@ body {
   color: $dark;
   background-color: #ddd;
 }
+
+.card-body {
+  flex: 1 1 auto;
+  height: 160px;
+  padding: 1rem 1rem;
+}
+
+.card-date {
+  position: absolute;
+  bottom: 50px;
+}
