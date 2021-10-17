@@ -44,7 +44,7 @@ const CouponRegisterFormView = ({
         onHide={handleClose}
         backdrop="static"
         keyboard={false}
-        size="lg"
+        size="md"
         aria-labelledby="contained-modal-title-vcenter"
         centered
       >
@@ -132,7 +132,7 @@ const CouponRegisterFormView = ({
             취소
           </Button>
           <Button
-            variant="outline-primary"
+            variant="primary"
             onClick={() => {
               if (confirmBtn === "등록") {
                 insert(data);

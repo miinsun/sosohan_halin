@@ -25,12 +25,12 @@ const routes = [
     component: StoreList,
   },
   {
-    path: "/link/in",
+    path: "/linkreception",
     exact: true,
     component: LinkReceptionHistory,
   },
   {
-    path: "/link/out",
+    path: "/linksent",
     exact: true,
     component: LinkSentHistory,
   },
