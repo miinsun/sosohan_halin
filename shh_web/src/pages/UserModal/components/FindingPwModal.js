@@ -15,7 +15,7 @@ const FindingPwModal = ({
     onHide={() => { close(); setModalPage("login"); initializeModal(); }}
   >
     <Modal.Header closeButton>
-      <Modal.Title>패스워드 찾기</Modal.Title>
+      <span className="text-dark">패스워드 찾기</span>
     </Modal.Header>
 
     <Modal.Body>

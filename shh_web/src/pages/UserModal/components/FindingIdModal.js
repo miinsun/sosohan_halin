@@ -16,7 +16,7 @@ const FindingIdModal = ({
     onHide={() => { close(); setModalPage("login"); initializeModal(); }}
   >
     <Modal.Header closeButton>
-      <Modal.Title>아이디 찾기</Modal.Title>
+      <span className="text-dark">아이디 찾기</span>
     </Modal.Header>
 
     <Modal.Body>

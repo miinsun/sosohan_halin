@@ -18,7 +18,7 @@ const LoginModal = ({
       {/* <Modal.Title className="text-muted">로그인</Modal.Title> */}
       {/* <span className="text-muted">로그인</span> */}
       {/* <span className="text-muted">모달 헤더</span> */}
-      <span className="text-muted">로그인</span>
+      <span className="text-dark">로그인</span>
     </Modal.Header>
     <Modal.Body>
       <Form>
