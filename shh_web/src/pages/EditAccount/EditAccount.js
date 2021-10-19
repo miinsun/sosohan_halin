@@ -11,25 +11,11 @@ const EditAccount = () => {
   const { loading, setLoading } = useLoading(true);
 
   const [data, setData] = useState({
-    email: "",
+    email: user.email,
     curPassword: "",
     newPassword: "",
     newPasswordConfirm: "",
   });
-
-  const fetch = async () => {
-    try {
-      await userGet(sessionId);
-    } catch (err) {
-      console.log(err);
-    } finally {
-      await setLoading(false);
-      setData({
-        ...data,
-        email: user.email,
-      });
-    }
-  };
 
   const handleChange = (e) => {
     setData({
@@ -37,7 +23,23 @@ const EditAccount = () => {
       [e.target.name]: e.target.value,
     });
   };
-  console.log(data);
+
+  useEffect(() => {
+    const fetch = async () => {
+      try {
+        const result = await userGet(sessionId);
+        setData({
+          ...data,
+          email: result.data.email,
+        });
+      } catch (err) {
+        console.log(err);
+      } finally {
+        await setLoading(false);
+      }
+    };
+    fetch();
+  }, []);
 
   const updateUser = async () => {
     try {
@@ -74,19 +76,18 @@ const EditAccount = () => {
     }
   };
 
-  useEffect(() => {
-    fetch();
-  }, []);
-
   return (
     <div className="EditAccount container">
       <MyPageSideBar />
       <div className="mx-auto col-6">
         <h4 className="mb-3">회원 정보 수정</h4>
-        {loading ? (
-          <CTLoading />
-        ) : (<EditAccountForm updateUser={updateUser} handleChange={handleChange} />
-        )}
+        <EditAccountForm
+          updateUser={updateUser}
+          handleChange={handleChange}
+          user={user}
+          data={data}
+          setData={setData}
+        />
       </div>
     </div>
   );
