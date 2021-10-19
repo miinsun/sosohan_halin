@@ -1,12 +1,42 @@
-import React, { useRef } from "react";
+import React, { useState } from "react";
 import {
   Modal, Button,
 } from "react-bootstrap";
+import { useUser } from "../../components";
 import CTLogo from "../../components/CTLogo";
 import FindingIdForm from "./components/FindingIdForm";
 
 const FindingId = () => {
-  const childRef = useRef();
+  const { userFindingId } = useUser();
+
+  const [data, setData] = useState({
+    name: "",
+    email: "",
+  });
+
+  const handleChange = (e) => {
+    setData({
+      ...data,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const findId = async () => {
+    try {
+      console.log(data);
+
+      if (data.name.length <= 0 || data.email.length <= 0) {
+        alert("정확한 정보를 입력해 주세요.");
+        return;
+      }
+
+      const response = await userFindingId(data.name, data.email);
+      document.location.href = `/findingid/result/${response.data}`;
+    } catch (err) {
+      alert("일치하는 회원이 없습니다.");
+      console.log(err);
+    }
+  };
 
   return (
     <>
@@ -15,19 +45,14 @@ const FindingId = () => {
       </Modal.Header>
 
       <Modal.Body>
-        <FindingIdForm ref={childRef} />
+        <FindingIdForm handleChange={handleChange} />
       </Modal.Body>
 
       <Modal.Footer>
         {/* <Button className="btn btn-secondary">취소</Button>{" "} */}
-        <Button className="btn btn-primary" onClick={() => { childRef.current.submit(); }}>아이디 찾기</Button>
+        <Button className="btn btn-primary" onClick={findId}>아이디 찾기</Button>
       </Modal.Footer>
     </>
-  // <div className="FindingId">
-  //   <CTLogo />
-  //   <h5>아이디 찾기</h5>
-  //   <FindingIdForm />
-  // </div>
   );
 };
 

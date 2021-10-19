@@ -1,63 +1,12 @@
 import React, { useState } from "react";
+import {
+  Button,
+} from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useUser } from "../../../components";
 
-const EditAccountForm = () => {
-  const { user, userPut } = useUser();
-
-  const [data, setData] = useState({
-    email: user.email,
-    curPassword: "",
-    newPassword: "",
-    newPasswordConfirm: "",
-  });
-
-  console.log(`email:${data.email}`);
-
-  const handleChange = (e) => {
-    setData({
-      ...data,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const updateUser = async () => {
-    try {
-      console.log(data);
-
-      if (data.email.length <= 0) {
-        alert(data.email);
-        alert("정확한 정보를 입력해 주세요.");
-        return;
-      }
-
-      if (data.newPassword !== data.newPasswordConfirm) {
-        alert("신규 패스워드가 일치하지 않습니다. 다시 입력해 주세요.");
-        return;
-      }
-
-      await userPut(data.curPassword, {
-        // businessUserId: user.businessUserId,
-        // password: data.newPassword,
-        // name: user.name,
-        // email: data.email,
-        // businessNum: user.businessNum,
-        // stores: user.stores,
-        // state: user.state,
-        ...user,
-        password: data.newPassword,
-        email: data.email,
-      });
-
-      alert("수정이 완료되었습니다.");
-      document.location.href = "/";
-
-      // await userGet(user.businessUserId);
-    } catch (err) {
-      console.log(err);
-      alert("현재 패스워드가 일치하지 않습니다.");
-    }
-  };
+const EditAccountForm = ({ updateUser, handleChange }) => {
+  const { user } = useUser();
 
   return (
     user ? (
@@ -113,7 +62,7 @@ const EditAccountForm = () => {
         <div className="text-center">
           {/* <Link className="btn btn-outline-secondary" to="/">취소</Link>{" "} */}
           {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-          <Link className="btn btn-primary" onClick={updateUser}>수정</Link>
+          <Button className="btn btn-primary" onClick={updateUser}>수정</Button>
         </div>
       </form>
     ) : (
