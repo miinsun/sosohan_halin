@@ -4,47 +4,23 @@ import {
 } from "react-bootstrap";
 import { useUser, useStore } from "../../components";
 import LinkAlarm from "../../pages/LinkAlarm";
-import LoginModal from "../../pages/Login";
+// import LoginModal from "../../pages/Login";
+import UserModal from "../../pages/UserModal";
 import SelectShop from "./SelectShop";
 
 const UserArea = () => {
-  const { userLogin, userLogout } = useUser();
+  const { userLogout } = useUser();
   const { storeGetMy, myStores } = useStore();
+
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const getMyStores = async () => {
     try {
       await storeGetMy(sessionStorage.getItem("sessionId"));
     } catch (e) {
-      console.log(e);
-    }
-  };
-
-  const [data, setData] = useState({
-    businessUserId: "",
-    password: "",
-  });
-
-  const handleChange = (e) => {
-    setData({
-      ...data,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const login = async () => {
-    try {
-      console.log(data);
-
-      if (data.businessUserId.length <= 0 || data.password.length <= 0) {
-        alert("정확한 정보를 입력해 주세요.");
-        return;
-      }
-
-      const response = await userLogin(data.businessUserId, data.password);
-      sessionStorage.setItem("sessionId", response.data);
-      document.location.href = "/";
-    } catch (e) {
-      alert("로그인 정보를 확인해 주세요.");
       console.log(e);
     }
   };
@@ -61,26 +37,19 @@ const UserArea = () => {
     document.location.href = "/";
   };
 
-  const [showLogin, setShowLogin] = useState(false);
-
-  const handleCloseLogin = () => setShowLogin(false);
-  const handleShowLogin = () => setShowLogin(true);
-
   return (
     <div className="UserArea">
       {!sessionStorage.getItem("sessionId") && (
         <Nav className="GuestArea">
           <Nav.Link
-            onClick={handleShowLogin}
+            onClick={handleShow}
             className="btn btn-outline-primary text-primary"
           >로그인
           </Nav.Link>
-          <LoginModal
-            onHide={handleCloseLogin}
-            close={handleCloseLogin}
-            showLogin={showLogin}
-            login={login}
-            handleChange={handleChange}
+          <UserModal
+            onHide={handleClose}
+            close={handleClose}
+            show={show}
           />
         </Nav>
       )}

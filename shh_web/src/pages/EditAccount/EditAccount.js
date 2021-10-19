@@ -77,19 +77,22 @@ const EditAccount = () => {
   };
 
   return (
-    <div className="EditAccount container">
-      <MyPageSideBar />
-      <div className="mx-auto col-6">
-        <h4 className="mb-3">회원 정보 수정</h4>
-        <EditAccountForm
-          updateUser={updateUser}
-          handleChange={handleChange}
-          user={user}
-          data={data}
-          setData={setData}
-        />
-      </div>
-    </div>
+    loading ? <CTLoading />
+      : (
+        <div className="EditAccount container">
+          <MyPageSideBar />
+          <div className="mx-auto col-6">
+            <h4 className="mb-3">회원 정보 수정</h4>
+            <EditAccountForm
+              updateUser={updateUser}
+              handleChange={handleChange}
+              user={user}
+              data={data}
+              setData={setData}
+            />
+          </div>
+        </div>
+      )
   );
 };
 
