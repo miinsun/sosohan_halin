@@ -14,21 +14,39 @@ const EditAccountForm = ({ updateUser, handleChange, user }) => (
       <p />
     </div>
     <div className="md-form">
+      <span className="text-danger">*</span>
       {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
       <label htmlFor="curPassword">현재 패스워드</label>
-      <input name="curPassword" className="form-control" type="password" onChange={handleChange} />
+      <input
+        name="curPassword"
+        className="form-control"
+        type="password"
+        onChange={handleChange}
+      />
       <p />
     </div>
     <div className="md-form">
       {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
       <label htmlFor="password">새 패스워드</label>
-      <input name="newPassword" className="form-control" type="password" onChange={handleChange} />
+      <input
+        name="newPassword"
+        className="form-control"
+        type="password"
+        onChange={handleChange}
+        placeholder="변경을 원할 시에만 입력해 주세요."
+      />
       <p />
     </div>
     <div className="md-form">
       {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
       <label htmlFor="passwordConfirm">새 패스워드 확인</label>
-      <input name="newPasswordConfirm" className="form-control" type="password" onChange={handleChange} />
+      <input
+        name="newPasswordConfirm"
+        className="form-control"
+        type="password"
+        onChange={handleChange}
+        placeholder="변경할 패스워드를 한 번 더 입력해 주세요."
+      />
       <p />
     </div>
     <div className="md-form">
