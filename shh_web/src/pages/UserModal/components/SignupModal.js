@@ -1,5 +1,6 @@
 import React from "react";
-import { Modal, Button } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const SignupModal = ({
   signup, handleChange, show, close, setModalPage, initializeModal,
@@ -12,7 +13,7 @@ const SignupModal = ({
     onHide={() => { close(); initializeModal(); }}
   >
     <Modal.Header closeButton>
-      <Modal.Title>회원 가입</Modal.Title>
+      <span className="text-dark">회원 가입</span>
     </Modal.Header>
 
     <Modal.Body>
@@ -67,9 +68,9 @@ const SignupModal = ({
 
     <Modal.Footer>
       {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-      <Button className="btn btn-secondary" onClick={() => { setModalPage("login"); }}>뒤로 가기</Button>{" "}
+      <Link className="btn btn-outline-secondary" onClick={() => { setModalPage("login"); }}>뒤로 가기</Link>{" "}
       {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-      <Button className="btn btn-primary" onClick={signup}>가입하기 </Button>
+      <Link className="btn btn-primary" onClick={signup}>가입하기 </Link>
     </Modal.Footer>
   </Modal>
 );
