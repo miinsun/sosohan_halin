@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import {
-  Nav, Modal, Button,
+  Nav,
 } from "react-bootstrap";
 import { useUser, useStore } from "../../components";
 import LinkAlarm from "../../pages/LinkAlarm";
@@ -19,7 +19,19 @@ const UserArea = () => {
     }
   };
 
-  const login = async (data) => {
+  const [data, setData] = useState({
+    businessUserId: "",
+    password: "",
+  });
+
+  const handleChange = (e) => {
+    setData({
+      ...data,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const login = async () => {
     try {
       console.log(data);
 
@@ -63,7 +75,13 @@ const UserArea = () => {
             className="btn btn-outline-primary text-primary"
           >로그인
           </Nav.Link>
-          <LoginModal onHide={handleCloseLogin} close={handleCloseLogin} showLogin={showLogin} login={login} />
+          <LoginModal
+            onHide={handleCloseLogin}
+            close={handleCloseLogin}
+            showLogin={showLogin}
+            login={login}
+            handleChange={handleChange}
+          />
         </Nav>
       )}
       {sessionStorage.getItem("sessionId") && (
@@ -75,34 +93,6 @@ const UserArea = () => {
         </Nav>
       )}
     </div>
-
-  // <div className="UserArea container">
-  //   {!sessionStorage.getItem("sessionId") && (
-  //     <div className="GuestArea row">
-  //       <div className="col">
-  //         <Link to="/login" className="btn btn-primary">로그인</Link>
-  //       </div>
-  //     </div>
-  //   )}
-  //   {sessionStorage.getItem("sessionId") && (
-  //     <div className="LoginArea row">
-  //       <div className="col">
-  //         {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-  //         <Link to="/editaccount">{sessionId}님</Link>
-  //       </div>
-  //       <div className="col">
-  //         <SelectShop />
-  //       </div>
-  //       <div className="col">
-  //         <LinkAlarm />
-  //       </div>
-  //       <div className="col">
-  //         {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-  //         <Link onClick={logout} className="btn btn-secondary">로그아웃</Link>
-  //       </div>
-  //     </div>
-  //   )}
-  // </div>
   );
 };
 export default UserArea;
