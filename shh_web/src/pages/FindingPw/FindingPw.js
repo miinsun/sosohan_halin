@@ -9,28 +9,28 @@ import FindingPwForm from "./components/FindingPwForm";
 const FindingPw = () => {
   const { userFindingPw } = useUser();
 
-  const [data, setData] = useState({
+  const [findingPwData, setFindingPwData] = useState({
     businessUserId: "",
     email: "",
   });
 
   const handleChange = (e) => {
-    setData({
-      ...data,
+    setFindingPwData({
+      ...findingPwData,
       [e.target.name]: e.target.value,
     });
   };
 
   const findPw = async () => {
     try {
-      console.log(data);
+      console.log(findingPwData);
 
-      if (data.businessUserId.length <= 0 || data.email.length <= 0) {
+      if (findingPwData.businessUserId.length <= 0 || findingPwData.email.length <= 0) {
         alert("정확한 정보를 입력해 주세요.");
         return;
       }
 
-      await userFindingPw(data.businessUserId, data.email);
+      await userFindingPw(findingPwData.businessUserId, findingPwData.email);
       document.location.href = "/findingpw/result";
       // eslint-disable-next-line react/no-this-in-sfc
       // this.forceUpdate();

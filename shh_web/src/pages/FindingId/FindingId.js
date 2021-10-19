@@ -9,28 +9,28 @@ import FindingIdForm from "./components/FindingIdForm";
 const FindingId = () => {
   const { userFindingId } = useUser();
 
-  const [data, setData] = useState({
+  const [findingIdData, setfindingIdData] = useState({
     name: "",
     email: "",
   });
 
   const handleChange = (e) => {
-    setData({
-      ...data,
+    setfindingIdData({
+      ...findingIdData,
       [e.target.name]: e.target.value,
     });
   };
 
   const findId = async () => {
     try {
-      console.log(data);
+      console.log(findingIdData);
 
-      if (data.name.length <= 0 || data.email.length <= 0) {
+      if (findingIdData.name.length <= 0 || findingIdData.email.length <= 0) {
         alert("정확한 정보를 입력해 주세요.");
         return;
       }
 
-      const response = await userFindingId(data.name, data.email);
+      const response = await userFindingId(findingIdData.name, findingIdData.email);
       document.location.href = `/findingid/result/${response.data}`;
     } catch (err) {
       alert("일치하는 회원이 없습니다.");
