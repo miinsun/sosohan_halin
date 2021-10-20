@@ -11,7 +11,7 @@ const UserModal = ({
   close, show,
 }) => {
   const {
-    userLogin, userSignup, userFindingId, userFindingPw,
+    userLogin, userSignup, userFindingId, userFindingPw, userCheckId, isIdExisting,
   } = useUser();
 
   // modal initialize
@@ -106,6 +106,12 @@ const UserModal = ({
         return;
       }
 
+      const response = await userCheckId(signupData.businessUserId);
+      if (response.data === true) {
+        alert("이미 존재하거나 탈퇴한 회원의 아이디입니다.");
+        return;
+      }
+
       if (signupData.password !== signupData.passwordConfirm) {
         alert("패스워드가 일치하지 않습니다. 다시 입력해 주세요.");
         return;
@@ -116,15 +122,15 @@ const UserModal = ({
         return;
       }
 
-      await userSignup({
-        businessUserId: signupData.businessUserId,
-        password: signupData.password,
-        name: signupData.name,
-        email: signupData.email,
-        businessNum: signupData.businessNum,
-        stores: List([]),
-        state: 1,
-      });
+      // await userSignup({
+      //   businessUserId: signupData.businessUserId,
+      //   password: signupData.password,
+      //   name: signupData.name,
+      //   email: signupData.email,
+      //   businessNum: signupData.businessNum,
+      //   stores: List([]),
+      //   state: 1,
+      // });
     } catch (err) {
       alert(err);
       console.log(err);

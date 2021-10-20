@@ -11,3 +11,4 @@ export const signup = (form) => client.post("/api/v1/businessSignup", form);
 export const findingId = (name, email) => client.post(`/api/v1/findingBusinessUserId/${name}/${email}`);
 // eslint-disable-next-line max-len
 export const findingPw = (businessUserId, email) => client.post(`/api/v1/findingBusinessUserPw/${businessUserId}/${email}`);
+export const checkId = (businessUserId) => client.post(`/api/v1/checkBusinessId/${businessUserId}`);

@@ -5,6 +5,7 @@ const useUser = () => {
   const usersInfo = useShallowEqualSelectorToJS((state) => (state.user.get("list")));
   const user = useShallowEqualSelectorToJS((state) => (state.user.get("user")));
   const userName = useShallowEqualSelector((state) => (state.user.getIn(["user", "name"])));
+  const isIdExisting = useShallowEqualSelector((state) => (state.user.get("isIdExisting")));
 
   const actions = useActions(reducer);
 
@@ -12,6 +13,7 @@ const useUser = () => {
     user,
     userName,
     usersInfo,
+    isIdExisting,
 
     userList: actions.userList,
     userGet: actions.userGet,
@@ -22,6 +24,7 @@ const useUser = () => {
     userLogout: actions.userLogout,
     userFindingId: actions.userFindingId,
     userFindingPw: actions.userFindingPw,
+    userCheckId: actions.userCheckId,
     // userPut: reducer.userPut,
   };
 };
