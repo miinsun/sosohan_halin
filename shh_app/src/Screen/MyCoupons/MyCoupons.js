@@ -20,8 +20,8 @@ const MyCoupons = () => {
 
   const fetch = async () => {
     try {
-      await consumerCouponGetAllAvailable("hy", 1);
-      await consumerCouponGetAllExpired("hy", 0);
+      await consumerCouponGetAllAvailable("hy", true);
+      await consumerCouponGetAllExpired("hy", false);
     } catch (e) {
       console.log(e);
     } 

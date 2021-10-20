@@ -69,7 +69,10 @@ const MyCouponListView = ({
               <HStack h={40}>
                 <VStack mx={2} space={5} alignItems="center">
                   <Box w="75px" h={9} bg={isCouponAvailable ? "blue.100" : "blueGray.300"} alignItems="center" justifyContent="center" shadow={3}>
-                    <Text color="#555" textAlign="center">{item.remainingDay}일 남음</Text>
+                  {item.remainingDay >= 0 
+                  ? <Text color="#555" textAlign="center">{item.remainingDay}일 남음</Text>
+                  : <Text color="#555" textAlign="center">기한 만료</Text>
+                  } 
                   </Box>
                   <Image
                     source={{
