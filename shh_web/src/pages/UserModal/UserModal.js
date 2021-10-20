@@ -1,6 +1,7 @@
 import { List } from "immutable";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 // import "../../styles/form-sign.css";
+import { useCookies } from "react-cookie";
 import { useUser } from "../../components";
 import FindingIdModal from "./components/FindingIdModal";
 import FindingPwModal from "./components/FindingPwModal";
@@ -18,6 +19,10 @@ const UserModal = ({
   const [modalPage, setModalPage] = useState("login");
   const [foundId, setFoundId] = useState(null);
   const [isPwFound, setIsPwFound] = useState(false);
+
+  const [defaultId, setDefaultId] = useState("");
+  const [isChecked, setIsChecked] = useState(false);
+  const [cookies, setCookie, removeCookie] = useCookies(["rememberedId"]);
 
   const initializeModal = () => {
     setModalPage("login");
@@ -51,10 +56,14 @@ const UserModal = ({
   });
 
   const handleLoginChange = (e) => {
-    setLoginData({
-      ...loginData,
-      [e.target.name]: e.target.value,
-    });
+    if (e.target.name === "rememberMe") {
+      setIsChecked(e.target.checked);
+    } else {
+      setLoginData({
+        ...loginData,
+        [e.target.name]: e.target.value,
+      });
+    }
   };
 
   const handleSignupChange = (e) => {
@@ -80,8 +89,6 @@ const UserModal = ({
 
   const login = async () => {
     try {
-      console.log(loginData);
-
       if (loginData.businessUserId.length <= 0 || loginData.password.length <= 0) {
         alert("정확한 정보를 입력해 주세요.");
         return;
@@ -89,6 +96,11 @@ const UserModal = ({
 
       const response = await userLogin(loginData.businessUserId, loginData.password);
       sessionStorage.setItem("sessionId", response.data);
+      if (isChecked === true) {
+        setCookie("rememberedId", response.data, { maxAge: 2000 });
+      } else if (cookies.rememberedId !== undefined) {
+        removeCookie("rememberedId");
+      }
       document.location.href = "/";
     } catch (e) {
       alert("로그인 정보를 확인해 주세요.");
@@ -98,8 +110,6 @@ const UserModal = ({
 
   const signup = async () => {
     try {
-      console.log(signupData);
-
       if (signupData.businessUserId.length <= 0 || signupData.name.length <= 0
         || signupData.email.length <= 0 || signupData.password.length <= 0) {
         alert("필수적인 정보를 입력해 주세요.");
@@ -131,9 +141,9 @@ const UserModal = ({
       //   stores: List([]),
       //   state: 1,
       // });
-    } catch (err) {
-      alert(err);
-      console.log(err);
+    } catch (e) {
+      alert(e);
+      console.log(e);
     }
 
     alert("가입이 완료되었습니다.");
@@ -142,8 +152,6 @@ const UserModal = ({
 
   const findId = async () => {
     try {
-      console.log(findingIdData);
-
       if (findingIdData.name.length <= 0 || findingIdData.email.length <= 0) {
         alert("정확한 정보를 입력해 주세요.");
         return;
@@ -151,16 +159,14 @@ const UserModal = ({
 
       const response = await userFindingId(findingIdData.name, findingIdData.email);
       setFoundId(response.data);
-    } catch (err) {
+    } catch (e) {
       alert("일치하는 회원이 없습니다.");
-      console.log(err);
+      console.log(e);
     }
   };
 
   const findPw = async () => {
     try {
-      console.log(findingPwData);
-
       if (findingPwData.businessUserId.length <= 0 || findingPwData.email.length <= 0) {
         alert("정확한 정보를 입력해 주세요.");
         return;
@@ -168,11 +174,22 @@ const UserModal = ({
 
       await userFindingPw(findingPwData.businessUserId, findingPwData.email);
       setIsPwFound(true);
-    } catch (err) {
+    } catch (e) {
       alert("일치하는 회원이 없습니다.");
-      console.log(err);
+      console.log(e);
     }
   };
+
+  useEffect(() => {
+    if (cookies.rememberedId !== undefined) {
+      setDefaultId(cookies.rememberedId);
+      setIsChecked(true);
+      setLoginData({
+        ...loginData,
+        businessUserId: cookies.rememberedId,
+      });
+    }
+  }, []);
 
   return (
     <>
@@ -184,6 +201,8 @@ const UserModal = ({
           close={close}
           setModalPage={setModalPage}
           initializeModal={initializeModal}
+          isChecked={isChecked}
+          defaultId={defaultId}
         />
       )}
       {modalPage === "signup" && (

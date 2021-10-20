@@ -5,7 +5,7 @@ import {
 import { Link } from "react-router-dom";
 
 const LoginModal = ({
-  login, handleChange, show, close, setModalPage, initializeModal,
+  login, handleChange, show, close, setModalPage, initializeModal, isChecked, defaultId,
 }) => (
   <Modal
     id="userModal"
@@ -24,7 +24,13 @@ const LoginModal = ({
       <Form>
         <FormGroup controlId="businessUserId">
           <FloatingLabel className="mb-3" controlId="businessUserId" label="아이디">
-            <Form.Control size="lg" type="text" name="businessUserId" onChange={handleChange} />
+            <Form.Control
+              size="lg"
+              type="text"
+              name="businessUserId"
+              onChange={handleChange}
+              defaultValue={defaultId}
+            />
           </FloatingLabel>
         </FormGroup>
         <FormGroup controlId="password">
@@ -33,7 +39,7 @@ const LoginModal = ({
           </FloatingLabel>
         </FormGroup>
         <Form.Group className="mb-3" controlId="rememberMe">
-          <Form.Check type="checkbox" label="아이디 저장" />
+          <Form.Check type="checkbox" name="rememberMe" onChange={handleChange} checked={isChecked} label="아이디 저장" />
         </Form.Group>
         <div className="text-center">
           {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
