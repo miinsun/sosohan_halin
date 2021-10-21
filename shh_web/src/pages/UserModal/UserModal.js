@@ -24,6 +24,12 @@ const UserModal = ({
   const [isChecked, setIsChecked] = useState(false);
   const [cookies, setCookie, removeCookie] = useCookies(["rememberedId"]);
 
+  const [idValidation, setIdValidation] = useState(0);
+  const [pwValidation, setPwValidation] = useState(0);
+  const [pwConfirmValidation, setPwConfirmValidation] = useState(0);
+  const [emailValidation, setEmailValidation] = useState(0);
+  const [busiNumValidation, setBusiNumValidation] = useState(0);
+
   const initializeModal = () => {
     setModalPage("login");
     setFoundId(null);
@@ -55,6 +61,75 @@ const UserModal = ({
     email: "",
   });
 
+  const validateUserId = async (id) => {
+    console.log(id);
+    if (id.length === 0) {
+      setIdValidation(0);
+    } else if (id.length < 5) {
+      setIdValidation(-1);
+    } else {
+      const response = await userCheckId(id);
+      if (response.data === true) {
+        setIdValidation(-2);
+      } else {
+        setIdValidation(1);
+      }
+    }
+  };
+
+  const validateUserPw = (pw) => {
+    console.log(pw);
+    if (pw.length === 0) { // 아무것도 없음 -> 비번, 비번확인 다 0
+      setPwValidation(0);
+      setPwConfirmValidation(0);
+    } else if (pw.length < 10) { // 길이가 짧음 -> 비번: -1, 비번확인: 0
+      setPwValidation(-1);
+      setPwConfirmValidation(0);
+    } else { // 형식에 맞음 -> 비번: 1, 비번확인: 일치하면 1 비일치하면 -1
+      setPwValidation(1);
+      if (pw === signupData.passwordConfirm) {
+        setPwConfirmValidation(1);
+      }
+      if (pw !== signupData.passwordConfirm) {
+        setPwConfirmValidation(-1);
+      }
+    }
+  };
+
+  const validateUserPwConfirm = (pwConfirm) => {
+    console.log(pwConfirm);
+    if (pwValidation === -1) { // 비번이 유효하지 않으면 -> 0
+      setPwConfirmValidation(0);
+    } else if (pwConfirm.length === 0) { // 아무것도 없음 -> 0
+      setPwConfirmValidation(0);
+    } else if (pwConfirm !== signupData.password) { // 비일치 -> -1
+      console.log("비일치하자나");
+      setPwConfirmValidation(-1);
+    } else if (pwValidation === 1) { // 일치 -> 1
+      setPwConfirmValidation(1);
+    }
+  };
+
+  const validateEmail = (email) => {
+    console.log(email);
+    if (email.length === 0) {
+      setEmailValidation(0);
+    } else {
+      setEmailValidation(1);
+    }
+  };
+
+  const validateBusiNum = (busiNum) => {
+    console.log(busiNum);
+    if (busiNum.length === 0) {
+      setBusiNumValidation(0);
+    } else if (busiNum.length !== 10) {
+      setBusiNumValidation(-1);
+    } else {
+      setBusiNumValidation(1);
+    }
+  };
+
   const handleLoginChange = (e) => {
     if (e.target.name === "rememberMe") {
       setIsChecked(e.target.checked);
@@ -71,6 +146,17 @@ const UserModal = ({
       ...signupData,
       [e.target.name]: e.target.value,
     });
+    if (e.target.name === "businessUserId") {
+      validateUserId(e.target.value);
+    } else if (e.target.name === "password") {
+      validateUserPw(e.target.value);
+    } else if (e.target.name === "passwordConfirm") {
+      validateUserPwConfirm(e.target.value);
+    } else if (e.target.name === "email") {
+      validateEmail(e.target.value);
+    } else if (e.target.name === "businessNum") {
+      validateBusiNum(e.target.value);
+    }
   };
 
   const handleFindingIdChange = (e) => {
@@ -132,15 +218,15 @@ const UserModal = ({
         return;
       }
 
-      // await userSignup({
-      //   businessUserId: signupData.businessUserId,
-      //   password: signupData.password,
-      //   name: signupData.name,
-      //   email: signupData.email,
-      //   businessNum: signupData.businessNum,
-      //   stores: List([]),
-      //   state: 1,
-      // });
+      await userSignup({
+        businessUserId: signupData.businessUserId,
+        password: signupData.password,
+        name: signupData.name,
+        email: signupData.email,
+        businessNum: signupData.businessNum,
+        stores: List([]),
+        state: 1,
+      });
     } catch (e) {
       alert(e);
       console.log(e);
@@ -213,6 +299,11 @@ const UserModal = ({
           close={close}
           setModalPage={setModalPage}
           initializeModal={initializeModal}
+          idValidation={idValidation}
+          pwValidation={pwValidation}
+          pwConfirmValidation={pwConfirmValidation}
+          emailValidation={emailValidation}
+          busiNumValidation={busiNumValidation}
         />
       )}
       {modalPage === "findingId" && (
