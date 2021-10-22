@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import {
   Nav,
 } from "react-bootstrap";
+import { useCookies } from "react-cookie";
 import { useUser, useStore } from "../../components";
 import LinkAlarm from "../../pages/LinkAlarm";
 // import LoginModal from "../../pages/Login";

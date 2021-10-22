@@ -24,6 +24,8 @@ const USER_LOGOUT = "user/LOGOUT";
 const USER_SIGNUP = "user/SIGNUP";
 const USER_FINDINGID = "user/FINDINGID";
 const USER_FINDINGPW = "user/FINDINGPW";
+const USER_CHECKID = "user/CHECKID";
+const USER_CHECKPW = "user/CHECKPW";
 
 export const userList = createAction(
   USER_LIST,
@@ -71,6 +73,16 @@ export const userFindingPw = createAction(
   UserApi.findingPw,
 );
 
+export const userCheckId = createAction(
+  USER_CHECKID,
+  UserApi.checkId,
+);
+
+export const userCheckPw = createAction(
+  USER_CHECKPW,
+  UserApi.checkPw,
+);
+
 const initialState = Map({
 
   user: Map({
@@ -114,4 +126,15 @@ export default handleActions({
     type: USER_REMOVE,
     onSuccess: (state, action) => state.set("user", fromJS(action.payload.data)),
   }),
+
+  // ...pender({
+  //   type: USER_CHECKID,
+  //   onSuccess: (state, action) => state.set("isIdExisting", fromJS(action.payload.data)),
+  // }),
+
+  // ...pender({
+  //   type: USER_CHECKPW,
+  //   onSuccess: (state, action) => state.set("isPwMatch", fromJS(action.payload.data)),
+  // }),
+
 }, initialState);

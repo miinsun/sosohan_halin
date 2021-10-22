@@ -1,6 +1,7 @@
 import { List } from "immutable";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 // import "../../styles/form-sign.css";
+import { useCookies } from "react-cookie";
 import { useUser } from "../../components";
 import FindingIdModal from "./components/FindingIdModal";
 import FindingPwModal from "./components/FindingPwModal";
@@ -11,13 +12,23 @@ const UserModal = ({
   close, show,
 }) => {
   const {
-    userLogin, userSignup, userFindingId, userFindingPw,
+    userLogin, userSignup, userFindingId, userFindingPw, userCheckId,
   } = useUser();
 
   // modal initialize
   const [modalPage, setModalPage] = useState("login");
   const [foundId, setFoundId] = useState(null);
   const [isPwFound, setIsPwFound] = useState(false);
+
+  const [defaultId, setDefaultId] = useState("");
+  const [isChecked, setIsChecked] = useState(false);
+  const [cookies, setCookie, removeCookie] = useCookies(["rememberedId"]);
+
+  const [idValidation, setIdValidation] = useState(0);
+  const [pwValidation, setPwValidation] = useState(0);
+  const [pwConfirmValidation, setPwConfirmValidation] = useState(0);
+  const [emailValidation, setEmailValidation] = useState(0);
+  const [busiNumValidation, setBusiNumValidation] = useState(0);
 
   const initializeModal = () => {
     setModalPage("login");
@@ -50,11 +61,87 @@ const UserModal = ({
     email: "",
   });
 
+  const validateUserId = async (id) => {
+    console.log(id);
+    const regexId = /^[A-Za-z0-9+]{6,20}$/;
+    if (id.length === 0) { // 공백 -> 0
+      setIdValidation(0);
+    } else if (!regexId.test(id)) { // 형식에 안맞음 -> -1
+      setIdValidation(-1);
+    } else { // 공백이 아니며 형식에 맞음 -> 중복을 확인하여 중복이면 -2, 중복이 아니면 1
+      const response = await userCheckId(id);
+      if (response.data === true) {
+        setIdValidation(-2);
+      } else {
+        setIdValidation(1);
+      }
+    }
+  };
+
+  const validateUserPw = (pw) => {
+    console.log(pw);
+    const regexPw = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[`~!@#$%^&*|/?])[A-Za-z\d`~!@#$%^&*|/?]{10,16}$/;
+    if (pw.length === 0) { // 공백 -> 비번, 비번확인 다 0
+      setPwValidation(0);
+      setPwConfirmValidation(0);
+    } else if (!regexPw.test(pw)) { // 형식에 안맞음 -> 비번: -1, 비번확인: 0
+      setPwValidation(-1);
+      setPwConfirmValidation(0);
+    } else { // 공백이 아니며 형식에 맞음 -> 비번: 1, 비번확인: 일치하면 1 / 비일치하면 -1
+      setPwValidation(1);
+      if (pw === signupData.passwordConfirm) {
+        setPwConfirmValidation(1);
+      }
+      if (pw !== signupData.passwordConfirm) {
+        setPwConfirmValidation(-1);
+      }
+    }
+  };
+
+  const validateUserPwConfirm = (pwConfirm) => {
+    console.log(pwConfirm);
+    if (pwConfirm.length === 0 || pwValidation === -1) { // 공백 or 'password' 값 유효하지 않음 -> 0
+      setPwConfirmValidation(0);
+    } else if (pwConfirm !== signupData.password) { // 비일치 -> -1
+      setPwConfirmValidation(-1);
+    } else if (pwValidation === 1) { // 일치 -> 1
+      setPwConfirmValidation(1);
+    }
+  };
+
+  const validateEmail = (email) => {
+    console.log(email);
+    const regexEmail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
+    if (email.length === 0) { // 공백 -> 0
+      setEmailValidation(0);
+    } else if (!regexEmail.test(email)) { // 형식에 안맞음 -> -1
+      setEmailValidation(-1);
+    } else { // 공백이 아니며 형식에 맞음 -> 1
+      setEmailValidation(1);
+    }
+  };
+
+  const validateBusiNum = (busiNum) => {
+    console.log(busiNum);
+    const regexBusiNum = /^\d{10}$/;
+    if (busiNum.length === 0) {
+      setBusiNumValidation(0);
+    } else if (!regexBusiNum.test(busiNum)) {
+      setBusiNumValidation(-1);
+    } else {
+      setBusiNumValidation(1);
+    }
+  };
+
   const handleLoginChange = (e) => {
-    setLoginData({
-      ...loginData,
-      [e.target.name]: e.target.value,
-    });
+    if (e.target.name === "rememberMe") {
+      setIsChecked(e.target.checked);
+    } else {
+      setLoginData({
+        ...loginData,
+        [e.target.name]: e.target.value,
+      });
+    }
   };
 
   const handleSignupChange = (e) => {
@@ -62,6 +149,17 @@ const UserModal = ({
       ...signupData,
       [e.target.name]: e.target.value,
     });
+    if (e.target.name === "businessUserId") {
+      validateUserId(e.target.value);
+    } else if (e.target.name === "password") {
+      validateUserPw(e.target.value);
+    } else if (e.target.name === "passwordConfirm") {
+      validateUserPwConfirm(e.target.value);
+    } else if (e.target.name === "email") {
+      validateEmail(e.target.value);
+    } else if (e.target.name === "businessNum") {
+      validateBusiNum(e.target.value);
+    }
   };
 
   const handleFindingIdChange = (e) => {
@@ -80,8 +178,6 @@ const UserModal = ({
 
   const login = async () => {
     try {
-      console.log(loginData);
-
       if (loginData.businessUserId.length <= 0 || loginData.password.length <= 0) {
         alert("정확한 정보를 입력해 주세요.");
         return;
@@ -89,6 +185,11 @@ const UserModal = ({
 
       const response = await userLogin(loginData.businessUserId, loginData.password);
       sessionStorage.setItem("sessionId", response.data);
+      if (isChecked === true) {
+        setCookie("rememberedId", response.data, { maxAge: 2000 });
+      } else if (cookies.rememberedId !== undefined) {
+        removeCookie("rememberedId");
+      }
       document.location.href = "/";
     } catch (e) {
       alert("로그인 정보를 확인해 주세요.");
@@ -98,21 +199,9 @@ const UserModal = ({
 
   const signup = async () => {
     try {
-      console.log(signupData);
-
-      if (signupData.businessUserId.length <= 0 || signupData.name.length <= 0
-        || signupData.email.length <= 0 || signupData.password.length <= 0) {
-        alert("필수적인 정보를 입력해 주세요.");
-        return;
-      }
-
-      if (signupData.password !== signupData.passwordConfirm) {
-        alert("패스워드가 일치하지 않습니다. 다시 입력해 주세요.");
-        return;
-      }
-
-      if (signupData.businessNum.length !== 10) {
-        alert("사업자 등록번호의 길이가 형식에 맞지 않습니다.");
+      if (signupData.name.length <= 0 || idValidation !== 1 || pwValidation !== 1
+        || pwConfirmValidation !== 1 || emailValidation !== 1 || busiNumValidation !== 1) {
+        alert("정확한 정보를 입력해 주세요.");
         return;
       }
 
@@ -125,9 +214,9 @@ const UserModal = ({
         stores: List([]),
         state: 1,
       });
-    } catch (err) {
-      alert(err);
-      console.log(err);
+    } catch (e) {
+      alert(e);
+      console.log(e);
     }
 
     alert("가입이 완료되었습니다.");
@@ -136,8 +225,6 @@ const UserModal = ({
 
   const findId = async () => {
     try {
-      console.log(findingIdData);
-
       if (findingIdData.name.length <= 0 || findingIdData.email.length <= 0) {
         alert("정확한 정보를 입력해 주세요.");
         return;
@@ -145,16 +232,14 @@ const UserModal = ({
 
       const response = await userFindingId(findingIdData.name, findingIdData.email);
       setFoundId(response.data);
-    } catch (err) {
+    } catch (e) {
       alert("일치하는 회원이 없습니다.");
-      console.log(err);
+      console.log(e);
     }
   };
 
   const findPw = async () => {
     try {
-      console.log(findingPwData);
-
       if (findingPwData.businessUserId.length <= 0 || findingPwData.email.length <= 0) {
         alert("정확한 정보를 입력해 주세요.");
         return;
@@ -162,11 +247,22 @@ const UserModal = ({
 
       await userFindingPw(findingPwData.businessUserId, findingPwData.email);
       setIsPwFound(true);
-    } catch (err) {
+    } catch (e) {
       alert("일치하는 회원이 없습니다.");
-      console.log(err);
+      console.log(e);
     }
   };
+
+  useEffect(() => {
+    if (cookies.rememberedId !== undefined) {
+      setDefaultId(cookies.rememberedId);
+      setIsChecked(true);
+      setLoginData({
+        ...loginData,
+        businessUserId: cookies.rememberedId,
+      });
+    }
+  }, []);
 
   return (
     <>
@@ -178,6 +274,8 @@ const UserModal = ({
           close={close}
           setModalPage={setModalPage}
           initializeModal={initializeModal}
+          isChecked={isChecked}
+          defaultId={defaultId}
         />
       )}
       {modalPage === "signup" && (
@@ -188,6 +286,11 @@ const UserModal = ({
           close={close}
           setModalPage={setModalPage}
           initializeModal={initializeModal}
+          idValidation={idValidation}
+          pwValidation={pwValidation}
+          pwConfirmValidation={pwConfirmValidation}
+          emailValidation={emailValidation}
+          busiNumValidation={busiNumValidation}
         />
       )}
       {modalPage === "findingId" && (

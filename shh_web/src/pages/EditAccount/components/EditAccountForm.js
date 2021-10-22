@@ -5,7 +5,9 @@ import {
 import { Link } from "react-router-dom";
 import { useUser } from "../../../components";
 
-const EditAccountForm = ({ updateUser, handleChange, user }) => (
+const EditAccountForm = ({
+  updateUser, handleChange, user, pwValidation, pwConfirmValidation, emailValidation,
+}) => (
   <form className="EditAccountForm mt-4">
     <div className="md-form">
       {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
@@ -15,20 +17,34 @@ const EditAccountForm = ({ updateUser, handleChange, user }) => (
     </div>
     <div className="md-form">
       {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-      <label htmlFor="curPassword">현재 패스워드</label>
-      <input name="curPassword" className="form-control" type="password" onChange={handleChange} />
-      <p />
-    </div>
-    <div className="md-form">
-      {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
       <label htmlFor="password">새 패스워드</label>
-      <input name="newPassword" className="form-control" type="password" onChange={handleChange} />
+      <input
+        name="newPassword"
+        className="form-control"
+        type="password"
+        onChange={handleChange}
+        placeholder="변경을 원할 시에만 입력해 주세요."
+      />
+      {pwValidation === 0 && <small />}
+      {pwValidation === -1 && (
+        <small className="mx-1 text-danger">10~16자의 영문, 숫자, 특수문자 조합만 사용 가능합니다.</small>
+      )}
+      {pwValidation === 1 && <small className="mx-1 text-dark">사용 가능한 패스워드입니다.</small>}
       <p />
     </div>
     <div className="md-form">
       {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
       <label htmlFor="passwordConfirm">새 패스워드 확인</label>
-      <input name="newPasswordConfirm" className="form-control" type="password" onChange={handleChange} />
+      <input
+        name="newPasswordConfirm"
+        className="form-control"
+        type="password"
+        onChange={handleChange}
+        placeholder="변경할 패스워드를 한 번 더 입력해 주세요."
+      />
+      {pwConfirmValidation === 0 && <small />}
+      {pwConfirmValidation === -1 && <small className="mx-1 text-danger">패스워드가 일치하지 않습니다.</small>}
+      {pwConfirmValidation === 1 && <small className="mx-1 text-dark">패스워드가 일치합니다.</small>}
       <p />
     </div>
     <div className="md-form">
@@ -46,7 +62,11 @@ const EditAccountForm = ({ updateUser, handleChange, user }) => (
         type="text"
         defaultValue={user.email}
         onChange={handleChange}
-      />          <p />
+      />
+      {emailValidation === 0 && <small />}
+      {emailValidation === -1 && <small className="mx-1 text-danger">이메일이 형식에 맞지 않습니다.</small>}
+      {emailValidation === 1 && <small />}
+      <p />
     </div>
     <div className="md-form">
       {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
