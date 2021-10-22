@@ -12,7 +12,7 @@ const UserModal = ({
   close, show,
 }) => {
   const {
-    userLogin, userSignup, userFindingId, userFindingPw, userCheckId, isIdExisting,
+    userLogin, userSignup, userFindingId, userFindingPw, userCheckId,
   } = useUser();
 
   // modal initialize
@@ -63,11 +63,12 @@ const UserModal = ({
 
   const validateUserId = async (id) => {
     console.log(id);
-    if (id.length === 0) {
+    const regexId = /^[A-Za-z0-9+]{6,20}$/;
+    if (id.length === 0) { // 공백 -> 0
       setIdValidation(0);
-    } else if (id.length < 5) {
+    } else if (!regexId.test(id)) { // 형식에 안맞음 -> -1
       setIdValidation(-1);
-    } else {
+    } else { // 공백이 아니며 형식에 맞음 -> 중복을 확인하여 중복이면 -2, 중복이 아니면 1
       const response = await userCheckId(id);
       if (response.data === true) {
         setIdValidation(-2);
@@ -79,13 +80,14 @@ const UserModal = ({
 
   const validateUserPw = (pw) => {
     console.log(pw);
-    if (pw.length === 0) { // 아무것도 없음 -> 비번, 비번확인 다 0
+    const regexPw = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[`~!@#$%^&*|/?])[A-Za-z\d`~!@#$%^&*|/?]{10,16}$/;
+    if (pw.length === 0) { // 공백 -> 비번, 비번확인 다 0
       setPwValidation(0);
       setPwConfirmValidation(0);
-    } else if (pw.length < 10) { // 길이가 짧음 -> 비번: -1, 비번확인: 0
+    } else if (!regexPw.test(pw)) { // 형식에 안맞음 -> 비번: -1, 비번확인: 0
       setPwValidation(-1);
       setPwConfirmValidation(0);
-    } else { // 형식에 맞음 -> 비번: 1, 비번확인: 일치하면 1 비일치하면 -1
+    } else { // 공백이 아니며 형식에 맞음 -> 비번: 1, 비번확인: 일치하면 1 / 비일치하면 -1
       setPwValidation(1);
       if (pw === signupData.passwordConfirm) {
         setPwConfirmValidation(1);
@@ -98,12 +100,9 @@ const UserModal = ({
 
   const validateUserPwConfirm = (pwConfirm) => {
     console.log(pwConfirm);
-    if (pwValidation === -1) { // 비번이 유효하지 않으면 -> 0
-      setPwConfirmValidation(0);
-    } else if (pwConfirm.length === 0) { // 아무것도 없음 -> 0
+    if (pwConfirm.length === 0 || pwValidation === -1) { // 공백 or 'password' 값 유효하지 않음 -> 0
       setPwConfirmValidation(0);
     } else if (pwConfirm !== signupData.password) { // 비일치 -> -1
-      console.log("비일치하자나");
       setPwConfirmValidation(-1);
     } else if (pwValidation === 1) { // 일치 -> 1
       setPwConfirmValidation(1);
@@ -112,18 +111,22 @@ const UserModal = ({
 
   const validateEmail = (email) => {
     console.log(email);
-    if (email.length === 0) {
+    const regexEmail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
+    if (email.length === 0) { // 공백 -> 0
       setEmailValidation(0);
-    } else {
+    } else if (!regexEmail.test(email)) { // 형식에 안맞음 -> -1
+      setEmailValidation(-1);
+    } else { // 공백이 아니며 형식에 맞음 -> 1
       setEmailValidation(1);
     }
   };
 
   const validateBusiNum = (busiNum) => {
     console.log(busiNum);
+    const regexBusiNum = /^\d{10}$/;
     if (busiNum.length === 0) {
       setBusiNumValidation(0);
-    } else if (busiNum.length !== 10) {
+    } else if (!regexBusiNum.test(busiNum)) {
       setBusiNumValidation(-1);
     } else {
       setBusiNumValidation(1);
@@ -196,25 +199,9 @@ const UserModal = ({
 
   const signup = async () => {
     try {
-      if (signupData.businessUserId.length <= 0 || signupData.name.length <= 0
-        || signupData.email.length <= 0 || signupData.password.length <= 0) {
-        alert("필수적인 정보를 입력해 주세요.");
-        return;
-      }
-
-      const response = await userCheckId(signupData.businessUserId);
-      if (response.data === true) {
-        alert("이미 존재하거나 탈퇴한 회원의 아이디입니다.");
-        return;
-      }
-
-      if (signupData.password !== signupData.passwordConfirm) {
-        alert("패스워드가 일치하지 않습니다. 다시 입력해 주세요.");
-        return;
-      }
-
-      if (signupData.businessNum.length !== 10) {
-        alert("사업자 등록번호의 길이가 형식에 맞지 않습니다.");
+      if (signupData.name.length <= 0 || idValidation !== 1 || pwValidation !== 1
+        || pwConfirmValidation !== 1 || emailValidation !== 1 || busiNumValidation !== 1) {
+        alert("정확한 정보를 입력해 주세요.");
         return;
       }
 

@@ -33,7 +33,7 @@ const SignupModal = ({
             onChange={handleChange}
           />
           {idValidation === 0 && <small />}
-          {idValidation === -1 && <small className="mx-1 text-danger">아이디의 길이가 너무 짧습니다.</small>}
+          {idValidation === -1 && <small className="mx-1 text-danger">6~20자의 영문, 숫자만 사용 가능합니다.</small>}
           {idValidation === -2 && <small className="mx-1 text-danger">이미 존재하거나 탈퇴한 회원의 아이디입니다.</small>}
           {idValidation === 1 && <small className="mx-1 text-dark">사용 가능한 아이디입니다.</small>}
           <p />
@@ -49,7 +49,9 @@ const SignupModal = ({
             onChange={handleChange}
           />
           {pwValidation === 0 && <small />}
-          {pwValidation === -1 && <small className="mx-1 text-danger">패스워드의 길이가 너무 짧습니다.</small>}
+          {pwValidation === -1 && (
+            <small className="mx-1 text-danger">10~16자의 영문, 숫자, 특수문자 조합만 사용 가능합니다.</small>
+          )}
           {pwValidation === 1 && <small className="mx-1 text-dark">사용 가능한 패스워드입니다.</small>}
           <p />
         </div>
@@ -91,6 +93,7 @@ const SignupModal = ({
             onChange={handleChange}
           />
           {emailValidation === 0 && <small />}
+          {emailValidation === -1 && <small className="mx-1 text-danger">이메일이 형식에 맞지 않습니다.</small>}
           {emailValidation === 1 && <small />}
 
           <p />
