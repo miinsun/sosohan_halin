@@ -17,7 +17,7 @@ public interface ConsumerCouponRepository extends PagingAndSortingRepository<Con
 //			"where c.consumer.consumerUserId = ?1 order by c.finishDate desc")
 //	List<ConsumerCoupon> findByConsumerUserIdOrderByCoupon_FinishDate(int consumerUserId) throws DataAccessException; //留덇컧�엫諛뺤닚 �젙�젹
 
-	List<ConsumerCoupon> findByConsumer_ConsumerUserIdAndStateNot(int consumerUserId, int state) throws DataAccessException; //만료 쿠폰
+	List<ConsumerCoupon> findAllByConsumerUserIdAndStateNot(String consumerUserId, int state, Sort sort) throws DataAccessException; //만료 쿠폰
 	Iterable<ConsumerCoupon> findAllByConsumerUserIdAndStateIs(String consumerUserId, int state, Sort sort) throws DataAccessException; //가용 가능 쿠폰
 
 	@Query(value =
