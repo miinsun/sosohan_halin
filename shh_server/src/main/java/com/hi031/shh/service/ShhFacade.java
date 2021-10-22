@@ -14,13 +14,14 @@ import com.hi031.shh.domain.ReceiptWrapper;
 import com.hi031.shh.domain.Store;
 
 public interface ShhFacade {
-	BusinessAccount businessLogin(String businessUserId, String password);
+	BusinessAccount getAccount(String businessUserId, String password);
 	BusinessAccount insertBusinessAccount(BusinessAccount businessAccount);
 	String findBusinessUserId(String name, String email);
 	BusinessAccount findBusinessPw(String businessUserId, String email);
 	BusinessAccount getBusinessAccount(String businessUserId);
 	BusinessAccount updateBusinessAccount(BusinessAccount businessAccount);
 	BusinessAccount removeBusinessAccount(BusinessAccount businessAccount);
+	boolean isBusinessUserIdExisting(String businessUserId);
 
 	ConsumerAccount consumerLogin(String consumerUserId, String password);
 	ConsumerAccount insertConsumerAccount(ConsumerAccount consumerAccount);
@@ -37,7 +38,7 @@ public interface ShhFacade {
 	List<Coupon> getCoupons(int storeId);
 
 	ConsumerCoupon getConsumerCoupon(int consumerCouponId);
-	List<ConsumerCoupon> getConsumerCoupons(String consumerUserId, int state);
+	List<ConsumerCoupon> getConsumerCoupons(String consumerUserId, boolean isAvailable);
 //	ConsumerCoupon insertConsumerCoupon(Receipt receipt, int couponId);
   	ConsumerCoupon insertConsumerCoupon(ConsumerCoupon coupon, LocalDate receiptDate, int store, String consumerUserId);
 	ConsumerCoupon updateConsumerCoupon(ConsumerCoupon coupon);

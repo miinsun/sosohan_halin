@@ -67,7 +67,7 @@ public class ShhImpl implements ShhFacade {
 	private ReceiptRepository receiptRepo;
 	
 	@Override
-	public BusinessAccount businessLogin(String businessUserId, String password) {
+	public BusinessAccount getAccount(String businessUserId, String password) {
 		Optional<BusinessAccount> result = businessAccountRepo.findByBusinessUserIdAndPassword(businessUserId, password);
 		
 		if (result.isPresent()) {
@@ -126,7 +126,13 @@ public class ShhImpl implements ShhFacade {
 
 		return businessAccountRepo.save(businessAccount);
 	}
+	
+	@Override
+	public boolean isBusinessUserIdExisting(String businessUserId) {
+		return businessAccountRepo.existsById(businessUserId);
+	}
 
+	
 	@Override
 	public ConsumerAccount consumerLogin(String consumerUserId, String password) {
 		Optional<ConsumerAccount> result = consumerAccountRepo.findByConsumerUserIdAndPassword(consumerUserId, password);
@@ -243,7 +249,7 @@ public class ShhImpl implements ShhFacade {
 	}
 	
   public Store insertStore(Store store) {
-	  System.out.println(store.getBusinessUserId() + " " + store.getMainCategoryId() + " �쾾");
+	  System.out.println(store.getBusinessUserId() + " " + store.getMainCategoryId() + " �쾾");
 		Store newStore = storeRepo.save(store);
 		return newStore;
 	}
@@ -464,13 +470,18 @@ public class ShhImpl implements ShhFacade {
 	}
 	
 	@Override
-	public List<ConsumerCoupon> getConsumerCoupons(String consumerUserId, int state) {
+	public List<ConsumerCoupon> getConsumerCoupons(String consumerUserId, boolean isAvailable) {
 		List<Order> orders = new ArrayList<Order>();
 
 		Order order1 = new Order(Sort.Direction.DESC, "downloadDate");
 		orders.add(order1);
 		
-		List<ConsumerCoupon> result = (List<ConsumerCoupon>) consumerCouponRepo.findAllByConsumerUserIdAndStateIs(consumerUserId, state, Sort.by(orders));
+		List<ConsumerCoupon> result = new ArrayList<>();
+		if (isAvailable) {
+			result = (List<ConsumerCoupon>) consumerCouponRepo.findAllByConsumerUserIdAndStateIs(consumerUserId, 1, Sort.by(orders));
+		} else {
+			result = (List<ConsumerCoupon>) consumerCouponRepo.findAllByConsumerUserIdAndStateNot(consumerUserId, 1, Sort.by(orders));
+		}
 		return result;
 	}
 

@@ -68,11 +68,11 @@ public class ConsumerCouponController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(path="/{consumerUserId}/{state}", method=RequestMethod.GET)
-	public ResponseWrapper getConsumerCoupons(@PathVariable String consumerUserId, @PathVariable int state) throws Exception {
-		System.out.println("consumerUserId: " + consumerUserId + ", state: " + state);
+	@RequestMapping(path="/{consumerUserId}/{isAvailable}", method=RequestMethod.GET)
+	public ResponseWrapper getConsumerCoupons(@PathVariable String consumerUserId, @PathVariable boolean isAvailable) throws Exception {
+		System.out.println("consumerUserId: " + consumerUserId + ", isAvailable: " + isAvailable);
 
-		List<ConsumerCoupon> results = shh.getConsumerCoupons(consumerUserId, state);
+		List<ConsumerCoupon> results = shh.getConsumerCoupons(consumerUserId, isAvailable);
 		
 		long total = results.size();
 		
