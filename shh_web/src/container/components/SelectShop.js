@@ -50,7 +50,7 @@ const SelectShop = ({ fetch }) => {
           <NavDropdown
             id="nav-dropdown-dark-example"
             title={currentStore}
-            menuVariant="dark"
+            menuVariant="secondary"
             onSelect={handleSelect}
           >
             {myStores.total > 0 && myStores.results.map((data, index) => (

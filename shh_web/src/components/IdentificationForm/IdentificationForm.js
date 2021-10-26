@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Button } from "react-bootstrap";
 
 const IdentificationForm = ({ btnTitle, onClick, handleChange }) => (
   <form className="WithdrawalForm mt-5">
@@ -10,9 +10,9 @@ const IdentificationForm = ({ btnTitle, onClick, handleChange }) => (
       <p />
     </div>
     <div className="text-center">
-      {/* <Link className="btn btn-outline-secondary" to="/">취소</Link>{" "} */}
       {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-      <Link className="btn btn-primary" onClick={onClick}>{btnTitle}</Link>
+      <Button variant="outline-primary" onClick={onClick}>{btnTitle}</Button><br />
+
     </div>
   </form>
 );

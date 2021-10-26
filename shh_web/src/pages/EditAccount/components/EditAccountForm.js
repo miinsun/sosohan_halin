@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 import {
   Button,
 } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import { useUser } from "../../../components";
 
 const EditAccountForm = ({
   updateUser, handleChange, user, pwValidation, pwConfirmValidation, emailValidation,
@@ -78,7 +76,7 @@ const EditAccountForm = ({
     <div className="text-center">
       {/* <Link className="btn btn-outline-secondary" to="/">취소</Link>{" "} */}
       {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-      <Button className="btn btn-primary" onClick={updateUser}>수정</Button>
+      <Button variant="outline-primary" onClick={updateUser}>수정</Button>
     </div>
   </form>
 );

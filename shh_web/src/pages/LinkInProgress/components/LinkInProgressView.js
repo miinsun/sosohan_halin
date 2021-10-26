@@ -40,7 +40,7 @@ const isIn = (results, total, changeState) => {
                   </Card.Body>
                   <Card.Footer>
                     <Button
-                      variant="secondary"
+                      variant="outline-secondary"
                       onClick={() => changeState(data.linkId, data.state, -1)}
                     >연계취소
                     </Button>

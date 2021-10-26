@@ -3,7 +3,7 @@
 /* eslint-disable react/void-dom-elements-no-children */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Button } from "react-bootstrap";
 import { useStore } from "../../../components";
 
 const MyStoreRegi = () => {
@@ -221,8 +221,7 @@ const MyStoreRegi = () => {
           {/* <hr className="my-4" /> */}
           {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
           <div className="text-center">
-            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-            <Link className="btn btn-primary" onClick={insertStore}>등록</Link>
+            <Button variant="outline-primary" onClick={insertStore}>등록</Button>
           </div>
         </div>
       </form>

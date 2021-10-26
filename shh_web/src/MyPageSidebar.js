@@ -9,7 +9,7 @@ const MyPageSidebar = () => (
   // eslint-disable-next-line react/style-prop-object
   <div className="col-3">
     <ProSidebar id="sidebarOverrides">
-      <p className="fs-3 text-center">마이페이지</p>
+      <p className="fs-3 text-center text-primary">마이페이지</p>
       <Menu iconShape="square">
         <SubMenu title="회원 정보 관리">
           <MenuItem>회원 정보 수정<Link to="/editAccount" /></MenuItem>
