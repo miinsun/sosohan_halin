@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import {
-  Nav,
+  Nav, Button,
 } from "react-bootstrap";
 import { useCookies } from "react-cookie";
 import { useUser, useStore } from "../../components";
@@ -31,6 +31,7 @@ const UserArea = () => {
       await userLogout();
       sessionStorage.removeItem("sessionId");
       sessionStorage.removeItem("currentStoreId");
+      sessionStorage.removeItem("currentStoreName");
     } catch (err) {
       alert(err);
       console.log(err);
@@ -59,7 +60,8 @@ const UserArea = () => {
           <Nav.Link href="/editaccount">{sessionStorage.getItem("sessionId")}님</Nav.Link>
           <SelectShop fetch={getMyStores} />
           <LinkAlarm />
-          <Nav.Link onClick={logout} className="btn btn-outline-secondary text-muted">로그아웃</Nav.Link>
+          {/* <Nav.Link onClick={logout} className="btn btn-outline-warning">로그아웃</Nav.Link> */}
+          <Button variant="outline-secondary" onClick={logout}>로그아웃</Button>
         </Nav>
       )}
     </div>

@@ -1,11 +1,11 @@
 import React from "react";
 import {
-  Form, FormGroup, FloatingLabel, Modal,
+  Form, FormGroup, FloatingLabel, Modal, Button,
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 const LoginModal = ({
-  login, handleChange, show, close, setModalPage, initializeModal, isChecked, defaultId,
+  login, handleChange, show, close, setModalPage, initializeModal, isChecked, defaultId, onKeyPress,
 }) => (
   <Modal
     id="userModal"
@@ -30,26 +30,26 @@ const LoginModal = ({
               name="businessUserId"
               onChange={handleChange}
               defaultValue={defaultId}
+              onKeyPress={onKeyPress}
             />
           </FloatingLabel>
         </FormGroup>
         <FormGroup controlId="password">
           <FloatingLabel className="mb-3" controlId="password" label="비밀번호">
-            <Form.Control size="lg" type="password" name="password" onChange={handleChange} />
+            <Form.Control size="lg" type="password" name="password" onChange={handleChange} onKeyPress={onKeyPress} />
           </FloatingLabel>
         </FormGroup>
         <Form.Group className="mb-3" controlId="rememberMe">
           <Form.Check type="checkbox" name="rememberMe" onChange={handleChange} checked={isChecked} label="아이디 저장" />
         </Form.Group>
         <div className="text-center">
-          {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-          <Link
-            className="w-100 my-3 btn btn-lg btn-outline-primary text-primary"
-            type="button"
+          <Button
+            variant="outline-primary lg"
+            className="w-100 my-3 btn btn-lg"
             onClick={login}
           >
             로그인
-          </Link>
+          </Button>
           <div className="FindingIdLink text-center text-muted my-2">
             {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
             <Link class="text-reset" onClick={() => { setModalPage("findingId"); }}>아이디</Link> /&nbsp;

@@ -2,7 +2,6 @@
 import PropTypes from "prop-types";
 import React from "react";
 import { Button, Badge } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import { CTTable, NeedLogin } from "../../../components";
 
 const goLogin = () => {

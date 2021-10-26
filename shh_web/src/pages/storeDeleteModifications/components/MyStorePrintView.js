@@ -3,7 +3,6 @@ import React from "react";
 import {
   Button,
 } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import { CTTable } from "../../../components";
 
 const MyStorePrintView = ({ total, results, remove }) => (
@@ -23,9 +22,7 @@ const MyStorePrintView = ({ total, results, remove }) => (
           <td>{index + 1}</td>
           <td>{data.name}</td>
           <td>
-            <Button variant="primary" className=" mx-1" to="/storeRegistration">수정</Button>
-
-            {/* eslint-disable-next-line  */}
+            <Button variant="primary" className="mx-1" to="/storeRegistration">수정</Button>
             <Button variant="outline-secondary" className="mx-1" onClick={() => remove(data)}>삭제
             </Button>
           </td>

@@ -197,6 +197,12 @@ const UserModal = ({
     }
   };
 
+  const onKeyPress = (e) => {
+    if (e.key === "Enter") {
+      login();
+    }
+  };
+
   const signup = async () => {
     try {
       if (signupData.name.length <= 0 || idValidation !== 1 || pwValidation !== 1
@@ -276,6 +282,7 @@ const UserModal = ({
           initializeModal={initializeModal}
           isChecked={isChecked}
           defaultId={defaultId}
+          onKeyPress={onKeyPress}
         />
       )}
       {modalPage === "signup" && (
